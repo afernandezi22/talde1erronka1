@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Agregamos reglas CSS para centrar la imagen horizontalmente y alinear el texto al centro */
+            body {
+              text-align: center;
+            }
+          
+            #nireIrudia {
+              display: block; /* Para asegurarnos de que el margen automático funcione */
+              margin: auto; /* Centramos horizontalmente la imagen */
+            }
+          </style>
+    </head>
+    <body>
+        <h1>Julian (julian)</h1>
+
+        <img id="nireIrudia" src="../img/unnamed1.jpg">
+
+        <p>Julian</p>
+
+        <script>
+            var cont = 1;
+            setInterval(aldatuIrudia, 300);
+            function aldatuIrudia()
+            {
+                var image = document.getElementById('nireIrudia');
+                
+                if (cont === 1)
+                {
+                    image.src = "../img/unnamed2.jpg";
+                    cont = 2;
+                }else if (cont === 2)
+                {
+                    image.src = "../img/unnamed3.jpg";
+                    cont = 3;
+                }else if (cont === 3)
+                {
+                    image.src = "../img/unnamed4.jpg";
+                    cont = 4;
+                }else
+                {
+                    image.src = "../img/unnamed1.jpg";
+                    cont = 1;
+                }
+            }
+        </script>
+    </body>
+</html>
