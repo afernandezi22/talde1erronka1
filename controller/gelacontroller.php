@@ -7,7 +7,6 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM gela";
             $emaitza = $this -> db -> select($sql);
-            $gelak = [];
             foreach($emaitza as $gela){
                 $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
             }
@@ -19,7 +18,6 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM gela WHERE id = " . $id;
             $emaitza = $this -> db -> select($sql);
-            $gelak = [];
             foreach($emaitza as $gela){
                 $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
             }
