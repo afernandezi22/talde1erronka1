@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    min-height: 100vh; 
+    min-height: calc(100vh - 70px); 
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, #6193B1, #ffffff);
@@ -146,7 +146,7 @@ table tr:hover{
     margin: auto;
     display: block;
     padding-bottom: 20px;
-} 
+}
 
 .footer {
     background-color: #ffffff;
@@ -156,12 +156,22 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
+    /* position: fixed;
+    bottom: 0; */
+    /* z-index: 999;
+    margin-bottom: 70px; */
 }
 
 .sanjorge {
     width: 80px;
     height: 50px;
     padding: 0 20px;
+}
+
+.telef{
+    width: 20px;
+    height: 20px;
+    padding: 0px 5px 0px 10px;
 }
 
 .correo{
@@ -186,4 +196,15 @@ table tr:hover{
     width: 20px;
     height: 20px;
     padding: 5px;
+}
+
+@media screen and (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
 }
