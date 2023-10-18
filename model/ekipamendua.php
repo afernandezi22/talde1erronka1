@@ -1,12 +1,12 @@
 <?php
     class Ekipamendua{
-        private $id;
-        private $izena;
-        private $deskribapena;
-        private $marka;
-        private $modelo;
-        private $stock;
-        private $idKategoria;
+        public $id;
+        public $izena;
+        public $deskribapena;
+        public $marka;
+        public $modelo;
+        public $stock;
+        public $idKategoria;
 
         public function __construct($id, $izena, $deskribapena, $marka, $modelo, $stock, $idKategoria){
             $this -> id = $id;

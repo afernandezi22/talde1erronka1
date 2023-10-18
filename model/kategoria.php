@@ -1,7 +1,7 @@
 <?php
     class Kategoria{
-        private $id;
-        private $izena;
+        public $id;
+        public $izena;
 
         public function __construct($id, $izena){
             $this -> id = $id;

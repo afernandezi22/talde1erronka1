@@ -6,6 +6,6 @@
         abstract function getAll();
         // abstract function post($json);
         // abstract function delete($json);
-        // abstract function put($json);
+        abstract function put($json);
     }
 ?>

@@ -1,9 +1,9 @@
 <?php
     class Kokalekua{
-        private $etiketa;
-        private $idGela;
-        private $hasieraData;
-        private $amaieraData;
+        public $etiketa;
+        public $idGela;
+        public $hasieraData;
+        public $amaieraData;
 
         public function __construct($etiketa, $idGela, $hasieraData, $amaieraData){
             $this -> etiketa = $etiketa;

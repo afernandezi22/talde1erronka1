@@ -1,12 +1,12 @@
 <?php
     class Erabiltzailea{
-        private $nan;
-        private $izena;
-        private $abizena;
-        private $erabiltzailea;
-        private $pasahitza;
-        private $rola;
-        private $irudia;
+        public $nan;
+        public $izena;
+        public $abizena;
+        public $erabiltzailea;
+        public $pasahitza;
+        public $rola;
+        public $irudia;
 
         public function __construct($nan, $izena, $abizena, $erabiltzailea, $pasahitza, $rola, $irudia){
             $this -> nan = $nan;

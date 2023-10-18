@@ -1,8 +1,8 @@
 <?php
     class Gela{
-        private $id;
-        private $izena;
-        private $taldea;
+        public $id;
+        public $izena;
+        public $taldea;
 
         public function __construct($id, $izena, $taldea){
             $this -> id = $id;
