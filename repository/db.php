@@ -33,13 +33,19 @@
             //Konexioa sortu
             $this -> connect();
             //Emaitza lortu kontsulta eginez
-            $emaitza = $this -> conn -> query($sql);
             //0 baino gehiagoko erantzuna ematen badu emaitza bueltatu, bestela 0 bueltatu
-            if ($emaitza -> num_rows > 0){
-                return $emaitza;
-            }else{
-                return 0;
+
+            try{
+                $emaitza = $this -> conn -> query($sql);
+                if ($emaitza -> num_rows > 0){
+                    return $emaitza;
+                }else{
+                    return 0;
+                }
+            } catch (Exception $e) {
+                //echo "ERROREA " . $e;
             }
+
             //Konexioa itxi
             $this -> conn -> close();
         }

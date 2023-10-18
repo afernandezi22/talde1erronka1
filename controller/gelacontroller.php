@@ -18,34 +18,91 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM gela WHERE id = " . $id;
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $gela){
-                $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
+            if(is_array($emaitza)){
+                foreach($emaitza as $gela){
+                    $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
+                }
+    
+                return $gelak;
             }
-
-            return $gelak;
         }
 
         public function put($json){
-        
+            $this -> db = new DB();
+            $data = json_decode($json, true);
+            $sql = "UPDATE gela SET izena = " . $data["izena"]
+                . ", taldea = " . $data["taldea"]
+                . " WHERE id = " . $data["id"];
+            if($this -> db -> do($sql)){
+                return true;
+            } else{
+                return false;
+            }
+        }
+
+        public function post($json){
+            $this -> db = new DB();
+            $data = json_decode($json, true);
+            $sql = "INSERT INTO gela (izena, taldea) VALUES ('" . $data["izena"]
+                . "', '" . $data["taldea"] . "')";
+            if($this -> db -> do($sql)){
+                return true;
+            } else{
+                return false;
+            }
+        }
+
+        public function delete($json){
+            $this -> db = new DB();
+            $data = json_decode($json, true);
+            $sql = "DELETE FROM gela WHERE id IN(";
+            for($i = 0; $i < count($data["id"]); $i++){
+                if($i == 0){
+                    $sql = $sql . $data["id"][$i];
+                }else{
+                    $sql = $sql . "," . $data["id"][$i];
+                }
+            }
+
+            $sql = $sql . ")";
+
+            if($this -> db -> do($sql)){
+                return true;
+            } else{
+                return true;
+            }
         }
     }
 
-    // $froga = new GelaController();
-    // $emaitza = $froga -> getById(2);
-    // var_dump($emaitza);
+    header("Content-Type: application/json; charset=UTF-8");
 
-    // $gela = new Gela(1, "FROGA", "FROGA");
-    // $jsonGela = json_encode($gela);
 
-    // Verifica si la solicitud es de tipo POST
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if($_SERVER["REQUEST_METHOD"] === "PUT"){
         $json = file_get_contents('php://input');
-        $data = json_decode($json, true);
-        echo 'El nombre es: ' . $data['urtea'];
-        // echo $jsonGela;
-    } else {
-        // Si la solicitud no es de tipo POST, muestra un mensaje de error
-        echo 'Error: Esta página solo acepta solicitudes POST.';
+        $gelaController = new GelaController();
+        $gelaController -> put($json);
     }
 
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
+        $json = file_get_contents('php://input');
+        $gelaController = new GelaController();
+        $gelaController -> post($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"] === "DELETE"){
+        $json = file_get_contents('php://input');
+        $gelaController = new GelaController();
+        $gelaController -> delete($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"] === "GET"){
+        $gelaController = new GelaController();
+        if(isset($_GET["id"])){
+            $gela = $gelaController -> getById($_GET["id"]);
+            echo json_encode($gela);
+        }else{
+            $gela = $gelaController -> getAll();
+            echo json_encode($gela);
+        }
+    }
 ?>

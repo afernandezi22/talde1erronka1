@@ -3,6 +3,7 @@
     abstract class Controller{
         //Gutxienez guztiek datubase bat izango dute
         private $db;
+        private $check;
 
         abstract function getById($id); //id-aren arabera SELECT egiteko
         abstract function getAll(); //Taula horretako datu guztiak lortzeko

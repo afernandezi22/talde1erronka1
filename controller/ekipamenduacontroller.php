@@ -18,22 +18,23 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM ekipamendua WHERE id = " . $id;
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $ekipamendua){
-                $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+            if(is_array($emaitza)){
+                foreach($emaitza as $ekipamendua){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                }
+                return $ekipamenduak;
             }
-
-            return $ekipamenduak;
         }
 
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
             $sql = "UPDATE ekipamendua SET izena = " . $data["izena"]
-                . " deskribapena = " . $data["deskribapena"]
-                . " marka = " . $data["marka"]
-                . " modelo = " . $data["modelo"]
-                . " stock = " . $data["stock"]
-                . " idKategoria = " . $data["idKategoria"]
+                . ", deskribapena = " . $data["deskribapena"]
+                . ", marka = " . $data["marka"]
+                . ", modelo = " . $data["modelo"]
+                . ", stock = " . $data["stock"]
+                . ", idKategoria = " . $data["idKategoria"]
                 . " WHERE id = " . $data["id"];
             if($this -> db -> do($sql)){
                 //Ondo
@@ -45,18 +46,17 @@
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO ekipamendua VALUES ('" . $data["izena"]
+            $sql = "INSERT INTO ekipamendua (izena, deskribapena, marka, modelo, stock, idKate VALUES ('" . $data["izena"]
                 . "', '" . $data["deskribapena"]
                 . "', '" . $data["marka"]
                 . "', '" . $data["modelo"]
                 . "', " . $data["stock"]
                 . ", " . $data["idKategoria"] . ")";
-                echo $sql;
-            if($this -> db -> do($sql)){
-                //Ondo
-            } else{
-                //Txarto
-            }
+                if($this -> db -> do($sql)){
+                    return true;
+                } else{
+                    return false;
+                }
         }
 
         public function delete($json){
@@ -72,7 +72,6 @@
             }
 
             $sql = $sql . ")";
-            echo $sql;
 
             if($this -> db -> do($sql)){
                 //Ondo
