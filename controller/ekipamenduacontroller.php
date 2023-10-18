@@ -29,11 +29,12 @@
             $this -> db = new DB();
             $data = json_decode($json, true);
             $sql = "UPDATE ekipamendua SET izena = " . $data["izena"]
-                . " abizena = " . $data["abizena"]
-                . " erabiltzailea = " . $data["erabiltzailea"]
-                . " pasahitza = " . $data["pasahitza"]
-                . " rola = " . $data["rola"]
-                . " irudia = " . $data["irudia"];
+                . " deskribapena = " . $data["deskribapena"]
+                . " marka = " . $data["marka"]
+                . " modelo = " . $data["modelo"]
+                . " stock = " . $data["stock"]
+                . " idKategoria = " . $data["idKategoria"]
+                . " WHERE id = " . $data["id"];
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -44,12 +45,13 @@
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO ekipamendua VALUES (izena = " . $data["izena"]
-                . " abizena = " . $data["abizena"]
-                . " erabiltzailea = " . $data["erabiltzailea"]
-                . " pasahitza = " . $data["pasahitza"]
-                . " rola = " . $data["rola"]
-                . " irudia = " . $data["irudia"] . ")";
+            $sql = "INSERT INTO ekipamendua VALUES ('" . $data["izena"]
+                . "', '" . $data["deskribapena"]
+                . "', '" . $data["marka"]
+                . "', '" . $data["modelo"]
+                . "', " . $data["stock"]
+                . ", " . $data["idKategoria"] . ")";
+                echo $sql;
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -99,5 +101,16 @@
         $json = file_get_contents('php://input');
         $ekipamenduController = new EkipamenduaController();
         $ekipamenduController -> delete($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"] === "GET"){
+        $ekipamenduController = new EkipamenduaController();
+        if(isset($_GET["id"])){
+            $ekipamendu = $ekipamenduController -> getById($_GET["id"]);
+            echo json_encode($ekipamendu);
+        }else{
+            $ekipamendu = $ekipamenduController -> getAll();
+            echo json_encode($ekipamendu);
+        }
     }
 ?>

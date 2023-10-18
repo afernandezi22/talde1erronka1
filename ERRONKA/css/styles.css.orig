@@ -65,7 +65,11 @@ body {
 }
 
 .container {
+<<<<<<< HEAD
+    min-height: 100vh; 
+=======
     min-height: 100vh;
+>>>>>>> natalia
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, #6193B1, #ffffff);
@@ -131,65 +135,7 @@ body {
 .div-table{
     position: relative;
 }
-h1{
-    text-align: center;
-}
 
-.content .botoiak{
-    float: right;
-    padding: 15px;
-}
-
-.content input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-}
-
-.content .botoiak button{
-    /* float: right; */
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #cfcfcf;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.content .botoiak button:hover{
-    background: #c2c2c2;
-}
-
-/* .content .botoiak form{
-    height: 20px;
-    width: 20px;
-} */
-
-table{
-    border-collapse: collapse;
-    /* border-width: 5px;
-    border-style: ridge;
-    border-color: #000000; */
-    text-align: center;
-    width: 65%;
-    background-color: #ffffff;
-}
-
-table th, table td{
-    /* border: 1px solid #000000; */
-    padding: 10px;
-}
-
-table th{
-    background-color: #23a78a;
-    color: #ffffff;
-}
-
-table tr:nth-child(odd){
-    background-color: #f8f9fa;
-}
 table{
     border-collapse: separate;
     border-width: 5px;
@@ -214,41 +160,14 @@ table th{
     margin: 10px 0;
 }
 
-table tr:nth-child(even){
-    background-color: #dfe2e6;
-}
-
 .tab-control img {
     width: 12px;
 }
 
-table tr:hover{
-    background-color: rgb(187, 187, 187);
-}
-
-.orrialdeBotoiak{
-    display: flex;
-    align-items: center;
-}
-
-.aurrekoBotoia, .hurrengoBotoia{
-    margin: 20px;
-}
-
-#grafikoa{
-    width: 100px; 
-    height: 100px;
-    max-width: 60%;
-    /* height: auto; */
-    margin: auto;
-    display: block;
-    padding-bottom: 20px;
-}
 .container {
     text-align: center;
     margin: 10px 0;
 }
-
 
 .footer {
     background-color: #ffffff;
@@ -258,22 +177,12 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
-    /* position: fixed;
-    bottom: 0; */
-    /* z-index: 999;
-    margin-bottom: 70px; */
 }
 
 .sanjorge {
     width: 80px;
     height: 50px;
     padding: 0 20px;
-}
-
-.telef{
-    width: 20px;
-    height: 20px;
-    padding: 0px 5px 0px 10px;
 }
 
 .correo{
@@ -298,15 +207,4 @@ table tr:hover{
     width: 20px;
     height: 20px;
     padding: 5px;
-}
-
-@media screen and (max-width: 992px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .navbar a {
-        margin: 10px 0;
-    }
 }
