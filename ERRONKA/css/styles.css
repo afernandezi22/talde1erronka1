@@ -110,6 +110,7 @@ body {
 .nav-links{
     display: flex;
     align-items: center;
+    font-size: large;
 }
 
 .content {
@@ -120,17 +121,17 @@ body {
     align-items: center;
 }
 
-.table-controls {
+/* .table-controls {
     float: right;
 }
 
 .gehitu {
     width: 20px;
-}
+} */
 
-.div-table{
+/* .div-table{
     position: relative;
-}
+} */
 h1{
     text-align: center;
 }
@@ -167,20 +168,20 @@ h1{
     width: 20px;
 } */
 
-table{
+/* table{
     border-collapse: collapse;
-    /* border-width: 5px;
+    border-width: 5px;
     border-style: ridge;
-    border-color: #000000; */
+    border-color: #000000;
     text-align: center;
     width: 65%;
     background-color: #ffffff;
-}
+} */
 
-table th, table td{
-    /* border: 1px solid #000000; */
+/* table th, table td{
+    border: 1px solid #000000;
     padding: 10px;
-}
+} */
 
 table th{
     background-color: #23a78a;
@@ -190,37 +191,33 @@ table th{
 table tr:nth-child(odd){
     background-color: #f8f9fa;
 }
-table{
-    border-collapse: separate;
-    border-width: 5px;
-    border-style: ridge;
-    border-color: #000000;
-    text-align: center;
-    width: 50%;
-    background-color: #ffffff;
-}
-
-table th, table td{
-    border: 1px solid #000000;
-    padding: 10px;
-}
-
-table th{
-    background-color: #d3d3d3;
-}
-
-.tab-control{
-    text-align: center;
-    margin: 10px 0;
-}
 
 table tr:nth-child(even){
     background-color: #dfe2e6;
 }
 
-.tab-control img {
-    width: 12px;
+table{
+    border-collapse: collapse;
+    border-width: 5px;
+    /* border-style: ridge;
+    border-color: #000000; */
+    text-align: center;
+    width: 60%;
+    background-color: #ffffff;
 }
+
+table th, table td{
+    padding: 10px;
+}
+
+/* .tab-control{
+    text-align: center;
+    margin: 10px 0;
+} */
+
+/* .tab-control img {
+    width: 12px;
+} */
 
 table tr:hover{
     background-color: rgb(187, 187, 187);
@@ -234,21 +231,6 @@ table tr:hover{
 .aurrekoBotoia, .hurrengoBotoia{
     margin: 20px;
 }
-
-#grafikoa{
-    width: 100px; 
-    height: 100px;
-    max-width: 60%;
-    /* height: auto; */
-    margin: auto;
-    display: block;
-    padding-bottom: 20px;
-}
-.container {
-    text-align: center;
-    margin: 10px 0;
-}
-
 
 .footer {
     background-color: #ffffff;
