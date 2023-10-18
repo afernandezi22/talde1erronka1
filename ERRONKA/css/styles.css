@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    min-height: calc(100vh - 70px); 
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, #6193B1, #ffffff);
