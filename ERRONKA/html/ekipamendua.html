@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <!-- <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     <link rel="icon" href="../img/favicon2.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon" />
 
@@ -14,24 +17,24 @@
 <body>
     <div class="container">
         <!-- MENU DE NAVEGACION -->
-
-        <!-- Botón o enlace para abrir el menú desplegable -->
-        <!-- <span class="open-button" onclick="openNav()">☰</span> -->
-
-        <nav class="navbar">
+        <nav>
+            <input type="checkbox" id="check"> 
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
             <div class="logo-container">
                 <img class="logo" src="../img/julian cabeza.jpg" />
-                <a href="#"><strong>ITXI SESIOA</strong> </a>
+                <p>Julian (#erabiltzaile_izena)</p>
             </div>
-            <div class="nav-links">
-                <a href="#"><strong><u>Kokalekua</u></strong></a>
-                <a href="#">Ekipamendua</a>
-                <a href="#">Kategoria</a>
-                <a href="#">Gela</a>
-                <a href="#">Inbentarioa</a>
-                <a href="#">Erabiltzailea</a>
-                <!-- <a href="javascript:void(0)" class="close-button" onclick="closeNav()">&times;</a> -->
-            </div>
+            <ul class="nav-links">
+                <li><a href="#">Kokalekua</strong></a></li>
+                <li><a href="#">Ekipamendua</a></li>
+                <li><a href="#">Kategoria</a></li>
+                <li><a href="#">Gela</a></li>
+                <li><a href="#">Inbentarioa</a></li>
+                <li><a href="#">Erabiltzailea</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
         </nav>
 
         <!-- TABLA -->

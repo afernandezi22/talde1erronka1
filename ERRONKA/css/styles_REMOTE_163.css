@@ -81,12 +81,6 @@ nav a:hover {
     margin-right: auto;
 }
 
-<<<<<<< HEAD
-.nav-links{
-    display: flex;
-    align-items: center;
-    font-size: large;
-=======
 .checkbtn {
     font-size: 30px;
     color: #fff;
@@ -95,7 +89,6 @@ nav a:hover {
     margin-right: 40px;
     cursor: pointer;
     display: none;
->>>>>>> natalia
 }
 
 #check {
@@ -110,9 +103,6 @@ nav a:hover {
     align-items: center;
 }
 
-<<<<<<< HEAD
-/* .table-controls {
-=======
 .content .botoiak {
     float: right;
     padding: 15px;
@@ -163,121 +153,14 @@ table th {
 }
 
 .table-controls {
->>>>>>> natalia
     float: right;
 }
 
 .gehitu {
     width: 20px;
-} */
-
-<<<<<<< HEAD
-/* .div-table{
-    position: relative;
-} */
-h1{
-    text-align: center;
 }
 
-.content .botoiak{
-    float: right;
-    padding: 15px;
-}
-
-.content input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-}
-
-.content .botoiak button{
-    /* float: right; */
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #cfcfcf;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.content .botoiak button:hover{
-    background: #c2c2c2;
-}
-
-/* .content .botoiak form{
-    height: 20px;
-    width: 20px;
-} */
-
-/* table{
-    border-collapse: collapse;
-    border-width: 5px;
-    border-style: ridge;
-    border-color: #000000;
-    text-align: center;
-    width: 65%;
-    background-color: #ffffff;
-} */
-
-/* table th, table td{
-    border: 1px solid #000000;
-    padding: 10px;
-} */
-
-table th{
-    background-color: #23a78a;
-    color: #ffffff;
-}
-
-table tr:nth-child(odd){
-    background-color: #f8f9fa;
-}
-
-table tr:nth-child(even){
-    background-color: #dfe2e6;
-}
-
-table{
-    border-collapse: collapse;
-    border-width: 5px;
-    /* border-style: ridge;
-    border-color: #000000; */
-    text-align: center;
-    width: 60%;
-    background-color: #ffffff;
-}
-
-table th, table td{
-    padding: 10px;
-}
-
-/* .tab-control{
-    text-align: center;
-    margin: 10px 0;
-} */
-
-/* .tab-control img {
-    width: 12px;
-} */
-
-table tr:hover{
-    background-color: rgb(187, 187, 187);
-}
-
-.orrialdeBotoiak{
-    display: flex;
-    align-items: center;
-}
-
-.aurrekoBotoia, .hurrengoBotoia{
-    margin: 20px;
-}
-
-=======
 /* ESTILOS DEL PIE DE PAGINA */
->>>>>>> natalia
 .footer {
     background-color: #ffffff;
     color: #000000;
@@ -286,10 +169,6 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
-    /* position: fixed;
-    bottom: 0; */
-    /* z-index: 999;
-    margin-bottom: 70px; */
 }
 
 /* ESTILOS DE LOS ICONOS SOCIALES EN EL PIE DE PAGINA */
@@ -305,17 +184,7 @@ table tr:hover{
     padding: 0px 5px 0px 10px;
 }
 
-<<<<<<< HEAD
-.telef{
-    width: 20px;
-    height: 20px;
-    padding: 0px 5px 0px 10px;
-}
-
-.correo{
-=======
 .correo {
->>>>>>> natalia
     width: 25px;
     height: 25px;
     padding: 10px;
@@ -339,18 +208,6 @@ table tr:hover{
     padding: 5px;
 }
 
-<<<<<<< HEAD
-@media screen and (max-width: 992px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .navbar a {
-        margin: 10px 0;
-    }
-}
-=======
 /* Estilos para las pantallas mas grandes que 769px */
  @media (max-width: 769px){
     .checkbtn{
@@ -431,4 +288,3 @@ table tr:hover{
         font-size: 12px;
     }
 } 
->>>>>>> natalia
