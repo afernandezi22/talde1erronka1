@@ -41,13 +41,6 @@
         <!-- TABLA -->
         <div class="content">
             <h1>EKIPAMENDUA</h1>
-            <!-- <div class="div-table"> -->
-
-
-                
-                <!-- <div class="table-controls">
-                    <img src="../img/anadir.png" class="gehitu" alt="Gehitu">
-                </div> -->
                 <div class="botoiak">
                     <form action="">
                         <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
@@ -64,7 +57,7 @@
                     </form>
                 </div>
 
-                <table>
+                <table id="ekipamenduaTable">
                     <tr>
                         <th></th>
                         <th>ID</th>
@@ -75,9 +68,8 @@
                         <th>Stock</th>
                     </tr>
 
-                    <tbody id="showData"></tbody>
+                    <tbody id="showDataEkipamendua"></tbody>
                 </table>
-            <!-- </div> -->
 
             <div class="tab-control">
                 <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1)" />
@@ -86,7 +78,7 @@
             </div>
         </div>
 
-        <script src="ekipamendua.js"></script>
+        <script src="viewTables.js"></script>
 
         <!-- FOOTER -->
         <div class="footer">
