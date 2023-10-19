@@ -23,7 +23,8 @@ function viewTable(actualPag) {
     var start = (actualPag - 1) * dataTable;
     var end = start + dataTable;
     for (var i = start; i < end && i < data.length; i++) {
-        tableHtml += "<tr><td>" + data[i]["id"] + "</td>";
+        tableHtml += "<tr><td><input type='checkbox'></td>"
+        tableHtml += "<td>" + data[i]["id"] + "</td>";
         tableHtml += "<td>" + data[i]["izena"] + "</td>";
         tableHtml += "<td>" + data[i]["deskribapena"] + "</td>";
         tableHtml += "<td>" + data[i]["marka"] + "</td>";
@@ -31,15 +32,6 @@ function viewTable(actualPag) {
         tableHtml += "<td>" + data[i]["stock"] + "</td></tr>";
     }
     document.getElementById("showData").innerHTML = tableHtml;
-}
-
-//FUNCIONES PARA ABRIR Y CERRAR EL MENU DESPLEGABE
-function openNav(){
-    document.getElementById("open-button").style.width = "250px";
-}
-
-function closeNav(){
-    document.getElementById("close-button").style.width = "0";
 }
 
 //PRUEBA DE QUE FUNCIONA CON DATOS DE JSON, hay que pasarle el JSON de la BD
