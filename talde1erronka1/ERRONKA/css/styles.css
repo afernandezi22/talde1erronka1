@@ -1,37 +1,35 @@
+/* ESTILOS GENERALES */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
 .container {
-    min-height: 100vh;
+    min-height: calc(100vh - 70px); 
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, #6193B1, #ffffff);
 }
 
+/* ESTILOS DE LA BARRA DE NAVEGACIÓN */
 nav {
-    position: fixed;
     background-color: #3E5971;
     color: #fff;
     padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: large;
     height: 50px;
     width: 100%;
 }
-
 nav a {
+    color: #fff;
     background-color: #3E5971;
     transition: 0.5s;
     text-decoration: none;
-    margin: auto;
-}
-
-nav a:hover{
-    background: #517798;
+    margin: 0 15px;
+    padding: 10px 15px;
     border-radius: 10px;
 }
 
@@ -53,25 +51,34 @@ nav ul li a {
     border-radius: 8px;
 }
 
+li a.active, li a:hover {
+    background: #000090;
+    transition: .5s;
+}
+
+nav a:hover {
+    background: #517798;
+    border-radius: 10px;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center; 
+    margin: 10px 0;
+    line-height: 20px;
+}
+
 .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     margin-right: auto;
-}
-
-.nav-links{
-    display: flex;
-    align-items: center;
-    font-size: large;
-    /* margin: 10px 0;
-    line-height: 20px; */
 }
 
 .checkbtn {
@@ -88,43 +95,20 @@ nav ul li a {
     display: none;
 }
 
+/* ESTILOS DEL CONTENIDO PRINCIPAL */
 .content {
     flex: 1;
-    padding-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* .table-controls {
-    float: right;
-}
-
-.gehitu {
-    width: 20px;
-} 
-
-/* .div-table{
-    position: relative;
-} */
-h1{
-    text-align: center;
-}
-
-.content .botoiak{
+.content .botoiak {
     float: right;
     padding: 15px;
 }
 
-.content input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-}
-
-.content .botoiak button{
-    /* float: right; */
+.content .botoiak button {
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -134,112 +118,98 @@ h1{
     cursor: pointer;
 }
 
-.content .botoiak button:hover{
+.content .botoiak button:hover {
     background: #c2c2c2;
 }
 
- /* table{
+/* ESTILOS DE LA TABLA */
+.div-table {
+    position: relative;
+}
+
+table {
     border-collapse: collapse;
-    border-width: 5px;
-    border-style: ridge;
-    border-color: #000000;
     text-align: center;
     width: 65%;
     background-color: #ffffff;
-}  */
+}
 
-table th{
+table th, table td {
+    padding: 10px;
+}
+
+table th {
     background-color: #23a78a;
     color: #ffffff;
 }
 
-table tr:nth-child(odd){
-    background-color: #f8f9fa;
-}
-
-table tr:nth-child(even){
-    background-color: #dfe2e6;
-}
-
-table{
-    border-collapse: collapse;
-    border-width: 5px;
-    /* border-style: ridge;
-    border-color: #000000; */
-    text-align: center;
-    width: 60%;
-    background-color: #ffffff;
-}
-
-table th, table td{
-    padding: 10px;
-}
-
-table tr:hover{
-    background-color: rgb(187, 187, 187);
-}
-
 .tab-control {
-    display: flex;
-    align-items: center;
-    /* margin: 10px 0; */
+    text-align: center;
+    margin: 10px 0;
 }
 
 .tab-control img {
     width: 12px;
 }
 
+.table-controls {
+    float: right;
+}
+
+.gehitu {
+    width: 20px;
+}
+
+/* ESTILOS DEL PIE DE PAGINA */
 .footer {
     background-color: #ffffff;
     color: #000000;
-    padding: 10px 0px;
+    height: 70px;
     bottom: 0;
     width: 100%;
     display: flex;
     align-items: center;
-    /* position: fixed;
-    bottom: 0; */
-    /* z-index: 999;
-    margin-bottom: 70px; */
 }
 
+/* ESTILOS DE LOS ICONOS SOCIALES EN EL PIE DE PAGINA */
 .sanjorge {
     width: 80px;
     height: 50px;
     padding: 0 20px;
-}
+} 
 
-.telef{
+.telef {
     width: 20px;
     height: 20px;
     padding: 0px 5px 0px 10px;
 }
 
-.correo{
+.correo {
     width: 25px;
     height: 25px;
     padding: 10px;
 }
 
-.twitter{
+.twitter {
     width: 18px;
     height: 18px;
     padding: 5px;
 }
 
-.facebook{
+.facebook {
     width: 30px;
     height: 30px;
     padding: 5px;
 }
 
-.instagram{
+.instagram {
     width: 20px;
     height: 20px;
     padding: 5px;
 }
 
-@media (max-width: 769px){
+/* Estilos para las pantallas mas grandes que 769px */
+ @media (max-width: 769px){
     .checkbtn{
         display: block;
     }
@@ -250,6 +220,7 @@ table tr:hover{
         padding: 10px;
         justify-content: flex-end;
     }
+
     nav ul {
         position: fixed;
         width: 33%;
@@ -302,11 +273,6 @@ table tr:hover{
         overflow: auto;
         width: 100%;
         padding: 0;
-        border-collapse: collapse;
-        border-width: 5px;
-        text-align: center;
-        width: 80%;
-        background-color: #ffffff;
     }
 
     th, td {
@@ -321,5 +287,4 @@ table tr:hover{
     .footer {
         font-size: 12px;
     }
-
-}
+} 
