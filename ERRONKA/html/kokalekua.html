@@ -12,27 +12,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+        function load_menu(){
+            document.getElementsByClassName("container")[0].innerHTML='<object type="text/html" data="menu.html"><object>';
+        }
+    </script>
 
     <title>Kokalekua</title>
 </head>
 
 <body>
     <div class="container">
-
-        <div class="navbar">
+        <!-- <iframe src="menu.html" width="100%" frameborder="0"></iframe> -->
+        <!-- MENU DE NAVEGACION -->
+        <!-- <nav>
+            <input type="checkbox" id="check"> 
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
             <div class="logo-container">
-                <img class="logo" src="../img/julian cabeza.jpg">
-                <a href="#"><strong>ITXI SESIOA</strong> </a>
+                <img class="logo" src="../img/julian cabeza.jpg" />
+                <p>Julian (#erabiltzaile_izena)</p>
             </div>
-            <div class="nav-links">
-                <a href="index.html"><strong><u>Kokalekua</u></strong></a>
-                <a href="#">Ekipamendua</a>
-                <a href="#">Kategoria</a>
-                <a href="gela.html">Gela</a>
-                <a href="#">Inbentarioa</a>
-                <a href="#">Erabiltzailea</a>
-            </div>
-        </div>
+            <ul class="nav-links">
+                <li><a href="kokalekua.html">Kokalekua</a></li>
+                <li><a href="ekipamendua.html">Ekipamendua</a></li>
+                <li><a href="#">Kategoria</a></li>
+                <li><a href="gela.html">Gela</a></li>
+                <li><a href="#">Inbentarioa</a></li>
+                <li><a href="#">Erabiltzailea</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav> -->
+        <!-- <div id="menu-container">
+            
+            
+        </div> -->
+        <script>
+            load_menu();
+        </script>
 
         <div class="content">
             <h1>KOKALEKUA</h1>
