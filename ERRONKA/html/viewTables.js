@@ -92,18 +92,6 @@ function viewTableEkipamendua(actualPag) {
         tableHtml += "<td>" + ekipamenduaData[i]["stock"] + "</td></tr>";
     }
 
-    if (actualPag > Math.ceil(tableData.length / tableLines)) {
-        for (var i = ekipamenduaData.length; i < tableLines; i++) {
-            tableHtml += "<tr><td><input type='checkbox'></td>";
-            tableHtml += "<td></td>";
-            tableHtml += "<td></td>";
-            tableHtml += "<td></td>";
-            tableHtml += "<td></td>";
-            tableHtml += "<td></td>";
-            tableHtml += "<td></td></tr>";
-        }
-    }
-
 
 
     document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
@@ -148,8 +136,31 @@ function viewTableKokalekua(actualPag) {
 
 }
 
+function getDataFromURL(url, tableId) {
+    let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error ("ERROR: No se pudo obtener el JSON" + Error);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (tableId == "ekipamendua") {
+                tableData = data;
+                viewTableEkipamendua(ekipamenduaActualPag);
+            } else if (tableId == "inbentarioa") {
+                tableDataInbentarioa = data;
+                viewTableInbentarioa(inbentarioaActualPag);
+            }
+        })
+        .catch(error => {
+            console.error("ERROR:", error);
+        })
+}
+
 //PRUEBA DE QUE FUNCIONA CON DATOS DE JSON, hay que pasarle el JSON de la BD
-tableData = [
+/*tableData = [
     {
         "id": "pruebaID168769",
         "izena": "pruebaIzena",
@@ -393,10 +404,11 @@ tableDataInbentarioa = [
         "modelo": "pruebaModelo",
         "stock": "pruebaStock",
     },
-]
+]*/
 
 // window.addEventListener("load", paginar(0,any));
 window.addEventListener("load", function() {
+    paginar(1);
     viewTableEkipamendua(ekipamenduaActualPag);
     viewTableInbentarioa(inbentarioaActualPag);
 });
