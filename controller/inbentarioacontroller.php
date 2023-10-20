@@ -7,18 +7,20 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM inbentarioa";
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $inbentarioa){
-                $inbentarioak[] = new Inbentarioa($inbentarioa["etiketa"], $inbentarioa["idEkipamendu"], $inbentarioa["erosketaData"]);
+            if(!$emaitza == null){
+                foreach($emaitza as $inbentarioa){
+                    $inbentarioak[] = new Inbentarioa($inbentarioa["etiketa"], $inbentarioa["idEkipamendu"], $inbentarioa["erosketaData"]);
+                }
+    
+                return $inbentarioak;
             }
-
-            return $inbentarioak;
         }
 
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM inbentarioa WHERE etiketa = " . $id;
             $emaitza = $this -> db -> select($sql);
-            if(is_array($emaitza)){
+            if(!$emaitza == null){
                 foreach($emaitza as $inbentarioa){
                     $inbentarioak[] = new Inbentarioa($inbentarioa["etiketa"], $inbentarioa["idEkipamendu"], $inbentarioa["erosketaData"]);
                 }

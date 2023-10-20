@@ -7,22 +7,23 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM erabiltzailea";
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $erabiltzailea){
-                $erabiltzaileak[] = new Erabiltzailea($erabiltzailea["nan"], $erabiltzailea["izena"], $erabiltzailea["abizena"], $erabiltzailea["erabiltzailea"], $erabiltzailea["pasahitza"], $erabiltzailea["rola"], $erabiltzailea["irudia"]);
+            if(!$emaitza == null){
+                foreach($emaitza as $erabiltzailea){
+                    $erabiltzaileak[] = new Erabiltzailea($erabiltzailea["nan"], $erabiltzailea["izena"], $erabiltzailea["abizena"], $erabiltzailea["erabiltzailea"], $erabiltzailea["pasahitza"], $erabiltzailea["rola"], $erabiltzailea["irudia"]);
+                }
+                return $erabiltzaileak;
             }
-
-            return $erabiltzaileak;
         }
 
         public function getById($id){
             $this -> db = new DB();
-            $sql = "SELECT * FROM erabiltzailea WHERE id = " . $id;
+            $sql = "SELECT * FROM erabiltzailea WHERE nan = '" . $id . "'";
             $emaitza = $this -> db -> select($sql);
-            if(is_array($emaitza)){
+
+            if(!$emaitza == null){
                 foreach($emaitza as $erabiltzailea){
                     $erabiltzaileak[] = new Erabiltzailea($erabiltzailea["nan"], $erabiltzailea["izena"], $erabiltzailea["abizena"], $erabiltzailea["erabiltzailea"], $erabiltzailea["pasahitza"], $erabiltzailea["rola"], $erabiltzailea["irudia"]);
                 }
-    
                 return $erabiltzaileak;
             }
         }
@@ -30,13 +31,13 @@
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "UPDATE erabiltzailea SET izena = " . $data["izena"]
-                . ", abizena = " . $data["abizena"]
-                . ", erabiltzailea = " . $data["erabiltzailea"]
-                . ", pasahitza = " . $data["pasahitza"]
-                . ", rola = " . $data["rola"]
-                . ", irudia = " . $data["irudia"]
-                . " WHERE nan = " . $data["nan"];
+            $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
+                . "', abizena = '" . $data["abizena"]
+                . "', erabiltzailea = '" . $data["erabiltzailea"]
+                . "', pasahitza = '" . $data["pasahitza"]
+                . "', rola = " . $data["rola"]
+                . ", irudia = '" . $data["irudia"]
+                . "' WHERE nan = '" . $data["nan"] . "'";
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -51,9 +52,9 @@
                 . "', '" . $data["izena"]
                 . "', '" . $data["abizena"]
                 . "', '" . $data["erabiltzailea"]
-                . "', " . $data["pasahitza"]
-                . ", " . $data["rola"] 
-                . ", " . $data["irudia"] . ")";
+                . "', '" . $data["pasahitza"]
+                . "', " . $data["rola"] 
+                . ", '" . $data["irudia"] . "')";
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -64,16 +65,16 @@
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "DELETE FROM erabiltzailea WHERE nan IN(";
-            for($i = 0; $i < count($data["id"]); $i++){
+            $sql = "DELETE FROM erabiltzailea WHERE nan IN('";
+            for($i = 0; $i < count($data["nan"]); $i++){
                 if($i == 0){
                     $sql = $sql . $data["nan"][$i];
                 }else{
-                    $sql = $sql . "," . $data["nan"][$i];
+                    $sql = $sql . "','" . $data["nan"][$i];
                 }
             }
 
-            $sql = $sql . ")";
+            $sql = $sql . "')";
 
             if($this -> db -> do($sql)){
                 //Ondo

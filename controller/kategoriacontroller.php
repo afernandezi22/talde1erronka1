@@ -7,18 +7,20 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM kategoria";
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $kategoria){
-                $kategoriak[] = new Kategoria($kategoria["id"], $kategoria["izena"]);
+            if(!$emaitza == null){
+                foreach($emaitza as $kategoria){
+                    $kategoriak[] = new Kategoria($kategoria["id"], $kategoria["izena"]);
+                }
+    
+                return $kategoriak;
             }
-
-            return $kategoriak;
         }
 
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM kategoria WHERE id = " . $id;
             $emaitza = $this -> db -> select($sql);
-            if(is_array($emaitza)){
+            if(!$emaitza == null){
                 foreach($emaitza as $kategoria){
                     $kategoriak[] = new Kategoria($kategoria["id"], $kategoria["izena"]);
                 }
@@ -30,8 +32,8 @@
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "UPDATE kategoria SET izena = " . $data["izena"]
-                . " WHERE id = " . $data["id"];
+            $sql = "UPDATE kategoria SET izena = '" . $data["izena"]
+                . "' WHERE id = " . $data["id"];
             if($this -> db -> do($sql)){
                 return true;
             } else{

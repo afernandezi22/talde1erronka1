@@ -19,7 +19,7 @@
         //     $this -> db = new DB();
         //     $sql = "SELECT * FROM kokalekua WHERE id = " . $id;
         //     $emaitza = $this -> db -> select($sql);
-        //     if(is_array($emaitza)){
+        //     if(!$emaitza == null){
         //         foreach($emaitza as $kokalekua){
         //             $kokalekuak[] = new Kokalekua($kokalekua["etiketa"], $kokalekua["idGela"], $kokalekua["hasieraData"], $kokalekua["amaieraData"]);
         //         }
