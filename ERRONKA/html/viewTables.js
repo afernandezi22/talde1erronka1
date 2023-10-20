@@ -5,49 +5,84 @@
 //DATOS DE LA TABLA ACTUAL
 let tableData = [];
 let tableLines = 10;
-let actualPag = 1;
+// let actualPag = 1;
+let kokalekuaActualPag = 1;
+let ekipamenduaActualPag = 1;
+let kategoriaActualPag = 1;
+let gelaActualPag = 1;
+let inbentarioaActualPag = 1;
+let erabiltzaileaActualPag = 1;
 
 
 //FUNCION PARA PAGINAR --> DIVIDIR LOS DATOS EN TABLAS DE 10 LINEAS
-function paginar(direccion) {
+function paginar(direccion, tableId) {
+    let actualPag = 0;
+    let totalPages = Math.ceil(tableData.length / tableLines);
+    
+
+    if (tableId === "ekipamendua") {
+        actualPag = ekipamenduaActualPag;
+    } else if (tableId === "inbentarioa") {
+        actualPag = inbentarioaActualPag;
+
+
+        /*if (actualPag * tableLines > tableData.length) {
+            return;
+        }*/
+
+
+    } //else if (tableId === "")
+
+
+
     actualPag += direccion;
     if (actualPag < 1) {
         actualPag = 1;
     }
-
-    var totalPages = Math.ceil(tableData.length / tableLines);
     if (actualPag > totalPages) {
         actualPag = totalPages;
     }
-    // window.addEventListener("load", displayTable);
+
+
+
+
+
+    if (tableId === "ekipamendua") {
+        ekipamenduaActualPag = actualPag;
+        viewTableEkipamendua(ekipamenduaActualPag);
+    } else if (tableId === "inbentarioa") {
+        inbentarioaActualPag = actualPag;
+        viewTableInbentarioa(inbentarioaActualPag);
+    }
+
+
+    // displayTable();
     document.getElementById("page-number").innerHTML = actualPag;
     document.getElementById("total-pages").innerHTML = totalPages;
-}
+    //}
 
-function displayTable() {
-    const ekipamenduaTable = document.getElementById("ekipamenduaTable");
-    const inbentarioaTable = document.getElementById("inbentarioaTable");
+    //function displayTable() {
+    //const ekipamenduaTable = document.getElementById("ekipamenduaTable");
+    //const inbentarioaTable = document.getElementById("inbentarioaTable");
 
-    if (ekipamenduaTable) {
-        viewTableEkipamendua(actualPag);
-    } else if (inbentarioaTable) {
-        viewTableInbentarioa(actualPag);
-    } else if (kokalekuaTable) {
-        viewTableKokalekua(actualPag);
-    }
+    // if (ekipamenduaTable) {
+    //     viewTableEkipamendua(ekipamenduaActualPag);
+    //     console.log(ekipamenduaActualPag);
+    // } else if (inbentarioaTable) {
+    //     viewTableInbentarioa(inbentarioaActualPag);
+    // } else if (kokalekuaTable) {
+    //     viewTableKokalekua(kokalekuaActualPag);
+    // }
 }
 
 //MOSTRAR LOS DATOS DESEADOS DEL JSON --> PARA EKIPAMENDUA
 function viewTableEkipamendua(actualPag) {
-
-    var ekipamenduaData = tableData.slice((actualPag - 1) * tableLines, actualPag * tableLines);
-
     var tableHtml = "";
-    // var start = (actualPag - 1) * tableLines;
-    // var end = start + tableLines;
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    var ekipamenduaData = tableData.slice(start, end);
 
-    // for (var i = start; i < end && i < ekipamenduaData.length; i++) {
-    for (var i = 0; i < ekipamenduaData.length; i++){  
+    for (var i = 0; i < ekipamenduaData.length; i++) {
         tableHtml += "<tr><td><input type='checkbox'></td>"
         tableHtml += "<td>" + ekipamenduaData[i]["id"] + "</td>";
         tableHtml += "<td>" + ekipamenduaData[i]["izena"] + "</td>";
@@ -56,29 +91,47 @@ function viewTableEkipamendua(actualPag) {
         tableHtml += "<td>" + ekipamenduaData[i]["modelo"] + "</td>";
         tableHtml += "<td>" + ekipamenduaData[i]["stock"] + "</td></tr>";
     }
+
+    if (actualPag > Math.ceil(tableData.length / tableLines)) {
+        for (var i = ekipamenduaData.length; i < tableLines; i++) {
+            tableHtml += "<tr><td><input type='checkbox'></td>";
+            tableHtml += "<td></td>";
+            tableHtml += "<td></td>";
+            tableHtml += "<td></td>";
+            tableHtml += "<td></td>";
+            tableHtml += "<td></td>";
+            tableHtml += "<td></td></tr>";
+        }
+    }
+
+
+
     document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
 }
 
-function viewTableInbentarioa() {
-    var inbentarioaData = tableData.slice((actualPag - 1) * tableLines, actualPag * tableLines);
 
+//MOSTRAR LOS DATOS DESEADOS DEL JSON --> PARA INBENTARIOA
+function viewTableInbentarioa(actualPag) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
+    var inbentarioaData = tableDataInbentarioa.slice(start, end);
 
-    for (var i = start; i < end && i < inbentarioaData.length; i++) {
+    for (var i = 0; i < inbentarioaData.length; i++) {
         tableHtml += "<tr><td><input type='checkbox'></td>";
         tableHtml += "<td>" + inbentarioaData[i]["etiketa"] + "</td>";
         tableHtml += "<td>" + inbentarioaData[i]["idEkipamendu"] + "</td>";
         tableHtml += "<td>" + inbentarioaData[i]["erosketaData"] + "</td></tr>";
+
     }
     document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
 }
 
 
-function viewTableKokalekua(actualPag){
+//MOSTRAR LOS DATOS DESADOS DEL JSON --> PARA KOKALEKUA
+function viewTableKokalekua(actualPag) {
     var kokalekuaData = tableData.slice((actualPag - 1) * tableLines, actualPag * tableLines);
-    
+
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
@@ -104,6 +157,7 @@ tableData = [
         "marka": "pruebaMarka",
         "modelo": "pruebaModelo",
         "stock": "pruebaStock",
+        "etiketa": "a1",
     },
     {
         "id": "pruebaID2",
@@ -282,4 +336,67 @@ tableData = [
     },
 ]
 
-window.addEventListener("load", displayTable);
+tableDataInbentarioa = [
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+    {
+        "id": "pruebaID1",
+        "izena": "pruebaIzena",
+        "deskribapena": "pruebaDeskrib",
+        "marka": "pruebaMarka",
+        "modelo": "pruebaModelo",
+        "stock": "pruebaStock",
+    },
+]
+
+// window.addEventListener("load", paginar(0,any));
+window.addEventListener("load", function() {
+    viewTableEkipamendua(ekipamenduaActualPag);
+    viewTableInbentarioa(inbentarioaActualPag);
+});
