@@ -7,33 +7,37 @@
             $this -> db = new DB();
             $sql = "SELECT * FROM ekipamendua";
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $ekipamendua){
-                $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+            if(!$emaitza == null){
+                foreach($emaitza as $ekipamendua){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                }
+                return $ekipamenduak;
             }
-
-            return $ekipamenduak;
         }
 
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM ekipamendua WHERE id = " . $id;
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $ekipamendua){
-                $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+            
+            if(!$emaitza == null){
+                foreach($emaitza as $ekipamendua){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                }
+                return $ekipamenduak;
             }
-
-            return $ekipamenduak;
         }
 
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "UPDATE ekipamendua SET izena = " . $data["izena"]
-                . " abizena = " . $data["abizena"]
-                . " erabiltzailea = " . $data["erabiltzailea"]
-                . " pasahitza = " . $data["pasahitza"]
-                . " rola = " . $data["rola"]
-                . " irudia = " . $data["irudia"];
+            $sql = "UPDATE ekipamendua SET izena = '" . $data["izena"]
+                . "', deskribapena = '" . $data["deskribapena"]
+                . "', marka = '" . $data["marka"]
+                . "', modelo = '" . $data["modelo"]
+                . "', stock = " . $data["stock"]
+                . ", idKategoria = " . $data["idKategoria"]
+                . " WHERE id = " . $data["id"];
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -44,17 +48,17 @@
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO ekipamendua VALUES (izena = " . $data["izena"]
-                . " abizena = " . $data["abizena"]
-                . " erabiltzailea = " . $data["erabiltzailea"]
-                . " pasahitza = " . $data["pasahitza"]
-                . " rola = " . $data["rola"]
-                . " irudia = " . $data["irudia"] . ")";
-            if($this -> db -> do($sql)){
-                //Ondo
-            } else{
-                //Txarto
-            }
+            $sql = "INSERT INTO ekipamendua (izena, deskribapena, marka, modelo, stock, idKategoria) VALUES ('" . $data["izena"]
+                . "', '" . $data["deskribapena"]
+                . "', '" . $data["marka"]
+                . "', '" . $data["modelo"]
+                . "', " . $data["stock"]
+                . ", " . $data["idKategoria"] . ")";
+                if($this -> db -> do($sql)){
+                    return true;
+                } else{
+                    return false;
+                }
         }
 
         public function delete($json){
@@ -70,7 +74,6 @@
             }
 
             $sql = $sql . ")";
-            echo $sql;
 
             if($this -> db -> do($sql)){
                 //Ondo
@@ -99,5 +102,16 @@
         $json = file_get_contents('php://input');
         $ekipamenduController = new EkipamenduaController();
         $ekipamenduController -> delete($json);
+    }
+
+    if($_SERVER["REQUEST_METHOD"] === "GET"){
+        $ekipamenduController = new EkipamenduaController();
+        if(!empty($_GET["id"])){
+            $ekipamendu = $ekipamenduController -> getById($_GET["id"]);
+            echo json_encode($ekipamendu);
+        }else{
+            $ekipamendu = $ekipamenduController -> getAll();
+            echo json_encode($ekipamendu);
+        }
     }
 ?>
