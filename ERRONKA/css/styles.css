@@ -334,4 +334,19 @@ table tr:hover{
     .footer {
         font-size: 15px;
     }
+
+    nav a {
+        margin: 10px 0;
+    }
+} */
+
+.loginTitle {
+    font-size: 400%;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: none;
+  padding: 6px;
 }

@@ -82,6 +82,32 @@
                 //Txarto
             }
         }
+
+        public function login($json){
+            $erabil = false;
+            $pass = false;
+
+            $this -> db = new DB();
+            $data = json_decode($json, true);
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabil"] . "'";
+            $emaitza = $this -> db -> select($sql);
+            if($emaitza == null){
+                $info = ["erabil" => $erabil, "pass" => $pass];
+                
+            } else{
+                $erabil = true;
+                foreach($emaitza as $lerro){
+                    if($lerro["pasahitza"] == $data["pass"]){
+                        $pass = true;
+                        $info = ["erabil" => $erabil, "pass" => $pass];
+                    } else{
+                        $pass = false;
+                        $info= ["erabil" => $erabil, "pass" => $pass];
+                    }
+                }
+            }
+            return json_encode($info);
+        }
     }
 
     header("Content-Type: application/json; charset=UTF-8");
@@ -93,11 +119,28 @@
         $erabiltzaileaController -> put($json);
     }
 
-    if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
         $json = file_get_contents('php://input');
-        $erabiltzaileaController = new ErabiltzaileaController();
-        $erabiltzaileaController -> post($json);
+        $data = json_decode($json, true);
+        if(isset($data["erabil"])){
+            $erabiltzaileaController = new ErabiltzaileaController();
+            echo $erabiltzaileaController -> login($json);
+        } else{
+            $json = file_get_contents('php://input');
+            $erabiltzaileaController = new ErabiltzaileaController();
+            $erabiltzaileaController -> post($json);
+        }
     }
+
+    // if($_SERVER["REQUEST_METHOD"] === "POST" && isset( $_POST["bidali"])) {
+    //     $json = file_get_contents('php://input');
+    //     $erabiltzaileaController = new ErabiltzaileaController();
+    //     $erabiltzaileaController -> login($json);
+    // } elseif($_SERVER["REQUEST_METHOD"] === "POST"){
+    //     $json = file_get_contents('php://input');
+    //     $erabiltzaileaController = new ErabiltzaileaController();
+    //     $erabiltzaileaController -> post($json);
+    // }
 
     if($_SERVER["REQUEST_METHOD"] === "DELETE"){
         $json = file_get_contents('php://input');
