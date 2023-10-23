@@ -110,12 +110,12 @@ h1{
 /* ESTILO DE LOS BOTONES */
 div.botoiak {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     padding: 15px 0px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 /* .content .botoiak{
@@ -145,6 +145,10 @@ div.botoiak button{
     font-size: 17px;
     border: none;
     cursor: pointer;
+}
+
+div.botoiak input{
+    width: 120px;
 }
 
 /* .content .botoiak button{
@@ -335,10 +339,10 @@ table tr:hover{
         font-size: 15px;
     }
 
-    nav a {
+    /* nav a {
         margin: 10px 0;
-    }
-} */
+    } */
+}
 
 .loginTitle {
     font-size: 400%;
