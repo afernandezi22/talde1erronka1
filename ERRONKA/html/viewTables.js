@@ -137,11 +137,11 @@ function viewTableKokalekua(actualPag) {
 }
 
 function getDataFromURL(url, tableId) {
-    let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
+    //let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
     fetch(url)
         .then(response => {
             if (!response.ok) {
-                throw new Error ("ERROR: No se pudo obtener el JSON" + Error);
+                throw new Error ("ERROR: No se pudo obtener el JSON");
             }
             return response.json();
         })
@@ -411,4 +411,5 @@ window.addEventListener("load", function() {
     paginar(1);
     viewTableEkipamendua(ekipamenduaActualPag);
     viewTableInbentarioa(inbentarioaActualPag);
+    getDataFromURL("http://localhost/erronka1/controller/ekipamenduacontroller.php", "ekipamendua");
 });
