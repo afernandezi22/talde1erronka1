@@ -1,11 +1,11 @@
-/* ESTILOS GENERALES */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 .container {
-    min-height: calc(100vh - 70px); 
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: linear-gradient(to top, #6193B1, #ffffff);
@@ -20,7 +20,7 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: large;
-    height: 50px;
+    height: 75px;
     width: 100%;
 }
 nav a {
@@ -63,14 +63,15 @@ nav a:hover {
 
 .nav-links{
     display: flex;
+    justify-content: center;
     align-items: center; 
     margin: 10px 0;
     line-height: 20px;
 }
 
 .logo {
-    width: 50px; 
-    height: 50px; 
+    width: 80px; 
+    height: 80px; 
     border-radius: 50%; 
     margin-right: 10px; 
 }
@@ -78,15 +79,8 @@ nav a:hover {
 .logo-container {
     display: flex;
     align-items: center;
-    margin-right: auto;
 }
 
-<<<<<<< HEAD
-.nav-links{
-    display: flex;
-    align-items: center;
-    font-size: large;
-=======
 .checkbtn {
     font-size: 30px;
     color: #fff;
@@ -95,14 +89,13 @@ nav a:hover {
     margin-right: 40px;
     cursor: pointer;
     display: none;
->>>>>>> natalia
 }
 
 #check {
     display: none;
 }
 
-/* ESTILOS DEL CONTENIDO PRINCIPAL */
+/* ESTILOS DEL CONTENIDO */
 .content {
     flex: 1;
     display: flex;
@@ -110,89 +103,41 @@ nav a:hover {
     align-items: center;
 }
 
-<<<<<<< HEAD
-/* .table-controls {
-=======
-.content .botoiak {
-    float: right;
-    padding: 15px;
-}
-
-.content .botoiak button {
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #cfcfcf;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
-.content .botoiak button:hover {
-    background: #c2c2c2;
-}
-
-/* ESTILOS DE LA TABLA */
-.div-table {
-    position: relative;
-}
-
-table {
-    border-collapse: collapse;
-    text-align: center;
-    width: 65%;
-    background-color: #ffffff;
-}
-
-table th, table td {
-    padding: 10px;
-}
-
-table th {
-    background-color: #23a78a;
-    color: #ffffff;
-}
-
-.tab-control {
-    text-align: center;
-    margin: 10px 0;
-}
-
-.tab-control img {
-    width: 12px;
-}
-
-.table-controls {
->>>>>>> natalia
-    float: right;
-}
-
-.gehitu {
-    width: 20px;
-} */
-
-<<<<<<< HEAD
-/* .div-table{
-    position: relative;
-} */
 h1{
     text-align: center;
 }
 
-.content .botoiak{
-    float: right;
-    padding: 15px;
+/* ESTILO DE LOS BOTONES */
+div.botoiak {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px 0px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.content input[type=text] {
+/* .content .botoiak{
+    float: right;
+    padding: 15px;
+} */
+
+div.botoiak input[type=text]{
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
 }
 
-.content .botoiak button{
-    /* float: right; */
+/* .content input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+} */
+
+div.botoiak button{
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -202,30 +147,25 @@ h1{
     cursor: pointer;
 }
 
-.content .botoiak button:hover{
+/* .content .botoiak button{
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #cfcfcf;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+} */
+
+div.botoiak button:hover{
     background: #c2c2c2;
 }
 
-/* .content .botoiak form{
-    height: 20px;
-    width: 20px;
+/* .content .botoiak button:hover{
+    background: #c2c2c2;
 } */
 
-/* table{
-    border-collapse: collapse;
-    border-width: 5px;
-    border-style: ridge;
-    border-color: #000000;
-    text-align: center;
-    width: 65%;
-    background-color: #ffffff;
-} */
-
-/* table th, table td{
-    border: 1px solid #000000;
-    padding: 10px;
-} */
-
+/* ESTILOS DE LA TABLA */
 table th{
     background-color: #23a78a;
     color: #ffffff;
@@ -242,8 +182,6 @@ table tr:nth-child(even){
 table{
     border-collapse: collapse;
     border-width: 5px;
-    /* border-style: ridge;
-    border-color: #000000; */
     text-align: center;
     width: 60%;
     background-color: #ffffff;
@@ -252,15 +190,6 @@ table{
 table th, table td{
     padding: 10px;
 }
-
-/* .tab-control{
-    text-align: center;
-    margin: 10px 0;
-} */
-
-/* .tab-control img {
-    width: 12px;
-} */
 
 table tr:hover{
     background-color: rgb(187, 187, 187);
@@ -275,37 +204,24 @@ table tr:hover{
     margin: 20px;
 }
 
-=======
-/* ESTILOS DEL PIE DE PAGINA */
->>>>>>> natalia
+/* ESTILOS DEL FOOTER */
 .footer {
     background-color: #ffffff;
     color: #000000;
-    height: 70px;
+    padding: 10px 0px;
     bottom: 0;
     width: 100%;
     display: flex;
     align-items: center;
-    /* position: fixed;
-    bottom: 0; */
-    /* z-index: 999;
-    margin-bottom: 70px; */
+    justify-content: center;
 }
 
-/* ESTILOS DE LOS ICONOS SOCIALES EN EL PIE DE PAGINA */
 .sanjorge {
     width: 80px;
     height: 50px;
     padding: 0 20px;
-} 
-
-.telef {
-    width: 20px;
-    height: 20px;
-    padding: 0px 5px 0px 10px;
 }
 
-<<<<<<< HEAD
 .telef{
     width: 20px;
     height: 20px;
@@ -313,46 +229,36 @@ table tr:hover{
 }
 
 .correo{
-=======
-.correo {
->>>>>>> natalia
     width: 25px;
     height: 25px;
     padding: 10px;
 }
 
-.twitter {
+.twitter{
     width: 18px;
     height: 18px;
     padding: 5px;
 }
 
-.facebook {
+.facebook{
     width: 30px;
     height: 30px;
     padding: 5px;
 }
 
-.instagram {
+.instagram{
     width: 20px;
     height: 20px;
     padding: 5px;
 }
 
-<<<<<<< HEAD
-@media screen and (max-width: 992px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
+/* Estilos para las pantallas mas grandes que 1200px */
+@media (max-width: 1200px){
+    .content {
+        margin-top: 100px;
     }
 
-    .navbar a {
-        margin: 10px 0;
-    }
-}
-=======
-/* Estilos para las pantallas mas grandes que 769px */
- @media (max-width: 769px){
+    /* Menú de navegación */
     .checkbtn{
         display: block;
     }
@@ -362,20 +268,21 @@ table tr:hover{
         color: white;
         padding: 10px;
         justify-content: flex-end;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
     }
 
     nav ul {
         position: fixed;
-        width: 33%;
         height: 100vh;
         background: #3E5971;
-        top: 6%;
+        top: 80px;
         left: -100%;
         text-align: center;
-        z-index:2;
+        z-index: 2;
         transition: all .5s;
-        overflow-y: auto;
-        display: none;
     }
 
     nav ul li {
@@ -403,32 +310,54 @@ table tr:hover{
     }
 
     li a:hover, li a.active {
-        /* padding: 5%;  */
         width: 100%; 
+    }
+
+    .logo-container{
+        margin-right: auto;
     }
 
     #check:checked ~ ul {
         left: 0;
-        width: 33%;
+    }
+    
+    /* Títulos */
+    h1{
+        font-size: 1.5em;
     }
 
-    table {
-        overflow: auto;
-        width: 100%;
-        padding: 0;
+    div.botoiak button{
+
     }
 
-    th, td {
-        padding: 5px;
-        font-size: 12px;
-    }
-
-    th {
-        background-color: #d3d3d3;
-    }
-
+    /* Footer */
     .footer {
-        font-size: 12px;
+        font-size: 15px;
     }
+<<<<<<< HEAD
+}
+=======
 } 
->>>>>>> natalia
+
+/* @media screen and (max-width: 1200px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+} */
+
+.loginTitle {
+    font-size: 400%;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: none;
+  padding: 6px;
+}
+>>>>>>> 96ca67ffbc91e804122234f98b235a30d9f36952
