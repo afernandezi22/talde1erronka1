@@ -1,16 +1,6 @@
 //DATOS DE LA TABLA ACTUAL
 let tableData = {
-    ekipamendua: [
-        {
-            "id": "oiñ",
-            "izena": "oiñn",
-            "deskribapena": "kaixo",
-            "marka": "oñb",
-            "modelo": "oiñ",
-            "stock": 9
-        },
-    ],
-
+    ekipamendua: [],
     inbentarioa: [],
     kategoria: [],
     gela: [],
@@ -101,10 +91,12 @@ function viewTable(tableId) {
     var start = (tableActualPag[tableId] - 1) * tableLines;
     var end = start + tableLines;
 
-    var data = tableData[tableId].slice(start, end);
+    //var data = tableData[tableId].slice(start, end);
+    var data = tableData.ekipamendua.slice(start,end);
+    //console.log(data);
 
     data.forEach(item => {
-        const rowHtml = '<tr><td><input type="checkbox"></td>';
+        let rowHtml = '<tr><td><input type="checkbox"></td>';
         for (const key in item) {
             rowHtml += `<td>${item[key]}</td>`;
         }
@@ -112,6 +104,7 @@ function viewTable(tableId) {
         tableHtml.push(rowHtml);
     });
     document.getElementById(`showData_${tableId}`).innerHTML = tableHtml.join('');
+    
 }
 
 //MOSTRAR LOS DATOS DESEADOS DEL JSON --> PARA EKIPAMENDUA
@@ -172,223 +165,30 @@ function viewTable(tableId) {
 
 }*/
 
-function getDataFromURL(url, tableId) {
-    //let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
-    fetch(url)
+function getDataFromURL() {
+    let url = "http://localhost/erronka/controller/ekipamenduacontroller.php";
+    let options = {method: "GET"};
+    fetch(url, options)
         .then(response => {
-            if (!response.ok) {
+           /*  if (!response.ok) {
                 throw new Error ('ERROR: No se pudo obtener el JSON');
-            }
-            console.log(json);
+            } */
             return response.json();
+            console.log(response);
         })
         .then(data => {
-            tableData[tableId] = data;
-            console.log(data);
-            tableActualPag[tableId] = 1;
-            viewTable(tableId);
-            /*if (tableId == "ekipamendua") {
-                ekipamenduaData = data;
-                ekipamenduaActualPag = 1;
-                viewTableEkipamendua(ekipamenduaActualPag);
-            } else if (tableId == "inbentarioa") {
-                inbentarioaData = data;
-                inbentarioaActualPag = 1;
-                viewTableInbentarioa(inbentarioaActualPag);
-            }*/
+            tableData.ekipamendua = data;
+            console.log(tableData.ekipamendua);
+            //tableActualPag[tableId] = 1;
+            viewTable('ekipamendua');
         })
-        .catch(error => {
-            console.error("ERROR:", error);
+        .catch(err => {
+            console.error("ERROR:" + err.message);
         })
 }
 
 //PRUEBA DE QUE FUNCIONA CON DATOS DE JSON, hay que pasarle el JSON de la BD
-/*tableData = [
-    {
-        "id": "pruebaID168769",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-        "etiketa": "a1",
-    },
-    {
-        "id": "pruebaID2",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID3",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID4",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID5",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID6",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID7",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID8",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    }, {
-        "id": "pruebaID9",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID10",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID11",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID12",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID13",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-    {
-        "id": "pruebaID1",
-        "izena": "pruebaIzena",
-        "deskribapena": "pruebaDeskrib",
-        "marka": "pruebaMarka",
-        "modelo": "pruebaModelo",
-        "stock": "pruebaStock",
-    },
-]
+/*
 
 tableDataInbentarioa = [
     {
@@ -450,21 +250,23 @@ tableDataInbentarioa = [
 ]*/
 
 // window.addEventListener("load", paginar(0,any));
-window.addEventListener("load", function() {
-    paginar(1);
-    viewTableEkipamendua(ekipamenduaActualPag);
-    viewTableInbentarioa(inbentarioaActualPag);
-    getDataFromURL("http://localhost/erronka/controller/ekipamenduacontroller.php", "ekipamendua");
-});
+// window.addEventListener("load", function() {
+//     paginar(1);
+//     viewTableEkipamendua(ekipamenduaActualPag);
+//     viewTableInbentarioa(inbentarioaActualPag);
+//     getDataFromURL("http://localhost/erronka/controller/ekipamenduacontroller.php", "ekipamendua");
+// });
 
 
 window.addEventListener("load", function () {
     paginar(1, 'ekipamendua');
     paginar(1, 'inbentarioa');
+    
+    getDataFromURL();
+    //getDataFromURL('http://localhost/erronka/controller/ekipamenduacontroller.php', 'ekipamendua');
+    /*getDataFromURL('http://localhost/erronka/controller/inbentarioacontroller.php', 'inbentarioa');
     // Agrega llamadas a paginar para las demás tablas
-    getDataFromURL('http://localhost/erronka1/controller/kategoriacontroller.php?id=001', 'ekipamendua');
-    getDataFromURL('http://localhost/erronka/controller/inbentarioacontroller.php', 'inbentarioa');
-    getDataFromURL('http://localhost/erronka/controller/kategoriacomcontroller.php', 'kategoria');
+    getDataFromURL('http://localhost/erronka1/controller/kategoriacontroller.php?id=001', 'kategoria');
     getDataFromURL('http://localhost/erronka/controller/gelacomcontroller.php', 'gela');
-    getDataFromURL('http://localhost/erronka/controller/erabiltzaileacomcontroller.php', 'erabiltzailea');
+    getDataFromURL('http://localhost/erronka/controller/erabiltzaileacomcontroller.php', 'erabiltzailea');*/
 });
