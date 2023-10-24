@@ -11,8 +11,8 @@ body {
     background: linear-gradient(to top, #6193B1, #ffffff);
 }
 
-/* ESTILOS DE LA BARRA DE NAVEGACIÓN */
 nav {
+    position: fixed;
     background-color: #3E5971;
     color: #fff;
     padding: 10px 0;
@@ -20,16 +20,19 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: large;
-    height: 75px;
+    height: 50px;
     width: 100%;
 }
+
 nav a {
-    color: #fff;
     background-color: #3E5971;
     transition: 0.5s;
     text-decoration: none;
-    margin: 0 15px;
-    padding: 10px 15px;
+    margin: auto;
+}
+
+nav a:hover{
+    background: #517798;
     border-radius: 10px;
 }
 
@@ -70,8 +73,8 @@ nav a:hover {
 }
 
 .logo {
-    width: 80px; 
-    height: 80px; 
+    width: 50px; 
+    height: 50px; 
     border-radius: 50%; 
     margin-right: 10px; 
 }
@@ -79,6 +82,14 @@ nav a:hover {
 .logo-container {
     display: flex;
     align-items: center;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    /* margin: 10px 0;
+    line-height: 20px; */
 }
 
 .checkbtn {
@@ -95,30 +106,16 @@ nav a:hover {
     display: none;
 }
 
-/* ESTILOS DEL CONTENIDO */
+/* ESTILOS DEL CONTENIDO PRINCIPAL */
 .content {
     flex: 1;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-h1{
-    text-align: center;
-}
-
-/* ESTILO DE LOS BOTONES */
-div.botoiak {
-    width: 100%;
-    /* max-width: 800px; */
-    padding: 15px 0px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    /* flex-wrap: wrap; */
-}
-
-/* .content .botoiak{
+.content .botoiak {
     float: right;
     padding: 15px;
 } */
@@ -130,14 +127,7 @@ div.botoiak input[type=text]{
     border: none;
 }
 
-/* .content input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-} */
-
-div.botoiak button{
+.content .botoiak button {
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -147,45 +137,22 @@ div.botoiak button{
     cursor: pointer;
 }
 
-div.botoiak input{
-    width: 120px;
+.content .botoiak button:hover {
+    background: #c2c2c2;
 }
-
-/* .content .botoiak button{
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #cfcfcf;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-} */
 
 div.botoiak button:hover{
     background: #c2c2c2;
 }
 
-/* .content .botoiak button:hover{
-    background: #c2c2c2;
-} */
 
 /* ESTILOS DE LA TABLA */
-table th{
-    background-color: #23a78a;
-    color: #ffffff;
-}
-
-table tr:nth-child(odd){
-    background-color: #f8f9fa;
-}
-
-table tr:nth-child(even){
-    background-color: #dfe2e6;
+.div-table {
+    position: relative;
 }
 
 table{
     border-collapse: collapse;
-    border-width: 5px;
     text-align: center;
     width: 60%;
     background-color: #ffffff;
@@ -199,16 +166,28 @@ table tr:hover{
     background-color: rgb(187, 187, 187);
 }
 
-.orrialdeBotoiak{
-    display: flex;
-    align-items: center;
+.tab-control {
+    text-align: center;
+    margin: 10px 0;
 }
 
 .aurrekoBotoia, .hurrengoBotoia{
     margin: 20px;
 }
 
-/* ESTILOS DEL FOOTER */
+.tab-control img {
+    width: 12px;
+}
+
+.table-controls {
+    float: right;
+}
+
+.gehitu {
+    width: 20px;
+}
+
+/* ESTILOS DEL PIE DE PAGINA */
 .footer {
     background-color: #ffffff;
     color: #000000;
@@ -217,7 +196,7 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    
 }
 
 .sanjorge {
@@ -256,13 +235,8 @@ table tr:hover{
     padding: 5px;
 }
 
-/* Estilos para las pantallas mas grandes que 1200px */
-@media (max-width: 1200px){
-    .content {
-        margin-top: 100px;
-    }
-
-    /* Menú de navegación */
+/* Estilos para las pantallas mas grandes que 769px */
+ @media (max-width: 769px){
     .checkbtn{
         display: block;
     }
@@ -277,16 +251,18 @@ table tr:hover{
         top: 0;
         z-index: 1000;
     }
-
     nav ul {
         position: fixed;
+        width: 33%;
         height: 100vh;
         background: #3E5971;
-        top: 80px;
+        top: 6%;
         left: -100%;
         text-align: center;
         z-index: 2;
         transition: all .5s;
+        overflow-y: auto;
+        display: none;
     }
 
     nav ul li {
@@ -323,11 +299,13 @@ table tr:hover{
 
     #check:checked ~ ul {
         left: 0;
+        width: 33%;
     }
-    
-    /* Títulos */
-    h1{
-        font-size: 1.5em;
+
+    table {
+        overflow: auto;
+        width: 100%;
+        padding: 0;
     }
 
     /* Botones */

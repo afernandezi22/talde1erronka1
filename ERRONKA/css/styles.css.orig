@@ -11,25 +11,32 @@ body {
     background: linear-gradient(to top, #6193B1, #ffffff);
 }
 
-/* ESTILOS DE LA BARRA DE NAVEGACIÓN */
 nav {
+    position: fixed;
     background-color: #3E5971;
     color: #fff;
     padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     font-size: large;
     height: 75px;
+=======
+    height: 50px;
+>>>>>>> natalia
     width: 100%;
 }
+
 nav a {
-    color: #fff;
     background-color: #3E5971;
     transition: 0.5s;
     text-decoration: none;
-    margin: 0 15px;
-    padding: 10px 15px;
+    margin: auto;
+}
+
+nav a:hover{
+    background: #517798;
     border-radius: 10px;
 }
 
@@ -51,6 +58,7 @@ nav ul li a {
     border-radius: 8px;
 }
 
+<<<<<<< HEAD
 li a.active, li a:hover {
     background: #000090;
     transition: .5s;
@@ -74,11 +82,26 @@ nav a:hover {
     height: 80px; 
     border-radius: 50%; 
     margin-right: 10px; 
+=======
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+>>>>>>> natalia
 }
 
 .logo-container {
     display: flex;
     align-items: center;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    /* margin: 10px 0;
+    line-height: 20px; */
 }
 
 .checkbtn {
@@ -95,14 +118,19 @@ nav a:hover {
     display: none;
 }
 
+<<<<<<< HEAD
 /* ESTILOS DEL CONTENIDO */
+=======
+>>>>>>> natalia
 .content {
     flex: 1;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+<<<<<<< HEAD
 h1{
     text-align: center;
 }
@@ -110,12 +138,12 @@ h1{
 /* ESTILO DE LOS BOTONES */
 div.botoiak {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     padding: 15px 0px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 /* .content .botoiak{
@@ -124,12 +152,36 @@ div.botoiak {
 } */
 
 div.botoiak input[type=text]{
+=======
+/* .table-controls {
+    float: right;
+}
+
+.gehitu {
+    width: 20px;
+} 
+
+/* .div-table{
+    position: relative;
+} */
+h1{
+    text-align: center;
+}
+
+.content .botoiak{
+    float: right;
+    padding: 15px;
+}
+
+.content input[type=text] {
+>>>>>>> natalia
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
 }
 
+<<<<<<< HEAD
 /* .content input[type=text] {
     padding: 6px;
     margin-top: 8px;
@@ -138,6 +190,10 @@ div.botoiak input[type=text]{
 } */
 
 div.botoiak button{
+=======
+.content .botoiak button{
+    /* float: right; */
+>>>>>>> natalia
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -145,6 +201,11 @@ div.botoiak button{
     font-size: 17px;
     border: none;
     cursor: pointer;
+}
+
+<<<<<<< HEAD
+div.botoiak input{
+    width: 120px;
 }
 
 /* .content .botoiak button{
@@ -166,6 +227,22 @@ div.botoiak button:hover{
 } */
 
 /* ESTILOS DE LA TABLA */
+=======
+.content .botoiak button:hover{
+    background: #c2c2c2;
+}
+
+ /* table{
+    border-collapse: collapse;
+    border-width: 5px;
+    border-style: ridge;
+    border-color: #000000;
+    text-align: center;
+    width: 65%;
+    background-color: #ffffff;
+}  */
+
+>>>>>>> natalia
 table th{
     background-color: #23a78a;
     color: #ffffff;
@@ -182,6 +259,7 @@ table tr:nth-child(even){
 table{
     border-collapse: collapse;
     border-width: 5px;
+<<<<<<< HEAD
     text-align: center;
     width: 60%;
     background-color: #ffffff;
@@ -196,10 +274,49 @@ table tr:hover{
 }
 
 .orrialdeBotoiak{
-    display: flex;
-    align-items: center;
+=======
+    /* border-style: ridge;
+    border-color: #000000; */
+    text-align: center;
+    width: 60%;
+    background-color: #ffffff;
 }
 
+table th, table td{
+    padding: 10px;
+}
+
+table tr:hover{
+    background-color: rgb(187, 187, 187);
+}
+
+.tab-control {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    /* margin: 10px 0; */
+}
+
+.tab-control img {
+    width: 12px;
+}
+
+.footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 0px;
+    bottom: 0;
+    width: 100%;
+>>>>>>> natalia
+    display: flex;
+    align-items: center;
+    /* position: fixed;
+    bottom: 0; */
+    /* z-index: 999;
+    margin-bottom: 70px; */
+}
+
+<<<<<<< HEAD
 .aurrekoBotoia, .hurrengoBotoia{
     margin: 20px;
 }
@@ -216,6 +333,8 @@ table tr:hover{
     justify-content: center;
 }
 
+=======
+>>>>>>> natalia
 .sanjorge {
     width: 80px;
     height: 50px;
@@ -252,6 +371,7 @@ table tr:hover{
     padding: 5px;
 }
 
+<<<<<<< HEAD
 /* Estilos para las pantallas mas grandes que 1200px */
 @media (max-width: 1200px){
     .content {
@@ -259,6 +379,9 @@ table tr:hover{
     }
 
     /* Menú de navegación */
+=======
+@media (max-width: 769px){
+>>>>>>> natalia
     .checkbtn{
         display: block;
     }
@@ -273,7 +396,6 @@ table tr:hover{
         top: 0;
         z-index: 1000;
     }
-
     nav ul {
         position: fixed;
         height: 100vh;
@@ -326,29 +448,41 @@ table tr:hover{
         font-size: 1.5em;
     }
 
+<<<<<<< HEAD
     div.botoiak button{
 
+=======
+    table {
+        overflow: auto;
+        width: 100%;
+        padding: 0;
+        border-collapse: collapse;
+        border-width: 5px;
+        text-align: center;
+        width: 80%;
+        background-color: #ffffff;
+    }
+
+    th, td {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #d3d3d3;
+>>>>>>> natalia
     }
 
     /* Footer */
     .footer {
         font-size: 15px;
     }
+
 <<<<<<< HEAD
-}
-=======
-} 
-
-/* @media screen and (max-width: 1200px) {
-    nav {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav a {
+    /* nav a {
         margin: 10px 0;
-    }
-} */
+    } */
+}
 
 .loginTitle {
     font-size: 400%;
@@ -360,4 +494,6 @@ input[type="password"] {
   border: none;
   padding: 6px;
 }
->>>>>>> 96ca67ffbc91e804122234f98b235a30d9f36952
+=======
+}
+>>>>>>> natalia

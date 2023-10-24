@@ -23,15 +23,22 @@
 
 <body>
     <div class="container">
+<<<<<<< HEAD:ERRONKA/html/kokalekua.html
         <!-- <iframe src="menu.html" width="100%" frameborder="0"></iframe> -->
         <!-- MENU DE NAVEGACION -->
         <nav>
+=======
+
+        <nav class="navbar">
+            
+>>>>>>> natalia:ERRONKA/html/index.html
             <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
+<<<<<<< HEAD:ERRONKA/html/kokalekua.html
             <div class="logo-container">
-                <img class="logo" src="../img/julian cabeza.jpg">
+                <img class="logo" src="../img/julian cabeza.jpg" />
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
@@ -51,24 +58,29 @@
         <!-- <script>
             load_menu();
         </script> -->
+=======
+
+            <div class="logo-container">
+                <img class="logo" src="../img/julian cabeza.jpg">
+                <p>Julian (#erabiltzaile_izena)</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Kokalekua</a></li>
+                <li><a href="#">Ekipamendua</a></li>
+                <li><a href="#">Kategoria</a></li>
+                <li><a href="#">Gela</a></li>
+                <li><a href="#">Inbentarioa</a></li>
+                <li><a href="#">Erabiltzailea</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav> 
+>>>>>>> natalia:ERRONKA/html/index.html
 
         <div class="content">
             <h1>KOKALEKUA</h1>
 
             <div class="botoiak">
-                <form action="">
-                    <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
-                    <button type="submit"><i class="fa-solid fa-pencil"></i></button>
-                    <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    <select name="bilaketa" id="bilaketa">
-                        <option value="etiketa">Etiketa</option>
-                        <option value="gela">Gela</option>
-                        <option value="hasieraData">Hasiera Data</option>
-                        <option value="amaieraData">Amaiera Data</option>
-                    </select>
-                    <input type="text" placeholder="Bilatu...">
-                    <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
-                </form>
+                <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
             </div>
 
             <table id="kokalekuaTable">
@@ -79,61 +91,16 @@
                     <th>Hasiera Data</th>
                     <th>Amaiera Data</th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#123</td>
-                    <td>123</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#456</td>
-                    <td>456</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#789</td>
-                    <td>789</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#000</td>
-                    <td>000</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#456</td>
-                    <td>456</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#789</td>
-                    <td>789</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#000</td>
-                    <td>000</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
+
+                <tbody id="showData_kokalekua"></tbody>
+
+                
             </table>
 
-            <div class="orrialdeBotoiak">
-                <button class="aurrekoBotoia" type="submit">Aurrekoa</button>
-                <p>1/6</p>
-                <button class="hurrengoBotoia" type="submit">Hurrengoa</button>
+            <div class="tab-control">
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1)" />
+                <span id="page-number">1</span> / <span id="total-pages">-</span>
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1)" />
             </div>
         </div>
         <script src="../js/viewTables.js"></script>
