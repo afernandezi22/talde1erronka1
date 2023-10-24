@@ -1,12 +1,12 @@
 //DATOS DE LA TABLA ACTUAL
-let tableData = {
+/*let tableData = {
     ekipamendua: [],
     inbentarioa: [],
     kategoria: [],
     gela: [],
     erabiltzailea: [],
     kokalekua: []
-};
+};*/
 
 const tableLines = 10;
 //PAGINA ACTUAL PARA CADA TABLA

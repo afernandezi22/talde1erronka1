@@ -68,17 +68,18 @@
                     <th>Stock</th>
                 </tr>
 
-                <tbody id="showData_ekipamendua"></tbody>
+                <tbody id="showDataEkipamendua"></tbody>
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'ekipamendua')" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarEkipamendua(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'ekipamendua')" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarEkipamendua(1)" />
             </div>
         </div>
 
-        <script src="../js/viewTables.js"></script>
+        <script src="../js/viewTableEkipamendua.js"></script>
+        <!-- <script src="../js/viewTableEkipamendua.js"></script> -->
 
         <!-- FOOTER -->
         <div class="footer">
