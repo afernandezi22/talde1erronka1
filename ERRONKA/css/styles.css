@@ -330,8 +330,9 @@ table tr:hover{
         font-size: 1.5em;
     }
 
+    /* Botones */
     div.botoiak button{
-
+        padding: 6px 7px;
     }
 
     /* Footer */
