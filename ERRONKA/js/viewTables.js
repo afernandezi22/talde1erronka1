@@ -166,7 +166,7 @@ function viewTable(tableId) {
 }*/
 
 function getDataFromURL() {
-    let url = "http://localhost/erronka/controller/ekipamenduacontroller.php";
+    let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
     let options = {method: "GET"};
     fetch(url, options)
         .then(response => {
