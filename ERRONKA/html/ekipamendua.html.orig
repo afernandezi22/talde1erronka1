@@ -28,13 +28,8 @@
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
-<<<<<<< HEAD
                 <li><a href="kokalekua.html">Kokalekua</a></li>
                 <li><a href="ekipamendua.html">Ekipamendua</a></li>
-=======
-                <li><a href="#">Kokalekua</a></li>
-                <li><a href="#">Ekipamendua</a></li>
->>>>>>> natalia
                 <li><a href="#">Kategoria</a></li>
                 <li><a href="gela.html">Gela</a></li>
                 <li><a href="inbentarioa.html">Inbentarioa</a></li>
