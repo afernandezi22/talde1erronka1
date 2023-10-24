@@ -9,7 +9,7 @@
     <link rel="icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <!-- <script>
@@ -31,7 +31,7 @@
                 <i class="fas fa-bars"></i>
             </label>
             <div class="logo-container">
-                <img class="logo" src="../img/julian cabeza.jpg" />
+                <img class="logo" src="../img/julian cabeza.jpg">
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
@@ -56,10 +56,22 @@
             <h1>KOKALEKUA</h1>
 
             <div class="botoiak">
-                <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
+                <form action="">
+                    <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
+                    <button type="submit"><i class="fa-solid fa-pencil"></i></button>
+                    <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    <select name="bilaketa" id="bilaketa">
+                        <option value="etiketa">Etiketa</option>
+                        <option value="gela">Gela</option>
+                        <option value="hasieraData">Hasiera Data</option>
+                        <option value="amaieraData">Amaiera Data</option>
+                    </select>
+                    <input type="text" placeholder="Bilatu...">
+                    <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
 
-            <table>
+            <table id="kokalekuaTable">
                 <tr>
                     <th></th>
                     <th>Etiketa</th>
@@ -124,6 +136,7 @@
                 <button class="hurrengoBotoia" type="submit">Hurrengoa</button>
             </div>
         </div>
+        <script src="../js/viewTables.js"></script>
 
         <h1>ORDENAGAILUEN EGOERA</h1>
 
