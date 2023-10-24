@@ -30,7 +30,7 @@ function getDataFromURL(url) {
         })
         .then(data => {
             dataEkipamendua = data;
-            console.log("data: " + data + "dataEkipamendua: " + dataEkipamendua);
+            //console.log("data: " + data + "dataEkipamendua: " + dataEkipamendua);
             viewTableEkipamendua(dataEkipamendua, actualPag);
         })
         .catch(err => {
@@ -42,6 +42,7 @@ function viewTableEkipamendua(dataEkipamendua, actualPag) {
     var tableHtmlEkipamendua = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
+    //var dataEkipamendua = dataEkipamendua.slice(start, end);
 
     for (var i = 0; i < dataEkipamendua.length; i++) {
         tableHtmlEkipamendua += "<tr><td><input type='checkbox'></td>"

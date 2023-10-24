@@ -67,7 +67,7 @@
                     <th>Erosketa Data</th>
                 </tr>
 
-                <tbody id="showData_inbentarioa"></tbody>
+                <tbody id="showDataInbentarioa"></tbody>
 
 
                 
@@ -76,15 +76,15 @@
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'inbentarioa')" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarInbentarioa(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'inbentarioa')" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarInbentarioa(1)" />
             </div>
         </div>
-        <script src="../js/viewTables.js"></script>
+        <script src="../js/viewTableInbentarioa.js"></script>
         
         <div class="footer">
-            <iframe src="footer.html" width="100%" height="70px" frameborder="0"></iframe>
+            <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
     
