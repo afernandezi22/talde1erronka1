@@ -115,16 +115,32 @@ nav a:hover {
     align-items: center;
 }
 
+h1{
+    text-align: center;
+}
+
+/* ESTILO DE LOS BOTONES */
+/* div.botoiak {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px 0px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+} */
+
 .content .botoiak {
     float: right;
     padding: 15px;
-} */
+}
 
 div.botoiak input[type=text]{
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
+    width: auto;
 }
 
 .content .botoiak button {
@@ -137,9 +153,9 @@ div.botoiak input[type=text]{
     cursor: pointer;
 }
 
-.content .botoiak button:hover {
+/* .content .botoiak button:hover {
     background: #c2c2c2;
-}
+} */
 
 div.botoiak button:hover{
     background: #c2c2c2;
@@ -162,8 +178,26 @@ table th, table td{
     padding: 10px;
 }
 
+table th{
+    background-color: #23a78a;
+    color: #ffffff;
+}
+
+table tr:nth-child(odd){
+    background-color: #f8f9fa;
+}
+
+table tr:nth-child(even){
+    background-color: #dfe2e6;
+}
+
 table tr:hover{
     background-color: rgb(187, 187, 187);
+}
+
+.orrialdeBotoiak{
+    display: flex;
+    align-items: center;
 }
 
 .tab-control {
@@ -196,7 +230,8 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
-    
+    justify-content: center;
+    height: 50px;
 }
 
 .sanjorge {
@@ -235,8 +270,8 @@ table tr:hover{
     padding: 5px;
 }
 
-/* Estilos para las pantallas mas grandes que 769px */
- @media (max-width: 769px){
+/* Estilos para las pantallas mas grandes que 1200px */
+ @media (max-width: 975px){
     .checkbtn{
         display: block;
     }
@@ -304,13 +339,17 @@ table tr:hover{
 
     table {
         overflow: auto;
-        width: 100%;
+        width: 80%;
         padding: 0;
     }
 
     /* Botones */
-    div.botoiak button{
-        padding: 6px 7px;
+    .botoiak{
+        text-align: center;
+    }
+
+    .botoiak button{
+        margin: 6px 7px;
     }
 
     /* Footer */
