@@ -1,12 +1,12 @@
 //DATOS DE LA TABLA ACTUAL
-let tableData = {
+/*let tableData = {
     ekipamendua: [],
     inbentarioa: [],
     kategoria: [],
     gela: [],
     erabiltzailea: [],
     kokalekua: []
-};
+};*/
 
 const tableLines = 10;
 //PAGINA ACTUAL PARA CADA TABLA
@@ -166,7 +166,7 @@ function viewTable(tableId) {
 }*/
 
 function getDataFromURL() {
-    let url = "http://localhost/erronka/controller/ekipamenduacontroller.php";
+    let url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
     let options = {method: "GET"};
     fetch(url, options)
         .then(response => {

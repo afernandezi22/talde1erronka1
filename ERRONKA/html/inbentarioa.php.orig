@@ -66,23 +66,38 @@
                     <th>Erosketa Data</th>
                 </tr>
 
+<<<<<<< HEAD:ERRONKA/html/inbentarioa.html
                 <tbody id="showDataKokalekua"></tbody>
                 
+=======
+                <tbody id="showDataInbentarioa"></tbody>
+
+
+>>>>>>> natalia:ERRONKA/html/inbentarioa.php
                 
 
                 
             </table>
 
             <div class="tab-control">
+<<<<<<< HEAD:ERRONKA/html/inbentarioa.html
                 <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
                 <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1)" />
             </div>
         </div>
         <script src="ekipamendua.js"></script>
+=======
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarInbentarioa(-1)" />
+                <span id="page-number">1</span> / <span id="total-pages">-</span>
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarInbentarioa(1)" />
+            </div>
+        </div>
+        <script src="../js/viewTableInbentarioa.js"></script>
+>>>>>>> natalia:ERRONKA/html/inbentarioa.php
         
         <div class="footer">
-            <iframe src="footer.html" width="100%" height="70px" frameborder="0"></iframe>
+            <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
     
