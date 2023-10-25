@@ -77,12 +77,8 @@
             </div>
         </div>
 
-<<<<<<< HEAD:ERRONKA/html/ekipamendua.html
-        <script src="ekipamendua.js"></script>
-=======
         <script src="../js/viewTableEkipamendua.js"></script>
         <!-- <script src="../js/viewTableEkipamendua.js"></script> -->
->>>>>>> natalia:ERRONKA/html/ekipamendua.php
 
         <!-- FOOTER -->
         <div class="footer">

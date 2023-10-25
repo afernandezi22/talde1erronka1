@@ -23,20 +23,13 @@
 
 <body>
     <div class="container">
-<<<<<<< HEAD:ERRONKA/html/kokalekua.html
-        <!-- <iframe src="menu.html" width="100%" frameborder="0"></iframe> -->
-        <!-- MENU DE NAVEGACION -->
-        <nav>
-=======
 
         <nav class="navbar">
             
->>>>>>> natalia:ERRONKA/html/index.html
             <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
-<<<<<<< HEAD:ERRONKA/html/kokalekua.html
             <div class="logo-container">
                 <img class="logo" src="../img/julian cabeza.jpg" />
                 <p>Julian (#erabiltzaile_izena)</p>
@@ -58,23 +51,6 @@
         <!-- <script>
             load_menu();
         </script> -->
-=======
-
-            <div class="logo-container">
-                <img class="logo" src="../img/julian cabeza.jpg">
-                <p>Julian (#erabiltzaile_izena)</p>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Kokalekua</a></li>
-                <li><a href="#">Ekipamendua</a></li>
-                <li><a href="#">Kategoria</a></li>
-                <li><a href="#">Gela</a></li>
-                <li><a href="#">Inbentarioa</a></li>
-                <li><a href="#">Erabiltzailea</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </nav> 
->>>>>>> natalia:ERRONKA/html/index.html
 
         <div class="content">
             <h1>KOKALEKUA</h1>
