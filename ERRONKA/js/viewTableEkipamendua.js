@@ -1,18 +1,24 @@
+import { paginar } from "./viewTables";
+
 var dataEkipamendua = [];
 const tableLines = 10;
 var actualPag = 1;
+var totalPages = 0;
 
 //PAGINAR LA TABLA EKIPAMENDUA
 function paginarEkipamendua(direccion) {
-    let totalPages = Math.ceil(dataEkipamendua.length / tableLines);
+    //let totalPages = Math.ceil(dataEkipamendua.length / tableLines);
+    const result = paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
+    actualPag = result.actualPag;
+    totalPages = result.totalPages;
 
-    actualPag += direccion;
+    /*actualPag += direccion;
     if (actualPag < 1) {
         actualPag = 1;
     }
     if (actualPag > totalPages) {
         actualPag = totalPages;
-    }
+    }*/
 
     viewTableEkipamendua(dataEkipamendua, actualPag);
 
