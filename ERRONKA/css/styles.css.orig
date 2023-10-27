@@ -19,8 +19,12 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     font-size: large;
+    height: 75px;
+=======
     height: 50px;
+>>>>>>> natalia
     width: 100%;
 }
 
@@ -54,6 +58,7 @@ nav ul li a {
     border-radius: 8px;
 }
 
+<<<<<<< HEAD
 li a.active, li a:hover {
     background: #000090;
     transition: .5s;
@@ -73,10 +78,17 @@ nav a:hover {
 }
 
 .logo {
-    width: 50px; 
-    height: 50px; 
+    width: 80px; 
+    height: 80px; 
     border-radius: 50%; 
     margin-right: 10px; 
+=======
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+>>>>>>> natalia
 }
 
 .logo-container {
@@ -106,7 +118,10 @@ nav a:hover {
     display: none;
 }
 
-/* ESTILOS DEL CONTENIDO PRINCIPAL */
+<<<<<<< HEAD
+/* ESTILOS DEL CONTENIDO */
+=======
+>>>>>>> natalia
 .content {
     flex: 1;
     padding-top: 70px;
@@ -115,35 +130,70 @@ nav a:hover {
     align-items: center;
 }
 
+<<<<<<< HEAD
 h1{
     text-align: center;
 }
 
 /* ESTILO DE LOS BOTONES */
-/* div.botoiak {
+div.botoiak {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     padding: 15px 0px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+}
+
+/* .content .botoiak{
+    float: right;
+    padding: 15px;
 } */
 
-.content .botoiak {
+div.botoiak input[type=text]{
+=======
+/* .table-controls {
+    float: right;
+}
+
+.gehitu {
+    width: 20px;
+} 
+
+/* .div-table{
+    position: relative;
+} */
+h1{
+    text-align: center;
+}
+
+.content .botoiak{
     float: right;
     padding: 15px;
 }
 
-div.botoiak input[type=text]{
+.content input[type=text] {
+>>>>>>> natalia
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
-    width: auto;
 }
 
-.content .botoiak button {
+<<<<<<< HEAD
+/* .content input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+} */
+
+div.botoiak button{
+=======
+.content .botoiak button{
+    /* float: right; */
+>>>>>>> natalia
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -153,31 +203,46 @@ div.botoiak input[type=text]{
     cursor: pointer;
 }
 
-/* .content .botoiak button:hover {
-    background: #c2c2c2;
+<<<<<<< HEAD
+div.botoiak input{
+    width: 120px;
+}
+
+/* .content .botoiak button{
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #cfcfcf;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
 } */
 
 div.botoiak button:hover{
     background: #c2c2c2;
 }
 
+/* .content .botoiak button:hover{
+    background: #c2c2c2;
+} */
 
 /* ESTILOS DE LA TABLA */
-.div-table {
-    position: relative;
+=======
+.content .botoiak button:hover{
+    background: #c2c2c2;
 }
 
-table{
+ /* table{
     border-collapse: collapse;
+    border-width: 5px;
+    border-style: ridge;
+    border-color: #000000;
     text-align: center;
-    width: 60%;
+    width: 65%;
     background-color: #ffffff;
-}
+}  */
 
-table th, table td{
-    padding: 10px;
-}
-
+>>>>>>> natalia
 table th{
     background-color: #23a78a;
     color: #ffffff;
@@ -191,37 +256,72 @@ table tr:nth-child(even){
     background-color: #dfe2e6;
 }
 
+table{
+    border-collapse: collapse;
+    border-width: 5px;
+<<<<<<< HEAD
+    text-align: center;
+    width: 60%;
+    background-color: #ffffff;
+}
+
+table th, table td{
+    padding: 10px;
+}
+
 table tr:hover{
     background-color: rgb(187, 187, 187);
 }
 
 .orrialdeBotoiak{
-    display: flex;
-    align-items: center;
+=======
+    /* border-style: ridge;
+    border-color: #000000; */
+    text-align: center;
+    width: 60%;
+    background-color: #ffffff;
+}
+
+table th, table td{
+    padding: 10px;
+}
+
+table tr:hover{
+    background-color: rgb(187, 187, 187);
 }
 
 .tab-control {
-    text-align: center;
-    margin: 10px 0;
-}
-
-.aurrekoBotoia, .hurrengoBotoia{
-    margin: 20px;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    /* margin: 10px 0; */
 }
 
 .tab-control img {
     width: 12px;
 }
 
-.table-controls {
-    float: right;
+.footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 0px;
+    bottom: 0;
+    width: 100%;
+>>>>>>> natalia
+    display: flex;
+    align-items: center;
+    /* position: fixed;
+    bottom: 0; */
+    /* z-index: 999;
+    margin-bottom: 70px; */
 }
 
-.gehitu {
-    width: 20px;
+<<<<<<< HEAD
+.aurrekoBotoia, .hurrengoBotoia{
+    margin: 20px;
 }
 
-/* ESTILOS DEL PIE DE PAGINA */
+/* ESTILOS DEL FOOTER */
 .footer {
     background-color: #ffffff;
     color: #000000;
@@ -231,9 +331,10 @@ table tr:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
 }
 
+=======
+>>>>>>> natalia
 .sanjorge {
     width: 80px;
     height: 50px;
@@ -270,8 +371,17 @@ table tr:hover{
     padding: 5px;
 }
 
+<<<<<<< HEAD
 /* Estilos para las pantallas mas grandes que 1200px */
- @media (max-width: 975px){
+@media (max-width: 1200px){
+    .content {
+        margin-top: 100px;
+    }
+
+    /* Menú de navegación */
+=======
+@media (max-width: 769px){
+>>>>>>> natalia
     .checkbtn{
         display: block;
     }
@@ -288,16 +398,13 @@ table tr:hover{
     }
     nav ul {
         position: fixed;
-        width: 33%;
         height: 100vh;
         background: #3E5971;
-        top: 6%;
+        top: 80px;
         left: -100%;
         text-align: center;
         z-index: 2;
         transition: all .5s;
-        overflow-y: auto;
-        display: none;
     }
 
     nav ul li {
@@ -334,22 +441,36 @@ table tr:hover{
 
     #check:checked ~ ul {
         left: 0;
-        width: 33%;
+    }
+    
+    /* Títulos */
+    h1{
+        font-size: 1.5em;
     }
 
+<<<<<<< HEAD
+    div.botoiak button{
+
+=======
     table {
         overflow: auto;
-        width: 80%;
+        width: 100%;
         padding: 0;
-    }
-
-    /* Botones */
-    .botoiak{
+        border-collapse: collapse;
+        border-width: 5px;
         text-align: center;
+        width: 80%;
+        background-color: #ffffff;
     }
 
-    .botoiak button{
-        margin: 6px 7px;
+    th, td {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #d3d3d3;
+>>>>>>> natalia
     }
 
     /* Footer */
@@ -357,6 +478,7 @@ table tr:hover{
         font-size: 15px;
     }
 
+<<<<<<< HEAD
     /* nav a {
         margin: 10px 0;
     } */
@@ -372,3 +494,6 @@ input[type="password"] {
   border: none;
   padding: 6px;
 }
+=======
+}
+>>>>>>> natalia
