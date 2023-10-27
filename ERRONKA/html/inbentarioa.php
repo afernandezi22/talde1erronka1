@@ -20,8 +20,8 @@
     <div class="container">
 
         <nav class="navbar">
-            
-            <input type="checkbox" id="check"> 
+
+            <input type="checkbox" id="check">
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
@@ -43,10 +43,10 @@
         <div class="content">
             <h1>INBENTARIOA</h1>
 
-            <div class="botoiak">
+            <!-- <div class="botoiak">
                 <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
-            </div>
-            
+            </div> -->
+
             <div class="botoiak">
                 <form action="">
                     <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
@@ -73,24 +73,24 @@
                 <tbody id="showDataInbentarioa"></tbody>
 
 
-                
 
-                
+
+
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarInbentarioa(-1)" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'inbentarioaTable')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginarInbentarioa(1)" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'inbentarioaTable')" />
             </div>
         </div>
-        <script src="../js/viewTableInbentarioa.js"></script>
-        
+        <script src="../js/viewTables.js"></script>
+
         <div class="footer">
             <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
-    
+
 </body>
 
 </html>

@@ -74,13 +74,13 @@
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarEkipamendua(-1)" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'ekipamenduaTable')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginarEkipamendua(1)" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'ekipamenduaTable')" />
             </div>
         </div>
 
-        <script src="../js/viewTableEkipamendua.js"></script>
+        <script src="../js/viewTables.js"></script>
         <!-- <script src="../js/viewTableEkipamendua.js"></script> -->
 
         <!-- FOOTER -->

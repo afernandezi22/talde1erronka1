@@ -1,19 +1,15 @@
 //import { paginar } from "./viewTables"; //PARA IMPORTAR LA FUNCION PAGINAR (DA FALLO)
 
 var dataEkipamendua = [];
+var dataInbentarioa = [];
+var dataAll  = [];
 const tableLines = 10;
 var actualPag = 1;
 var totalPages = 0;
 
-//PAGINAR LA TABLA EKIPAMENDUA
-function paginarEkipamendua(direccion) {
-    let totalPages = Math.ceil(dataEkipamendua.length / tableLines);
-    //PARA GUARDAR EL VALOR DE PAGINAR -- NO FUNCIONA POR EL FALLO DE IMPORTARLO
-    //const result = paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
-    //const result = window.paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
-
-    //actualPag = result.actualPag;
-    //totalPages = result.totalPages;
+//PAGINAR LAS TABLAS
+function paginar(direccion, tableId) {
+    //let totalPages = Math.ceil(dataTable.length / tableLines);
 
     actualPag += direccion;
     if (actualPag < 1) {
@@ -23,50 +19,80 @@ function paginarEkipamendua(direccion) {
         actualPag = totalPages;
     }
 
-    viewTableEkipamendua(dataEkipamendua, actualPag);
+    viewTable(dataAll, actualPag, tableId);
 
     document.getElementById("page-number").innerHTML = actualPag;
     document.getElementById("total-pages").innerHTML = totalPages;
 }
 
 
-function getDataFromURL(url) {
+function getDataFromURL(tableId) {
     var options = { method: "GET", mode: 'cors' };
+    var url;
+
+    if (tableId == "ekipamenduaTable"){
+        url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
+    } else if (tableId == "inbentarioaTable") {
+        url = "http://localhost/erronka1/controller/inbentarioacontroller.php";
+    } else {
+        console.error("ERROR: Invalid tabbleID");
+        return;
+    }
+
+
+
     fetch(url, options)
         .then(response => response.json())
         .then(data => {
-            dataEkipamendua = data;
-            totalPages = Math.ceil(dataEkipamendua.length / tableLines);
-            paginarEkipamendua(0); // Para asegurar que se inicie en la página 1
+            dataAll = data;
+            console.log(dataAll);
+            totalPages = Math.ceil(dataAll.length / tableLines);
+            paginar(0, tableId);  // Para asegurar que se inicie en la página 1
         })
         .catch(err => {
             console.error("ERROR: " + err.message);
         })
 }
 
-function viewTableEkipamendua(dataEkipamendua, actualPag) {
-    var tableHtmlEkipamendua = "";
+function viewTable(dataAll, actualPag, tableId) {
+    var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
-    //var dataEkipamendua = dataEkipamendua.slice(start, end);
 
-    for (var i = start; i < Math.min(end, dataEkipamendua.length); i++) {
-    //for (var i = 0; i < dataEkipamendua.length; i++) {
-        tableHtmlEkipamendua += "<tr><td><input type='checkbox'></td>"
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["id"] + "</td>";
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["izena"] + "</td>";
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["deskribapena"] + "</td>";
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["marka"] + "</td>";
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["modelo"] + "</td>";
-        tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["stock"] + "</td></tr>";
+    if(tableId == "ekipamenduaTable"){
+        dataEkipamendua = dataAll;
+        for (var i = start; i < Math.min(end, dataEkipamendua.length); i++) {
+            tableHtml += "<tr><td><input type='checkbox' id=" + dataEkipamendua[i]["id"] + "></td>"
+            tableHtml += "<td>" + dataEkipamendua[i]["id"] + "</td>";
+            tableHtml += "<td>" + dataEkipamendua[i]["izena"] + "</td>";
+            tableHtml += "<td>" + dataEkipamendua[i]["deskribapena"] + "</td>";
+            tableHtml += "<td>" + dataEkipamendua[i]["marka"] + "</td>";
+            tableHtml += "<td>" + dataEkipamendua[i]["modelo"] + "</td>";
+            tableHtml += "<td>" + dataEkipamendua[i]["stock"] + "</td></tr>";
+        }
+        document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
+    } else if (tableId == "inbentarioaTable") {
+        dataInbentarioa = dataAll;
+        for (var i = start; i < Math.min(end, dataInbentarioa.length); i++){
+            tableHtml += "<tr><td><input type='checkbox'></td>";
+            tableHtml += "<td>" + dataInbentarioa[i]["etiketa"] + "</td>";
+            tableHtml += "<td>" + dataInbentarioa[i]["idEkipamendu"] + "</td>";
+            tableHtml += "<td>" + dataInbentarioa[i]["erosketaData"] + "</td></tr>";
+        }
+        document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
+        console.log(dataInbentarioa);
     }
-    document.getElementById("showDataEkipamendua").innerHTML = tableHtmlEkipamendua;
-    console.log(tableHtmlEkipamendua);
+
+    
+    //document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
+    console.log("tableHtml" + tableHtml);
 }
 
 
 
 //LLAMAR A LAS FUNCIONES AL CARGAR LA PAGINA
 window.addEventListener("load", function(){
-    getDataFromURL("http://localhost/erronka1/controller/ekipamenduacontroller.php")
-})
+    //getDataFromURL("http://localhost/erronka1/controller/ekipamenduacontroller.php", "ekipamenduaTable");
+    getDataFromURL("ekipamenduaTable");
+    getDataFromURL("inbentarioaTable")
+});
