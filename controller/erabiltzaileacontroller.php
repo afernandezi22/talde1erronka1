@@ -28,6 +28,19 @@
             }
         }
 
+        public function getByErabiltzailea($erabiltzailea){
+            $this -> db = new DB();
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $erabiltzailea . "'";
+            $emaitza = $this -> db -> select($sql);
+
+            if(!$emaitza == null){
+                foreach($emaitza as $erabiltzailea){
+                    $erabiltzaileak[] = new Erabiltzailea($erabiltzailea["nan"], $erabiltzailea["izena"], $erabiltzailea["abizena"], $erabiltzailea["erabiltzailea"], $erabiltzailea["pasahitza"], $erabiltzailea["rola"], $erabiltzailea["irudia"]);
+                }
+                return $erabiltzaileak;
+            }
+        }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -122,8 +135,10 @@
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
-        if(isset($data["erabil"])){
+        if(isset($data["erabil"])){ //LOGIN
             $erabiltzaileaController = new ErabiltzaileaController();
+            session_start();
+            $_SESSION["erabiltzailea"] = $data["erabil"];
             echo $erabiltzaileaController -> login($json);
         } else{
             $json = file_get_contents('php://input');
@@ -131,16 +146,6 @@
             $erabiltzaileaController -> post($json);
         }
     }
-
-    // if($_SERVER["REQUEST_METHOD"] === "POST" && isset( $_POST["bidali"])) {
-    //     $json = file_get_contents('php://input');
-    //     $erabiltzaileaController = new ErabiltzaileaController();
-    //     $erabiltzaileaController -> login($json);
-    // } elseif($_SERVER["REQUEST_METHOD"] === "POST"){
-    //     $json = file_get_contents('php://input');
-    //     $erabiltzaileaController = new ErabiltzaileaController();
-    //     $erabiltzaileaController -> post($json);
-    // }
 
     if($_SERVER["REQUEST_METHOD"] === "DELETE"){
         $json = file_get_contents('php://input');
@@ -152,6 +157,9 @@
         $erabiltzaileaController = new ErabiltzaileaController();
         if(isset($_GET["id"])){
             $erabiltzaile = $erabiltzaileaController -> getById($_GET["id"]);
+            echo json_encode($erabiltzaile);
+        }elseif(isset($_GET["erabiltzailea"])){
+            $erabiltzaile = $erabiltzaileaController -> getByErabiltzailea($_GET["erabiltzailea"]);
             echo json_encode($erabiltzaile);
         }else{
             $erabiltzaile = $erabiltzaileaController -> getAll();
