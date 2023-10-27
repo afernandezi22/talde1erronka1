@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <link rel="stylesheet" href="../css/styles.css">
     
 <footer class="footer">
@@ -29,3 +32,4 @@
     </a>
 </footer>
 
+</html>

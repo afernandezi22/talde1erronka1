@@ -19,6 +19,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: large;
     height: 50px;
     width: 100%;
 }
@@ -53,17 +54,34 @@ nav ul li a {
     border-radius: 8px;
 }
 
+li a.active, li a:hover {
+    background: #000090;
+    transition: .5s;
+}
+
+nav a:hover {
+    background: #517798;
+    border-radius: 10px;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin: 10px 0;
+    line-height: 20px;
+}
+
 .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    margin-right: auto;
 }
 
 .nav-links{
@@ -88,6 +106,7 @@ nav ul li a {
     display: none;
 }
 
+/* ESTILOS DEL CONTENIDO PRINCIPAL */
 .content {
     flex: 1;
     padding-top: 70px;
@@ -96,35 +115,35 @@ nav ul li a {
     align-items: center;
 }
 
-/* .table-controls {
-    float: right;
-}
-
-.gehitu {
-    width: 20px;
-} 
-
-/* .div-table{
-    position: relative;
-} */
 h1{
     text-align: center;
 }
 
-.content .botoiak{
+/* ESTILO DE LOS BOTONES */
+/* div.botoiak {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px 0px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+} */
+
+.content .botoiak {
     float: right;
     padding: 15px;
 }
 
-.content input[type=text] {
+div.botoiak input[type=text]{
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
+    width: auto;
 }
 
-.content .botoiak button{
-    /* float: right; */
+.content .botoiak button {
     padding: 6px 10px;
     margin-top: 8px;
     margin-right: 16px;
@@ -134,19 +153,30 @@ h1{
     cursor: pointer;
 }
 
-.content .botoiak button:hover{
+/* .content .botoiak button:hover {
+    background: #c2c2c2;
+} */
+
+div.botoiak button:hover{
     background: #c2c2c2;
 }
 
- /* table{
+
+/* ESTILOS DE LA TABLA */
+.div-table {
+    position: relative;
+}
+
+table{
     border-collapse: collapse;
-    border-width: 5px;
-    border-style: ridge;
-    border-color: #000000;
     text-align: center;
-    width: 65%;
+    width: 60%;
     background-color: #ffffff;
-}  */
+}
+
+table th, table td{
+    padding: 10px;
+}
 
 table th{
     background-color: #23a78a;
@@ -161,35 +191,37 @@ table tr:nth-child(even){
     background-color: #dfe2e6;
 }
 
-table{
-    border-collapse: collapse;
-    border-width: 5px;
-    /* border-style: ridge;
-    border-color: #000000; */
-    text-align: center;
-    width: 60%;
-    background-color: #ffffff;
-}
-
-table th, table td{
-    padding: 10px;
-}
-
 table tr:hover{
     background-color: rgb(187, 187, 187);
 }
 
-.tab-control {
+.orrialdeBotoiak{
     display: flex;
     align-items: center;
-    padding-top: 10px;
-    /* margin: 10px 0; */
+}
+
+.tab-control {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.aurrekoBotoia, .hurrengoBotoia{
+    margin: 20px;
 }
 
 .tab-control img {
     width: 12px;
 }
 
+.table-controls {
+    float: right;
+}
+
+.gehitu {
+    width: 20px;
+}
+
+/* ESTILOS DEL PIE DE PAGINA */
 .footer {
     background-color: #ffffff;
     color: #000000;
@@ -198,10 +230,8 @@ table tr:hover{
     width: 100%;
     display: flex;
     align-items: center;
-    /* position: fixed;
-    bottom: 0; */
-    /* z-index: 999;
-    margin-bottom: 70px; */
+    justify-content: center;
+    height: 50px;
 }
 
 .sanjorge {
@@ -240,7 +270,8 @@ table tr:hover{
     padding: 5px;
 }
 
-@media (max-width: 769px){
+/* Estilos para las pantallas mas grandes que 1200px */
+ @media (max-width: 975px){
     .checkbtn{
         display: block;
     }
@@ -250,6 +281,10 @@ table tr:hover{
         color: white;
         padding: 10px;
         justify-content: flex-end;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
     }
     nav ul {
         position: fixed;
@@ -259,7 +294,7 @@ table tr:hover{
         top: 6%;
         left: -100%;
         text-align: center;
-        z-index:2;
+        z-index: 2;
         transition: all .5s;
         overflow-y: auto;
         display: none;
@@ -290,8 +325,11 @@ table tr:hover{
     }
 
     li a:hover, li a.active {
-        /* padding: 5%;  */
         width: 100%; 
+    }
+
+    .logo-container{
+        margin-right: auto;
     }
 
     #check:checked ~ ul {
@@ -301,26 +339,36 @@ table tr:hover{
 
     table {
         overflow: auto;
-        width: 100%;
-        padding: 0;
-        border-collapse: collapse;
-        border-width: 5px;
-        text-align: center;
         width: 80%;
-        background-color: #ffffff;
+        padding: 0;
     }
 
-    th, td {
-        padding: 5px;
-        font-size: 12px;
+    /* Botones */
+    .botoiak{
+        text-align: center;
     }
 
-    th {
-        background-color: #d3d3d3;
+    .botoiak button{
+        margin: 6px 7px;
     }
 
+    /* Footer */
     .footer {
-        font-size: 12px;
+        font-size: 15px;
     }
 
+    /* nav a {
+        margin: 10px 0;
+    } */
+}
+
+.loginTitle {
+    font-size: 400%;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  border: none;
+  padding: 6px;
 }

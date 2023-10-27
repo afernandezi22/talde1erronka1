@@ -12,39 +12,55 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- <script>
+        function load_menu(){
+            document.getElementsByClassName("container")[0].innerHTML='<object type="text/html" data="menu.html"><object>';
+        }
+    </script> -->
 
     <title>Kokalekua</title>
 </head>
 
 <body>
     <div class="container">
-
-        <nav class="navbar">
-            
+        <!-- <iframe src="menu.html" width="100%" frameborder="0"></iframe> -->
+        <!-- MENU DE NAVEGACION -->
+        <nav>
             <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
-
             <div class="logo-container">
                 <img class="logo" src="../img/julian cabeza.jpg">
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Kokalekua</a></li>
-                <li><a href="#">Ekipamendua</a></li>
+                <li><a href="kokalekua.html">Kokalekua</a></li>
+                <li><a href="ekipamendua.html">Ekipamendua</a></li>
                 <li><a href="#">Kategoria</a></li>
-                <li><a href="#">Gela</a></li>
-                <li><a href="#">Inbentarioa</a></li>
+                <li><a href="gela.html">Gela</a></li>
+                <li><a href="inbentarioa.html">Inbentarioa</a></li>
                 <li><a href="#">Erabiltzailea</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
-        </nav> 
+        </nav>
+        <!-- <div id="menu-container">
+            
+            
+        </div> -->
+        <!-- <script>
+            load_menu();
+        </script> -->
 
         <div class="content">
             <h1>KOKALEKUA</h1>
 
+
             <div class="botoiak">
+                <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
+            </div>
+
+            <!-- <div class="botoiak">
                 <form action="">
                     <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
                     <button type="submit"><i class="fa-solid fa-pencil"></i></button>
@@ -58,7 +74,7 @@
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
                 </form>
-            </div>
+            </div> -->
 
             <table id="kokalekuaTable">
                 <tr>
@@ -68,16 +84,61 @@
                     <th>Hasiera Data</th>
                     <th>Amaiera Data</th>
                 </tr>
-
-                <tbody id="showData_kokalekua"></tbody>
-
-                
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#123</td>
+                    <td>123</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#456</td>
+                    <td>456</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#789</td>
+                    <td>789</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#000</td>
+                    <td>000</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#456</td>
+                    <td>456</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#789</td>
+                    <td>789</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#000</td>
+                    <td>000</td>
+                    <td>12/03/2023</td>
+                    <td>25/09/2024</td>
+                </tr>
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1)" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'inbentarioa')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1)" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'inbentarioa')" />
             </div>
         </div>
         <script src="../js/viewTables.js"></script>
@@ -97,13 +158,13 @@
                 label: 'Ordenagailuak',
                 data: [12, 19], // Datos para el gráfico de rosquilla
                 backgroundColor: [
-                    'rgba(80, 135, 236, 0.7)', // Color de fondo para el cuarto dato
-                    'rgba(255, 99, 132, 0.7)', // Color de fondo para el primer dato
+                    'rgba(80, 135, 236, 0.7)', // Color de fondo para el primer dato
+                    'rgba(255, 99, 132, 0.7)', // Color de fondo para el segundo dato
                     
                 ],
                 borderColor: [
-                    'rgba(80, 135, 236, 1)', // Color del borde para el cuarto dato
-                    'rgba(255, 99, 132, 1)', // Color del borde para el primer dato
+                    'rgba(80, 135, 236, 1)', // Color del borde para el primer dato
+                    'rgba(255, 99, 132, 1)', // Color del borde para el segundo dato
                 ],
                 borderWidth: 1 // Ancho del borde del gráfico de rosquilla
             }]
@@ -123,7 +184,7 @@
         </script>
         
         <div class="footer">
-            <iframe src="footer.html" width="100%" height="70px" frameborder="0"></iframe>
+            <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
     
