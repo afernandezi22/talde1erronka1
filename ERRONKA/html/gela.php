@@ -48,13 +48,14 @@
                     <button type="submit"><i class="fa-solid fa-pencil"></i></button>
                     <button type="submit"><i class="fa-solid fa-trash"></i></button>
                     <select name="bilaketa" id="bilaketa">
+                        <option value="idGela">Gela ID</option>
                         <option value="etiketa">Izena</option>
                         <option value="gela">Taldea</option>
                     </select>
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
                 </form>
-            </div>
+            </div> 
 
             <table>
                 <tr>
@@ -99,14 +100,14 @@
                 </tr>
             </table>
 
-            <div class="orrialdeBotoiak">
-                <button class="aurrekoBotoia" type="submit">Aurrekoa</button>
-                <p>1/6</p>
-                <button class="hurrengoBotoia" type="submit">Hurrengoa</button>
+            <div class="tab-control">
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarEkipamendua(-1)" />
+                <span id="page-number">1</span> / <span id="total-pages">-</span>
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarEkipamendua(1)" />
             </div>
         </div>
         <div class="footer">
-            <iframe src="footer.html" width="100%" height="70px" frameborder="0"></iframe>
+            <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
     

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="eu">
 
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,16 @@
     <link rel="icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-
-    <title>Inbentarioa</title>
+    <title>Kokalekua</title>
 </head>
 
 <body>
     <div class="container">
-
-        <nav class="navbar">
-            
+        <!-- MENU DE NAVEGACION -->
+        <nav>
             <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
@@ -40,42 +38,65 @@
             </ul>
         </nav>
 
+        <!--TAULA -->
         <div class="content">
-            <h1>INBENTARIOA</h1>
+            <h1>KATEGORIA</h1>
 
-            <div class="botoiak">
-                <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
-            </div>
-            
             <div class="botoiak">
                 <form action="">
                     <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
                     <button type="submit"><i class="fa-solid fa-pencil"></i></button>
                     <button type="submit"><i class="fa-solid fa-trash"></i></button>
                     <select name="bilaketa" id="bilaketa">
-                        <option value="etiketa">Etiketa</option>
-                        <option value="idEkipamendu">Ekipameduaren ID</option>
-                        <option value="erosketaData">Erosketa Data</option>
+                        <option value="id">ID</option>
+                        <option value="izena">Izena</option>
                     </select>
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
 
-            <table id="inbentarioaTable">
+            <table>
                 <tr>
                     <th></th>
-                    <th>Etiketa</th>
-                    <th>ID Ekipamendu</th>
-                    <th>Erosketa Data</th>
+                    <th>ID</th>
+                    <th>Izena</th>
                 </tr>
-
-                <tbody id="showDataInbentarioa"></tbody>
-
-
-                
-
-                
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#123</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#456</td>
+                    <td>456</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#789</td>
+                    <td>789</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#000</td>
+                    <td>000</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#456</td>
+                    <td>456</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#789</td>
+                    <td>789</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>#000</td>
+                    <td>000</td>
+                </tr>
             </table>
 
             <div class="tab-control">
@@ -83,9 +104,7 @@
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
                 <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'inbentarioa')" />
             </div>
-        </div>
-        <script src="../js/viewTableInbentarioa.js"></script>
-        
+        </div>        
         <div class="footer">
             <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>

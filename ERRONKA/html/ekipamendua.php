@@ -47,10 +47,12 @@
                     <button type="submit"><i class="fa-solid fa-pencil"></i></button>
                     <button type="submit"><i class="fa-solid fa-trash"></i></button>
                     <select name="bilaketa" id="bilaketa">
-                        <option value="etiketa">Etiketa</option>
-                        <option value="gela">Gela</option>
-                        <option value="hasieraData">Hasiera Data</option>
-                        <option value="amaieraData">Amaiera Data</option>
+                        <option value="id">ID zenbakia</option>
+                        <option value="izena">Ekipoaren izena</option>
+                        <option value="marka">marka</option>
+                        <option value="modelo">Modeloa</option>
+                        <option value="stock">Stock</option>
+                        <option value="idKategoria">Kategoria ID</option>
                     </select>
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
@@ -83,22 +85,7 @@
 
         <!-- FOOTER -->
         <div class="footer">
-            <a href="https://www.fpsanjorge.com/" target="_blank">
-                <img class="sanjorge" src="../img/logo-san-jorge.png" alt="Logo San Jorge" />
-            </a>
-            <p>&copy; 2023 San Jorge. Eskubide guztiak erreserbatuta.</p>
-            <a href="mailto:sanjorge@fpsanjorge.com" target="_blank">
-                <img class="correo" src="../img/correo-electronico-vacio.png" alt="Helbide Elektronikoa" />
-            </a>
-            <a href="https://twitter.com/CIFPSanJorge" target="_blank">
-                <img class="twitter" src="../img/logo-black.png.twimg.1920.png" alt="X" />
-            </a>
-            <a href="https://www.facebook.com/cifpsanjorgelhii" target="_blank">
-                <img class="facebook" src="../img/logofacebook.png" alt="Facebook" />
-            </a>
-            <a href="https://www.instagram.com/cifpsanjorge/" target="_blank">
-                <img class="instagram" src="../img/instagram-logo.png" alt="Instagram" />
-            </a>
+            <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
 </body>
