@@ -43,7 +43,17 @@
             <h1>KATEGORIA</h1>
 
             <div class="botoiak">
-                <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
+                <form action="">
+                    <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
+                    <button type="submit"><i class="fa-solid fa-pencil"></i></button>
+                    <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    <select name="bilaketa" id="bilaketa">
+                        <option value="id">ID</option>
+                        <option value="izena">Izena</option>
+                    </select>
+                    <input type="text" placeholder="Bilatu...">
+                    <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
 
             <table>

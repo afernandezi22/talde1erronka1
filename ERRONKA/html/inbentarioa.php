@@ -47,21 +47,20 @@
                 <iframe src="botoiak.html" width="100%" height="120px" frameborder="0"></iframe>
             </div>
             
-            <!-- <div class="botoiak">
+            <div class="botoiak">
                 <form action="">
                     <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
                     <button type="submit"><i class="fa-solid fa-pencil"></i></button>
                     <button type="submit"><i class="fa-solid fa-trash"></i></button>
                     <select name="bilaketa" id="bilaketa">
                         <option value="etiketa">Etiketa</option>
-                        <option value="gela">Gela</option>
-                        <option value="hasieraData">Hasiera Data</option>
-                        <option value="amaieraData">Amaiera Data</option>
+                        <option value="idEkipamendu">Ekipameduaren ID</option>
+                        <option value="erosketaData">Erosketa Data</option>
                     </select>
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
                 </form>
-            </div> -->
+            </div>
 
             <table id="inbentarioaTable">
                 <tr>
