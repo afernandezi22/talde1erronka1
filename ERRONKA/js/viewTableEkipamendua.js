@@ -1,4 +1,4 @@
-import { paginar } from "./viewTables";
+//import { paginar } from "./viewTables"; //PARA IMPORTAR LA FUNCION PAGINAR (DA FALLO)
 
 var dataEkipamendua = [];
 const tableLines = 10;
@@ -7,18 +7,21 @@ var totalPages = 0;
 
 //PAGINAR LA TABLA EKIPAMENDUA
 function paginarEkipamendua(direccion) {
-    //let totalPages = Math.ceil(dataEkipamendua.length / tableLines);
-    const result = paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
-    actualPag = result.actualPag;
-    totalPages = result.totalPages;
+    let totalPages = Math.ceil(dataEkipamendua.length / tableLines);
+    //PARA GUARDAR EL VALOR DE PAGINAR -- NO FUNCIONA POR EL FALLO DE IMPORTARLO
+    //const result = paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
+    //const result = window.paginar(dataEkipamendua, actualPag, tableLines, direccion, viewTableEkipamendua);
 
-    /*actualPag += direccion;
+    //actualPag = result.actualPag;
+    //totalPages = result.totalPages;
+
+    actualPag += direccion;
     if (actualPag < 1) {
         actualPag = 1;
     }
     if (actualPag > totalPages) {
         actualPag = totalPages;
-    }*/
+    }
 
     viewTableEkipamendua(dataEkipamendua, actualPag);
 
@@ -28,16 +31,13 @@ function paginarEkipamendua(direccion) {
 
 
 function getDataFromURL(url) {
-    //var url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
-    var options = {method: "GET", mode: 'cors'};
+    var options = { method: "GET", mode: 'cors' };
     fetch(url, options)
-        .then(response => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             dataEkipamendua = data;
-            //console.log("data: " + data + "dataEkipamendua: " + dataEkipamendua);
-            viewTableEkipamendua(dataEkipamendua, actualPag);
+            totalPages = Math.ceil(dataEkipamendua.length / tableLines);
+            paginarEkipamendua(0); // Para asegurar que se inicie en la página 1
         })
         .catch(err => {
             console.error("ERROR: " + err.message);
@@ -50,7 +50,8 @@ function viewTableEkipamendua(dataEkipamendua, actualPag) {
     var end = start + tableLines;
     //var dataEkipamendua = dataEkipamendua.slice(start, end);
 
-    for (var i = 0; i < dataEkipamendua.length; i++) {
+    for (var i = start; i < Math.min(end, dataEkipamendua.length); i++) {
+    //for (var i = 0; i < dataEkipamendua.length; i++) {
         tableHtmlEkipamendua += "<tr><td><input type='checkbox'></td>"
         tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["id"] + "</td>";
         tableHtmlEkipamendua += "<td>" + dataEkipamendua[i]["izena"] + "</td>";
@@ -67,6 +68,5 @@ function viewTableEkipamendua(dataEkipamendua, actualPag) {
 
 //LLAMAR A LAS FUNCIONES AL CARGAR LA PAGINA
 window.addEventListener("load", function(){
-    paginarEkipamendua(1);
     getDataFromURL("http://localhost/erronka1/controller/ekipamenduacontroller.php")
 })

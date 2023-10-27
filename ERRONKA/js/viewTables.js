@@ -12,3 +12,5 @@ export function paginar(data, actualPag, tableLines, direccion, renderFunction) 
     renderFunction(data, actualPag);
     return {actualPag, totalPages};
 }
+
+window.paginar = paginar;
