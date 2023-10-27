@@ -132,9 +132,9 @@
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'inbentarioa')" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarKokalekua(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'inbentarioa')" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarKokalekua(1)" />
             </div>
         </div>
         <script src="../js/viewTables.js"></script>

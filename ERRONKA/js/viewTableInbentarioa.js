@@ -23,12 +23,12 @@ function paginarInbentarioa(direccion) {
 function getDataFromURL(url) {
     var options = {method: "GET", mode: 'cors'};
     fetch(url, options)
-        .then(response => {
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             dataInbentarioa = data;
-            viewTableInbentarioa(dataInbentarioa, actualPag);
+            totalPages = Math.ceil(dataInbentarioa.length / tableLines);
+            paginarInbentarioa(0);
+
         })
         .catch(err => {
             console.error("ERROR: " + err.message);
@@ -51,6 +51,5 @@ function viewTableInbentarioa(dataInbentarioa, actualPag) {
 }
 
 window.addEventListener("load", function(){
-    paginarInbentarioa(1);
     getDataFromURL("http://localhost/erronka1/controller/inbentarioacontroller.php");
 })
