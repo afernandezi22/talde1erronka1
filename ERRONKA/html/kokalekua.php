@@ -35,11 +35,11 @@
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
-                <li><a href="kokalekua.html">Kokalekua</a></li>
-                <li><a href="ekipamendua.html">Ekipamendua</a></li>
-                <li><a href="#">Kategoria</a></li>
-                <li><a href="gela.html">Gela</a></li>
-                <li><a href="inbentarioa.html">Inbentarioa</a></li>
+                <li><a href="kokalekua.php">Kokalekua</a></li>
+                <li><a href="ekipamendua.php">Ekipamendua</a></li>
+                <li><a href="kategoria.php">Kategoria</a></li>
+                <li><a href="gela.php">Gela</a></li>
+                <li><a href="inbentarioa.php">Inbentarioa</a></li>
                 <li><a href="#">Erabiltzailea</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -71,7 +71,7 @@
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-
+                    
             <table id="kokalekuaTable">
                 <tr>
                     <th></th>
@@ -80,61 +80,14 @@
                     <th>Hasiera Data</th>
                     <th>Amaiera Data</th>
                 </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#123</td>
-                    <td>123</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#456</td>
-                    <td>456</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#789</td>
-                    <td>789</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#000</td>
-                    <td>000</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#456</td>
-                    <td>456</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#789</td>
-                    <td>789</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>#000</td>
-                    <td>000</td>
-                    <td>12/03/2023</td>
-                    <td>25/09/2024</td>
-                </tr>
+
+                <tbody id="showDataKokalekua"></tbody>
             </table>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarKokalekua(-1)" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'kokalekuaTable')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginarKokalekua(1)" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'kokalekuaTable')" />
             </div>
         </div>
         <script src="../js/viewTables.js"></script>

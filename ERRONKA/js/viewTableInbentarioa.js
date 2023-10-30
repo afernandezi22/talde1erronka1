@@ -47,7 +47,7 @@ function viewTableInbentarioa(dataInbentarioa, actualPag) {
         tableHtml += "<td>" + dataInbentarioa[i]["erosketaData"] + "</td></tr>";
     }
     document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
-    console.log(tableHtml);
+    //console.log(tableHtml);
 }
 
 window.addEventListener("load", function(){

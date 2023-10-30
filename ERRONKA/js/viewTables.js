@@ -1,50 +1,78 @@
 //FUNCIONA PARA TODAS LAS TABLAS --> CONFIMADAS: EKIPAMENDUA.PHP + EKIPAMENDUA.PHP
-var dataEkipamendua = [];
-var dataInbentarioa = [];
-var dataAll  = [];
 const tableLines = 10;
-var actualPag = 1;
-var totalPages = 0;
+var tableData = {
+    'ekipamenduaTable': {
+        data: [],
+        totalPages: 0,
+        actualPag: 1
+    },
+    'gelaTable': {
+        data: [],
+        totalPages: 0,
+        actualPag: 1
+    },
+    'inbentarioaTable': {
+        data: [],
+        totalPages: 0,
+        actualPag: 1
+    },
+    'kategoriaTable': {
+        data: [],
+        totalPages: 0,
+        actualPag: 1
+    },
+    'kokalekuaTable': {
+        data: [],
+        totalPages: 0,
+        actualPag: 1
+    }
+};
 
-//PAGINAR LAS TABLAS
+//*PAGINAR LAS TABLAS
 function paginar(direccion, tableId) {
+    var table = tableData[tableId];
 
-    actualPag += direccion;
-    if (actualPag < 1) {
-        actualPag = 1;
+    table.actualPag += direccion;
+    if (table.actualPag < 1) {
+        table.actualPag = 1;
     }
-    if (actualPag > totalPages) {
-        actualPag = totalPages;
+    if (table.actualPag > table.totalPages) {
+        table.actualPag = table.totalPages;
     }
 
-    viewTable(dataAll, actualPag, tableId);
+    viewTable(table.data, table.actualPag, tableId);
 
-    document.getElementById("page-number").innerHTML = actualPag;
-    document.getElementById("total-pages").innerHTML = totalPages;
+    document.getElementById("page-number").innerHTML = table.actualPag;
+    document.getElementById("total-pages").innerHTML = table.totalPages;
 }
 
-
+//*OBTENER LOS DATOS DEL JSON USANDO FETCH
 function getDataFromURL(tableId) {
     var options = { method: "GET", mode: 'cors' };
-    var url;
+    var url = "";
 
     if (tableId == "ekipamenduaTable"){
         url = "http://localhost/erronka1/controller/ekipamenduacontroller.php";
-    } else if (tableId == "inbentarioaTable") {
+    } else if (tableId == "gelaTable"){
+        url = "http://localhost/erronka1/controller/gelacontroller.php";
+    } else if (tableId == "inbentarioaTable"){
         url = "http://localhost/erronka1/controller/inbentarioacontroller.php";
+    } else if (tableId == "kategoriaTable"){
+        url = "http://localhost/erronka1/controller/kategoriacontroller.php";
+    } else if (tableId == "kokalekuaTable"){
+        url = "http://localhost/erronka1/controller/kokalekuacontroller.php";
     } else {
         console.error("ERROR: Invalid tabbleID");
         return;
     }
 
-
-
     fetch(url, options)
         .then(response => response.json())
         .then(data => {
-            dataAll = data;
-            console.log(dataAll);
-            totalPages = Math.ceil(dataAll.length / tableLines);
+            var table = tableData[tableId];
+            table.data = data;
+
+            table.totalPages = Math.ceil(data.length / tableLines);
             paginar(0, tableId);  // Para asegurar que se inicie en la página 1
         })
         .catch(err => {
@@ -52,33 +80,61 @@ function getDataFromURL(tableId) {
         })
 }
 
+//*FUNCION PARA MOSTRAR LOS DATOS EN FORMATO TABLA
 function viewTable(dataAll, actualPag, tableId) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
+    
+    //DARLE EL FORMATO DE TABLA A LOS DATOS SEGUN EL ID DE LA TABLA
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "ekipamenduaTable"){
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["id"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["id"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["deskribapena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["marka"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["modelo"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["stock"] + "</td></tr>";
+        } else if (tableId == "gelaTable") {
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["id"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
+        } else if (tableId == "inbentarioaTable") {
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["etiketa"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["idEkipamendu"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["erosketaData"] + "</td></tr>";
+        } else if (tableId == "kategoriaTable") {
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["izena"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
+        } else if (tableId == "kokalekuaTable") {
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["etiketa"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["idGela"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["hasieraData"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["amaieraData"] + "</td></tr>";
+        } else {
+            console.error("ERROR: Invalid tabbleID");
+            return;
+        }
+    }
 
-    if(tableId == "ekipamenduaTable"){
-        dataEkipamendua = dataAll;
-        for (var i = start; i < Math.min(end, dataEkipamendua.length); i++) {
-            tableHtml += "<tr><td><input type='checkbox' id=" + dataEkipamendua[i]["id"] + "></td>"
-            tableHtml += "<td>" + dataEkipamendua[i]["id"] + "</td>";
-            tableHtml += "<td>" + dataEkipamendua[i]["izena"] + "</td>";
-            tableHtml += "<td>" + dataEkipamendua[i]["deskribapena"] + "</td>";
-            tableHtml += "<td>" + dataEkipamendua[i]["marka"] + "</td>";
-            tableHtml += "<td>" + dataEkipamendua[i]["modelo"] + "</td>";
-            tableHtml += "<td>" + dataEkipamendua[i]["stock"] + "</td></tr>";
-        }
+    //ESCRIBIR EN LA TABLA LOS DATOS DEL JSON
+    if (tableId == "ekipamenduaTable") {
         document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
+    } else if (tableId == "gelaTable") {
+        document.getElementById("showDataGela").innerHTML = tableHtml;
     } else if (tableId == "inbentarioaTable") {
-        dataInbentarioa = dataAll;
-        for (var i = start; i < Math.min(end, dataInbentarioa.length); i++){
-            tableHtml += "<tr><td><input type='checkbox'></td>";
-            tableHtml += "<td>" + dataInbentarioa[i]["etiketa"] + "</td>";
-            tableHtml += "<td>" + dataInbentarioa[i]["idEkipamendu"] + "</td>";
-            tableHtml += "<td>" + dataInbentarioa[i]["erosketaData"] + "</td></tr>";
-        }
         document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
-        console.log(dataInbentarioa);
+    } else if (tableId == "kategoriaTable") {
+        document.getElementById("showDataKategoria").innerHTML = tableHtml;
+    } else if (tableId == "kokalekuaTable") {
+        document.getElementById("showDataKokalekua").innerHTML = tableHtml;
+    } else {
+        console.error("ERROR: Invalid tableID");
+        return;
     }
 }
 
@@ -86,7 +142,9 @@ function viewTable(dataAll, actualPag, tableId) {
 
 //LLAMAR A LAS FUNCIONES AL CARGAR LA PAGINA
 window.addEventListener("load", function(){
-    //getDataFromURL("http://localhost/erronka1/controller/ekipamenduacontroller.php", "ekipamenduaTable");
     getDataFromURL("ekipamenduaTable");
+    getDataFromURL("gelaTable")
     getDataFromURL("inbentarioaTable");
+    getDataFromURL("kategoriaTable");
+    getDataFromURL("kokalekuaTable");
 });

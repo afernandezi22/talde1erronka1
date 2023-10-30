@@ -30,11 +30,11 @@
                 <p>Julian (#erabiltzaile_izena)</p>
             </div>
             <ul class="nav-links">
-                <li><a href="kokalekua.html">Kokalekua</a></li>
-                <li><a href="ekipamendua.html">Ekipamendua</a></li>
-                <li><a href="#">Kategoria</a></li>
-                <li><a href="gela.html">Gela</a></li>
-                <li><a href="inbentarioa.html">Inbentarioa</a></li>
+                <li><a href="kokalekua.php">Kokalekua</a></li>
+                <li><a href="ekipamendua.php">Ekipamendua</a></li>
+                <li><a href="kategoria.php">Kategoria</a></li>
+                <li><a href="gela.php">Gela</a></li>
+                <li><a href="inbentarioa.php">Inbentarioa</a></li>
                 <li><a href="#">Erabiltzailea</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
