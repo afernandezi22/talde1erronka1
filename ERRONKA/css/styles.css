@@ -395,6 +395,6 @@ input[type="password"] {
     padding: 20px;
 }
 
-#izena{
+.inputText{
     border: 1px solid black;
 }

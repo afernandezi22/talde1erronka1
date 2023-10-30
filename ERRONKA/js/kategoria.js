@@ -1,6 +1,33 @@
+//BOTOIAK
+const ezabatuButton = document.getElementById("ezabatuButton");
+const gehituButton = document.getElementById("gehituButton");
+const editatuButton = document.getElementById("editatuButton");
+const bilaketaButton = document.getElementById("bilaketaButton");
+
+// BOTOIAK AKTIBATU ETA DESAKTIBATZEKO
+document.addEventListener("DOMContentLoaded", function () {
+    const checkboxContainer = document.getElementById("kategoriaTable");
+    const editatuButton = document.getElementById("editatuButton");
+    const ezabatuButton = document.getElementById("ezabatuButton");
+
+    checkboxContainer.addEventListener("change", function (event) {
+        if (event.target.classList.contains("checkbox-item")) {
+            const checkedCheckboxes = Array.from(checkboxContainer.querySelectorAll('.checkbox-item:checked'));
+            if(checkedCheckboxes.length === 0) {
+                ezabatuButton.disabled = true;
+                editatuButton.disabled = true;
+            } else if (checkedCheckboxes.length === 1) {
+                editatuButton.disabled = false;
+                ezabatuButton.disabled = false;
+            } else {
+                editatuButton.disabled = true;
+            }
+        }
+    });
+});
+
 //GEHITZEKO LOGIKA
 const gehituContainer = document.getElementById("gehituContainer");
-const gehituButton = document.getElementById("gehitu");
 const itxiGehituPopup = document.getElementById("itxiGehituPopup");
 const gehituForm = document.getElementById("gehituForm");
 
@@ -14,22 +41,138 @@ itxiGehituPopup.addEventListener("click", function () {
 
 gehituForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    // Aquí puedes agregar lógica para manejar el formulario, por ejemplo, enviar los datos a través de AJAX.
-    // Después de procesar el formulario, puedes cerrar la ventana emergente.
+    insertData();
     gehituContainer.style.display = "none";
 });
 
-//EDITATZEKO LOGIKA
+function insertData(){
+    var izenaInputValue = document.getElementById("gehituIzena").value;
+    const data = {
+        izena: izenaInputValue
+    };
+    fetch('http://localhost/erronka1/controller/kategoriacontroller.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+    .then(() => {
+        console.log("ONDO!");
+        getData();
+    })
+    .catch(error => {
+        console.log("ERROR! " + error);
+    });
 
+}
+
+//EDITATZEKO LOGIKA
+const editatuContainer = document.getElementById("editatuContainer");
+const itxiEditatuPopup = document.getElementById("itxiEditatuPopup");
+const editatuForm = document.getElementById("editatuForm");
+
+editatuButton.addEventListener("click", function () {
+    const checkbox = document.querySelector('.checkbox-item:checked');
+    const editatuIdInput = document.getElementById("editatuId");
+    editatuIdInput.value = checkbox.id;
+
+    editatuContainer.style.display = "block";
+});
+
+itxiEditatuPopup.addEventListener("click", function () {
+    editatuContainer.style.display = "none";
+});
+
+editatuForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    editData();
+    editatuContainer.style.display = "none";
+});
+
+function editData(){
+    const checkbox = document.querySelector('.checkbox-item:checked');
+    const editatuIdInput = document.getElementById("editatuId");
+    const izenaInputValue = document.getElementById("editatuIzena").value;
+    const data = {
+        id: checkbox.id,
+        izena: izenaInputValue
+    }
+
+    
+    fetch('http://localhost/erronka1/controller/kategoriacontroller.php', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+    .then(() => {
+        console.log("ONDO!");
+        getData();
+    })
+    .catch(error => {
+        console.log("ERROR! " + error);
+    });
+
+    ezabatuButton.disabled = true;
+    editatuButton.disabled = true;
+}
+
+//EZABATZEKO LOGIKA
+function deleteData(){
+    // Lortu ID-ak
+    const checkboxContainer = document.getElementById("kategoriaTable");
+    const checkedCheckboxes = Array.from(checkboxContainer.querySelectorAll('.checkbox-item:checked'));
+
+    const checkboxIDs = [];
+
+    checkedCheckboxes.forEach(checkbox => {
+        checkboxIDs.push(checkbox.id);
+    });
+
+    console.log(checkboxIDs);
+
+    const data = {
+        id: checkboxIDs
+    }
+    
+    //Galdetu
+    const konfirmatu = window.confirm("Ziur al zaude " + checkboxIDs + " elementuak ezabatu nahi dituzula?");
+    if(konfirmatu){
+        //Deia egin
+        fetch('http://localhost/erronka1/controller/kategoriacontroller.php', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+        },
+            body: JSON.stringify(data),
+        })
+        .then(() => {
+            console.log("ONDO EZABATUTA!");
+            getData();
+        })
+        .catch(error => {
+            console.log("ERROR! " + error);
+        });
+    }
+    
+    ezabatuButton.disabled = true;
+    editatuButton.disabled = true;
+}
+
+ezabatuButton.addEventListener("click", function (){
+    deleteData();
+});
 
 //PAGINATZEKO LOGIKA
-var dataInbentarioa = [];
+var dataKategoria = [];
 const tableLines = 10;
 var actualPag = 1;
 
 //PAGINAR LA TABLA INBENTARIOA
-function paginarInbentarioa(direccion) {
-    let totalPages = Math.ceil(dataInbentarioa.length / tableLines);
+function paginarKategoria(direccion) {
+    let totalPages = Math.ceil(dataKategoria.length / tableLines);
 
     actualPag += direccion;
     if (actualPag < 1) {
@@ -39,7 +182,7 @@ function paginarInbentarioa(direccion) {
         actualPag = totalPages;
     }
 
-    viewTableInbentarioa(dataInbentarioa, actualPag);
+    viewTableKategoria(dataKategoria, actualPag);
 
     document.getElementById("page-number").innerHTML = actualPag;
     document.getElementById("total-pages").innerHTML = totalPages;
@@ -47,36 +190,64 @@ function paginarInbentarioa(direccion) {
 
 function getData() {
     fetch('http://localhost/erronka1/controller/kategoriacontroller.php', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json'
-    },
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
     })
     .then(response => {
         return response.json();
     })
     .then(data => {
-        dataInbentarioa = data;
-        totalPages = Math.ceil(dataInbentarioa.length / tableLines);
-        paginarInbentarioa(0); // Para asegurar que se inicie en la página 1
+        dataKategoria = data;
+        totalPages = Math.ceil(dataKategoria.length / tableLines);
+        paginarKategoria(0); // Para asegurar que se inicie en la página 1
     })
     .catch(err => {
         console.error("ERROR: " + err.message);
     })
 }
 
-function viewTableInbentarioa(dataInbentarioa, actualPag) {
+bilaketaButton.addEventListener("click", function(){
+    filterData();
+});
+
+function filterData(){
+    const bilaketaInputValue = document.getElementById("bilaketa").value;
+    const filtroSelectValue = document.getElementById("filtro").value;
+
+    const url = `http://localhost/erronka1/controller/kategoriacontroller.php?datua=${bilaketaInputValue}&zutabea=${filtroSelectValue}`;
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        dataKategoria = data;
+        totalPages = Math.ceil(dataKategoria.length / tableLines);
+        paginarKategoria(0); // Para asegurar que se inicie en la página 1
+    })
+    .catch(err => {
+        console.error("ERROR: " + err.message);
+    })
+}
+
+function viewTableKategoria(dataKategoria, actualPag) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
 
-    for (var i = start; i < Math.min(end, dataInbentarioa.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' id=" + dataInbentarioa[i]["id"] + "></td>";
-        tableHtml += "<td>" + dataInbentarioa[i]["id"] + "</td>";
-        tableHtml += "<td>" + dataInbentarioa[i]["izena"] + "</td></tr>";
+    for (var i = start; i < Math.min(end, dataKategoria.length); i++){
+        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataKategoria[i]["id"] + "></td>";
+        tableHtml += "<td>" + dataKategoria[i]["id"] + "</td>";
+        tableHtml += "<td>" + dataKategoria[i]["izena"] + "</td></tr>";
     }
-    document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
-    // console.log(tableHtml);
+    document.getElementById("showDataKategoria").innerHTML = tableHtml;
 }
 
 window.addEventListener("load", function(){
