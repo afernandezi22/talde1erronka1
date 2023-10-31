@@ -197,6 +197,61 @@
 							"response": []
 						},
 						{
+							"name": "GET BY ERABILTZAILEA erabiltzailea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php?erabiltzailea=jcaballero",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									],
+									"query": [
+										{
+											"key": "erabiltzailea",
+											"value": "jcaballero"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LOGIN erabiltzailea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"erabil\": \"jcaballero\",\r\n    \"pass\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "POST erabiltzailea",
 							"request": {
 								"method": "POST",
@@ -579,6 +634,36 @@
 										"erronka1",
 										"controller",
 										"kategoriacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER kategoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/kategoriacontroller.php?zutabea=IZENA&datua=Asier",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "IZENA"
+										},
+										{
+											"key": "datua",
+											"value": "Asier"
+										}
 									]
 								}
 							},
