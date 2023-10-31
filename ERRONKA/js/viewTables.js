@@ -1,5 +1,3 @@
-//FUNCIONA PARA TODAS LAS TABLAS --> CONFIMADAS: EKIPAMENDUA.PHP + EKIPAMENDUA.PHP
-const tableLines = 10;
 var tableData = {
     'ekipamenduaTable': {
         data: [],
@@ -28,7 +26,9 @@ var tableData = {
     }
 };
 
-//*PAGINAR LAS TABLAS
+const tableLines = 10;
+
+// PAGINAR LAS TABLAS
 function paginar(direccion, tableId) {
     var table = tableData[tableId];
 
@@ -46,7 +46,7 @@ function paginar(direccion, tableId) {
     document.getElementById("total-pages").innerHTML = table.totalPages;
 }
 
-//*OBTENER LOS DATOS DEL JSON USANDO FETCH
+// OBTENER LOS DATOS DEL JSON USANDO FETCH
 function getDataFromURL(tableId) {
     var options = { method: "GET", mode: 'cors' };
     var url = "";
@@ -62,7 +62,7 @@ function getDataFromURL(tableId) {
     } else if (tableId == "kokalekuaTable"){
         url = "http://localhost/erronka1/controller/kokalekuacontroller.php";
     } else {
-        console.error("ERROR: Invalid tabbleID");
+        console.error("ERROR: Invalid tableID");
         return;
     }
 
@@ -77,19 +77,19 @@ function getDataFromURL(tableId) {
         })
         .catch(err => {
             console.error("ERROR: " + err.message);
-        })
+        });
 }
 
-//*FUNCION PARA MOSTRAR LOS DATOS EN FORMATO TABLA
+// FUNCION PARA MOSTRAR LOS DATOS EN FORMATO TABLA
 function viewTable(dataAll, actualPag, tableId) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
     
-    //DARLE EL FORMATO DE TABLA A LOS DATOS SEGUN EL ID DE LA TABLA
+    // DARLE EL FORMATO DE TABLA A LOS DATOS SEGÚN EL ID DE LA TABLA
     for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
         if (tableId == "ekipamenduaTable"){
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["id"] + "></td>";
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['id'] + "></td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["id"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["deskribapena"] + "</td>";
@@ -97,31 +97,31 @@ function viewTable(dataAll, actualPag, tableId) {
             tableHtml += "<td>" + tableData[tableId].data[i]["modelo"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["stock"] + "</td></tr>";
         } else if (tableId == "gelaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["id"] + "></td>";
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['id'] + "></td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
         } else if (tableId == "inbentarioaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["etiketa"] + "></td>";
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['etiketa'] + "></td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["idEkipamendu"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["erosketaData"] + "</td></tr>";
         } else if (tableId == "kategoriaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["izena"] + "></td>";
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['izena'] + "></td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
         } else if (tableId == "kokalekuaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]["etiketa"] + "></td>";
+            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['etiketa'] + "></td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["idGela"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["hasieraData"] + "</td>";
             tableHtml += "<td>" + tableData[tableId].data[i]["amaieraData"] + "</td></tr>";
         } else {
-            console.error("ERROR: Invalid tabbleID");
+            console.error("ERROR: Invalid tableID");
             return;
         }
     }
 
-    //ESCRIBIR EN LA TABLA LOS DATOS DEL JSON
+    // ESCRIBIR EN LA TABLA LOS DATOS DEL JSON
     if (tableId == "ekipamenduaTable") {
         document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
     } else if (tableId == "gelaTable") {
@@ -138,12 +138,10 @@ function viewTable(dataAll, actualPag, tableId) {
     }
 }
 
-
-
-//LLAMAR A LAS FUNCIONES AL CARGAR LA PAGINA
+// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
 window.addEventListener("load", function(){
     getDataFromURL("ekipamenduaTable");
-    getDataFromURL("gelaTable")
+    getDataFromURL("gelaTable");
     getDataFromURL("inbentarioaTable");
     getDataFromURL("kategoriaTable");
     getDataFromURL("kokalekuaTable");

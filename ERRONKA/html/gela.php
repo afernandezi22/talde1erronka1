@@ -19,7 +19,7 @@
 <body>
     <div class="container">
 
-        <nav>
+    <nav>
             <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>

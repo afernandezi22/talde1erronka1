@@ -19,9 +19,8 @@
 <body>
     <div class="container">
 
-        <nav class="navbar">
-
-            <input type="checkbox" id="check">
+        <nav>
+            <input type="checkbox" id="check"> 
             <label for="check" class="checkbtn">
                 <i class="fas fa-bars"></i>
             </label>
