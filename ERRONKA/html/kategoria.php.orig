@@ -33,8 +33,13 @@
                 <li><a href="kategoria.php">Kategoria</a></li>
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
+<<<<<<< HEAD
                 <li><a href="#">Erabiltzailea</a></li>
                 <li><a href="#">Logout</a></li>
+=======
+                <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
+                <li><a href="login.php">Logout</a></li>
+>>>>>>> develop
             </ul>
         </nav>
 
@@ -51,8 +56,14 @@
                         <option value="id">ID</option>
                         <option value="izena">Izena</option>
                     </select>
+<<<<<<< HEAD
                     <input type="text" placeholder="Bilatu...">
                     <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
+=======
+                    <input type="text" id="bilaketa" placeholder="Bilatu...">
+                    <button class="lupa" id="bilaketaButton" type="button"><i class="fa fa-search"></i></button>
+                    <button id="resetButton"><i class="fa-solid fa-rotate-right"></i></button>
+>>>>>>> develop
                 </form>
             </div>
 
