@@ -5,7 +5,7 @@
     class EkipamenduaController extends Controller{
         public function getAll(){
             $this -> db = new DB();
-            $sql = "SELECT * FROM ekipamendua";
+            $sql = "l";
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
                 foreach($emaitza as $ekipamendua){
