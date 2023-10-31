@@ -1,3 +1,18 @@
+// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
+window.addEventListener("load", function(){
+    if(document.getElementById("ekipamenduaTable")!= undefined){
+        getDataFromURL("ekipamenduaTable");
+    } else if (document.getElementById("gelaTable") != undefined){
+        getDataFromURL("gelaTable");
+    } else if (document.getElementById("inbentarioaTable") != undefined){
+        getDataFromURL("inbentarioaTable");
+    } else if (document.getElementById("kategoriaTable") != undefined){
+        getDataFromURL("kategoriaTable");
+    } else if (document.getElementById("kokalekuaTable") != undefined){
+        getDataFromURL("kokalekuaTable");
+    }
+});
+
 var tableData = {
     'ekipamenduaTable': {
         data: [],
@@ -69,6 +84,7 @@ function getDataFromURL(tableId) {
     fetch(url, options)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             var table = tableData[tableId];
             table.data = data;
 
@@ -138,11 +154,3 @@ function viewTable(dataAll, actualPag, tableId) {
     }
 }
 
-// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
-window.addEventListener("load", function(){
-    getDataFromURL("ekipamenduaTable");
-    getDataFromURL("gelaTable");
-    getDataFromURL("inbentarioaTable");
-    getDataFromURL("kategoriaTable");
-    getDataFromURL("kokalekuaTable");
-});
