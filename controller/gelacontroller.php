@@ -29,6 +29,19 @@
             }
         }
 
+        public function getByFilter($zutabea, $datua){
+            $this -> db = new DB();
+            $sql = "SELECT * FROM gela WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $emaitza = $this -> db -> select($sql);
+            if(!$emaitza == null){
+                foreach($emaitza as $gela){
+                    $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
+                }
+    
+                return $gelak;
+            }
+        }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -102,7 +115,10 @@
         if(isset($_GET["id"])){
             $gela = $gelaController -> getById($_GET["id"]);
             echo json_encode($gela);
-        }else{
+        }elseif(isset($_GET["zutabea"])){
+            $gela = $gelaController -> getByFilter($_GET["zutabea"], $_GET["datua"]);
+            echo json_encode($gela);
+        }else {
             $gela = $gelaController -> getAll();
             echo json_encode($gela);
         }
