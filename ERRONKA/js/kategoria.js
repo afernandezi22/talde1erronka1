@@ -3,6 +3,8 @@ const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
 const editatuButton = document.getElementById("editatuButton");
 const bilaketaButton = document.getElementById("bilaketaButton");
+const resetButton = document.getElementById("resetButton");
+const bilaketaTestu = document.getElementById("bilaketa");
 
 // BOTOIAK AKTIBATU ETA DESAKTIBATZEKO
 document.addEventListener("DOMContentLoaded", function () {
@@ -208,8 +210,34 @@ function getData() {
     })
 }
 
+
+function viewTableKategoria(dataKategoria, actualPag) {
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (var i = start; i < Math.min(end, dataKategoria.length); i++){
+        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataKategoria[i]["id"] + "></td>";
+        tableHtml += "<td>" + dataKategoria[i]["id"] + "</td>";
+        tableHtml += "<td>" + dataKategoria[i]["izena"] + "</td></tr>";
+    }
+    document.getElementById("showDataKategoria").innerHTML = tableHtml;
+}
+
+window.addEventListener("load", function(){
+    getData();
+})
+
+// FILTROA
 bilaketaButton.addEventListener("click", function(){
     filterData();
+});
+
+bilaketaTestu.addEventListener("keypress", function(event) {
+    if(event.key === "Enter") {
+        event.preventDefault();
+        filterData();
+    }
 });
 
 function filterData(){
@@ -228,28 +256,19 @@ function filterData(){
         return response.json();
     })
     .then(data => {
-        dataKategoria = data;
-        totalPages = Math.ceil(dataKategoria.length / tableLines);
-        paginarKategoria(0); // Para asegurar que se inicie en la página 1
-    })
+        if(data == null){
+            alert("Kontuz! Ez dago daturik kontsulta horrekin!");
+        } else {
+            dataKategoria = data;
+            totalPages = Math.ceil(dataKategoria.length / tableLines);
+            paginarKategoria(0); // Para asegurar que se inicie en la página 1
+        }
+    })  
     .catch(err => {
         console.error("ERROR: " + err.message);
     })
 }
 
-function viewTableKategoria(dataKategoria, actualPag) {
-    var tableHtml = "";
-    var start = (actualPag - 1) * tableLines;
-    var end = start + tableLines;
-
-    for (var i = start; i < Math.min(end, dataKategoria.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataKategoria[i]["id"] + "></td>";
-        tableHtml += "<td>" + dataKategoria[i]["id"] + "</td>";
-        tableHtml += "<td>" + dataKategoria[i]["izena"] + "</td></tr>";
-    }
-    document.getElementById("showDataKategoria").innerHTML = tableHtml;
-}
-
-window.addEventListener("load", function(){
+resetButton.addEventListener("click", function(){
     getData();
-})
+});
