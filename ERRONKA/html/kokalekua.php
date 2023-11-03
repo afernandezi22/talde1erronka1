@@ -12,18 +12,12 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <!-- <script>
-        function load_menu(){
-            document.getElementsByClassName("container")[0].innerHTML='<object type="text/html" data="menu.html"><object>';
-        }
-    </script> -->
 
     <title>Kokalekua</title>
 </head>
 
 <body>
     <div class="container">
-        <!-- <iframe src="menu.html" width="100%" frameborder="0"></iframe> -->
         <!-- MENU DE NAVEGACION -->
         <nav>
             <input type="checkbox" id="check"> 
@@ -44,39 +38,36 @@
                 <li><a href="#">Logout</a></li>
             </ul>
         </nav>
-        <!-- <div id="menu-container">
-            
-            
-        </div> -->
-        <!-- <script>
-            load_menu();
-        </script> -->
 
         <div class="content">
             <h1>KOKALEKUA</h1>
 
 
             <div class="botoiak">
-                <form action="">
-                    <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
-                    <button type="submit"><i class="fa-solid fa-pencil"></i></button>
-                    <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    <select name="bilaketa" id="bilaketa">
-                        <option value="etiketa">Etiketa</option>
-                        <option value="gela">Gela</option>
-                        <option value="hasieraData">Hasiera Data</option>
-                        <option value="amaieraData">Amaiera Data</option>
-                    </select>
-                    <input type="text" placeholder="Bilatu...">
-                    <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+                    <form action="">
+                        <button type="button" id="gehituButton"><i class="fa-solid fa-circle-plus"></i></button>
+                        <button type="button" id="editatuButton" disabled><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" id="ezabatuButton" disabled><i class="fa-solid fa-trash"></i></button>
+                        <select name="filtro" id="filtro">
+                            <option value="nan">Etiketa</option>
+                            <option value="izena">Ekipamendu izena</option>
+                            <option value="abizena">Gela izena</option>
+                            <option value="erabiltzailea">Hasiera Data</option>
+                            <option value="rola">Amaiera Data</option>
+                        </select>
+                        <input type="text" id="bilaketa" placeholder="Bilatu...">
+                        <button class="lupa" id="bilaketaButton" type="button"><i class="fa fa-search"></i></button>
+                        <button id="resetButton"><i class="fa-solid fa-rotate-right"></i></button>
+                    </form>
+                </div>
                     
             <table id="kokalekuaTable">
                 <tr>
                     <th></th>
                     <th>Etiketa</th>
+                    <th>Ekipamendu izena</th>
                     <th>ID Gela</th>
+                    <th>Gela izena</th>
                     <th>Hasiera Data</th>
                     <th>Amaiera Data</th>
                 </tr>
@@ -84,13 +75,57 @@
                 <tbody id="showDataKokalekua"></tbody>
             </table>
 
+            <div class="popup-container" id="gehituContainer">
+                <div class="popup">
+                    <h2>Gehitu</h2>
+                    <form id="gehituForm">
+                        <label for="gehituEtiketa">Etiketa:</label>
+                        <input type="text" id="gehituEtiketa" name="nan" required>
+                        <br><br>
+                        <label for="gehituIdGela">Id Gela:</label>
+                        <input type="text" id="gehituIdGela" name="idGela" required>
+                        <br><br>
+                        <label for="gehituHasieraData">Hasiera data:</label>
+                        <input type="date" id="gehituHasieraData" name="hasieraData" required>
+                        <br><br>
+                        <label for="gehituAmaieraData">Amaiera data:</label>
+                        <input type="date" id="gehituAmaieraData" name="amaieraData" required>
+                        <br><br>
+                        <button type="submit" id="gehituSubmit">Onartu</button>
+                        <button type="button" id="itxiGehituPopup">Itxi</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="popup-container" id="editatuContainer">
+                <div class="popup">
+                    <h2>Editatu</h2>
+                    <form id="editatuForm">
+                        <label for="editatuNAN">Etiketa:</label>
+                        <input type="text" id="editatuNAN" name="nan" required>
+                        <br><br>
+                        <label for="editatuIzena">Id Gela:</label>
+                        <input type="text" id="editatuIzena" name="izena" required>
+                        <br><br>
+                        <label for="editatuAbizena">Hasiera data:</label>
+                        <input type="text" id="editatuAbizena" name="abizena" required>
+                        <br><br>
+                        <label for="editatuErabiltzailea">Amaiera data:</label>
+                        <input type="text" id="editatuErabiltzailea" name="erabiltzailea" required>
+                        <br><br>
+                        <button type="submit" id="editatuSubmit">Onartu</button>
+                        <button type="button" id="itxiEditatuPopup">Itxi</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'kokalekuaTable')" />
+                <img class="geziak" src="../img/flecha-izquierda.png" id="previous" onclick="paginarKokalekua(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'kokalekuaTable')" />
+                <img class="geziak" src="../img/flecha-derecha.png" id="next" onclick="paginarKokalekua(1)" />
             </div>
         </div>
-        <script src="../js/viewTables.js"></script>
+        <script src="../js/kokalekua.js"></script>
 
         <h1>ORDENAGAILUEN EGOERA</h1>
 

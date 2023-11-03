@@ -28,6 +28,19 @@
             }
         }
 
+        public function getByFilter($zutabea, $datua){
+            $this -> db = new DB();
+            $sql = "SELECT * FROM ekipamendua WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $emaitza = $this -> db -> select($sql);
+            if(!$emaitza == null){
+                foreach($emaitza as $gela){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                }
+    
+                return $gelak;
+            }
+        }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);

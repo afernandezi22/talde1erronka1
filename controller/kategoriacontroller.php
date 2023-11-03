@@ -29,6 +29,19 @@
             }
         }
 
+        public function getByFilter($zutabea, $datua){
+            $this -> db = new DB();
+            $sql = "SELECT * FROM kategoria WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $emaitza = $this -> db -> select($sql);
+            if(!$emaitza == null){
+                foreach($emaitza as $kategoria){
+                    $kategoriak[] = new Kategoria($kategoria["id"], $kategoria["izena"]);
+                }
+    
+                return $kategoriak;
+            }
+        }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -99,6 +112,9 @@
         $kategoriaController = new KategoriaController();
         if(isset($_GET["id"])){
             $kategoria = $kategoriaController -> getById($_GET["id"]);
+            echo json_encode($kategoria);
+        }elseif(isset($_GET["zutabea"])){
+            $kategoria = $kategoriaController -> getByFilter($_GET["zutabea"], $_GET["datua"]);
             echo json_encode($kategoria);
         }else{
             $kategoria = $kategoriaController -> getAll();

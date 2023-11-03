@@ -67,7 +67,6 @@
 
                 <tbody id="showDataGela"></tbody>
             </table>
-            <script src="../js/viewTables.js"></script>
 
             <div class="popup-container" id="gehituContainer">
                 <div class="popup">

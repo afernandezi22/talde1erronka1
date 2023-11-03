@@ -9,9 +9,6 @@
     <link rel="icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <title>Kategoria</title>
 </head>
 
@@ -43,18 +40,19 @@
             <h1>KATEGORIA</h1>
 
             <div class="botoiak">
-                <form action="">
-                    <button type="submit"><i class="fa-solid fa-circle-plus"></i></button>
-                    <button type="submit"><i class="fa-solid fa-pencil"></i></button>
-                    <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    <select name="bilaketa" id="bilaketa">
-                        <option value="id">ID</option>
-                        <option value="izena">Izena</option>
-                    </select>
-                    <input type="text" placeholder="Bilatu...">
-                    <button class="lupa" type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+                    <form action="">
+                        <button type="button" id="gehituButton"><i class="fa-solid fa-circle-plus"></i></button>
+                        <button type="button" id="editatuButton" disabled><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" id="ezabatuButton" disabled><i class="fa-solid fa-trash"></i></button>
+                        <select name="filtro" id="filtro">
+                            <option value="id">ID</option>
+                            <option value="izena">Izena</option>
+                        </select>
+                        <input type="text" id="bilaketa" placeholder="Bilatu...">
+                        <button class="lupa" id="bilaketaButton" type="button"><i class="fa fa-search"></i></button>
+                        <button id="resetButton"><i class="fa-solid fa-rotate-right"></i></button>
+                    </form>
+                </div>
 
             <table id="kategoriaTable">
                 <tr>
@@ -65,12 +63,41 @@
 
                 <tbody id="showDataKategoria"></tbody>
             </table>
-            <script src="../js/viewTables.js"></script>
+
+            <div class="popup-container" id="gehituContainer">
+                <div class="popup">
+                    <h2>Gehitu</h2>
+                    <form id="gehituForm">
+                        <label for="gehituIzena">Izena:</label>
+                        <input type="text" id="gehituIzena" name="izena" required>
+                        <br><br>
+                        <button type="submit" id="gehituSubmit">Onartu</button>
+                        <button type="button" id="itxiGehituPopup">Itxi</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="popup-container" id="editatuContainer">
+                <div class="popup">
+                    <h2>Editatu</h2>
+                    <form id="editatuForm">
+                        <label for="editatuId">Id:</label>
+                        <input type="text" id="editatuId" name="id" disabled>
+                        <label for="editatuIzena">Izena:</label>
+                        <input type="text" id="editatuIzena" name="izena" required>
+                        <br><br>
+                        <button type="submit" id="editatuSubmit">Onartu</button>
+                        <button type="button" id="itxiEditatuPopup">Itxi</button>
+                    </form>
+                </div>
+            </div>
+
+            <script src="../js/kategoria.js"></script>
 
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'kategoriaTable')" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarGela(-1)" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'kategoriaTable')" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginarGela(1)" />
             </div>
         </div>        
         <div class="footer">

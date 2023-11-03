@@ -142,7 +142,7 @@
         </div>
     </div>
 
-    <script src="../js/gela.js"></script>
+    <script src="../js/erabiltzailea.js"></script>
 </body>
 
 </html>
