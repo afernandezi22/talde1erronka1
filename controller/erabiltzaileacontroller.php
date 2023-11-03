@@ -44,35 +44,55 @@
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
-                . "', abizena = '" . $data["abizena"]
-                . "', erabiltzailea = '" . $data["erabiltzailea"]
-                . "', pasahitza = '" . $data["pasahitza"]
-                . "', rola = " . $data["rola"]
-                . ", irudia = '" . $data["irudia"]
-                . "' WHERE nan = '" . $data["nan"] . "'";
-            if($this -> db -> do($sql)){
-                //Ondo
-            } else{
-                //Txarto
+            
+            //Baliozkotzea: ezin da erabiltzaile-izen berarekin editatu
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."'";
+            $result = $this -> db -> select($sql);
+                if($result -> num_rows < 0){
+                $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
+                    . "', abizena = '" . $data["abizena"]
+                    . "', erabiltzailea = '" . $data["erabiltzailea"]
+                    . "', pasahitza = '" . $data["pasahitza"]
+                    . "', rola = " . $data["rola"]
+                    . ", irudia = '" . $data["irudia"]
+                    . "' WHERE nan = '" . $data["nan"] . "'";
+                if($this -> db -> do($sql)){
+                    //Ondo
+                } else{
+                    //Txarto
+                }
+            } else {
+                //Errorea badagoelako erabiltzailea erabiltzaile-izen horrekin
+                throw new Exception("Badago erabiltzailea izen horrekin!");
             }
         }
 
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO erabiltzailea VALUES ('" . $data["nan"]
+
+            //Baliozkotzea: erabiltzailea ezin da errepikatu
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."'";
+            $result = $this -> db -> select($sql);
+            if($result -> num_rows < 0){
+                //Ez dago erabiltzailerik erabiltzaile-izen horrekin
+                $sql = "INSERT INTO erabiltzailea VALUES ('" . $data["nan"]
                 . "', '" . $data["izena"]
                 . "', '" . $data["abizena"]
                 . "', '" . $data["erabiltzailea"]
                 . "', '" . $data["pasahitza"]
                 . "', " . $data["rola"] 
                 . ", '" . $data["irudia"] . "')";
-            if($this -> db -> do($sql)){
-                //Ondo
+                if($this -> db -> do($sql)){
+                    //Ondo
+                } else{
+                    //Txarto
+                }
             } else{
-                //Txarto
+                //Errorea badagoelako erabiltzailea erabiltzaile-izen horrekin
+                throw new Exception("Badago erabiltzailea izen horrekin!");
             }
+            
         }
 
         public function delete($json){

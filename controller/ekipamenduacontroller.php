@@ -5,11 +5,12 @@
     class EkipamenduaController extends Controller{
         public function getAll(){
             $this -> db = new DB();
-            $sql = "SELECT * FROM ekipamendua";
+            $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
+            WHERE K.id = E.idKategoria";
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
                 foreach($emaitza as $ekipamendua){
-                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
                 }
                 return $ekipamenduak;
             }
@@ -17,12 +18,13 @@
 
         public function getById($id){
             $this -> db = new DB();
-            $sql = "SELECT * FROM ekipamendua WHERE id = " . $id;
+            $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
+            WHERE K.id = E.idKategoria AND E.id = " . $id;
             $emaitza = $this -> db -> select($sql);
             
             if(!$emaitza == null){
                 foreach($emaitza as $ekipamendua){
-                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
                 }
                 return $ekipamenduak;
             }
@@ -30,11 +32,12 @@
 
         public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
-            $sql = "SELECT * FROM ekipamendua WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
+            WHERE K.id = E.idKategoria AND E." . $zutabea. " = '" . $datua . "'"; 
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
                 foreach($emaitza as $gela){
-                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
                 }
     
                 return $gelak;

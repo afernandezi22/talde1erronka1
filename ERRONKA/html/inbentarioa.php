@@ -70,11 +70,6 @@
                 </tr>
 
                 <tbody id="showDataInbentarioa"></tbody>
-
-
-
-
-
             </table>
 
             <div class="tab-control">
