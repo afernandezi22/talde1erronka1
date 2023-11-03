@@ -28,6 +28,19 @@
             }
         }
 
+        public function getByFilter($zutabea, $datua){
+            $this -> db = new DB();
+            $sql = "SELECT * FROM erabiltzailea WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $emaitza = $this -> db -> select($sql);
+            if(!$emaitza == null){
+                foreach($emaitza as $erabiltzailea){
+                    $erabiltzaileak[] = new Erabiltzailea($erabiltzailea["nan"], $erabiltzailea["izena"], $erabiltzailea["abizena"], $erabiltzailea["erabiltzailea"], $erabiltzailea["pasahitza"], $erabiltzailea["rola"], $erabiltzailea["irudia"]);
+                }
+    
+                return $erabiltzaileak;
+            }
+        }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -132,16 +145,6 @@
         }
     }
 
-    // if($_SERVER["REQUEST_METHOD"] === "POST" && isset( $_POST["bidali"])) {
-    //     $json = file_get_contents('php://input');
-    //     $erabiltzaileaController = new ErabiltzaileaController();
-    //     $erabiltzaileaController -> login($json);
-    // } elseif($_SERVER["REQUEST_METHOD"] === "POST"){
-    //     $json = file_get_contents('php://input');
-    //     $erabiltzaileaController = new ErabiltzaileaController();
-    //     $erabiltzaileaController -> post($json);
-    // }
-
     if($_SERVER["REQUEST_METHOD"] === "DELETE"){
         $json = file_get_contents('php://input');
         $erabiltzaileaController = new ErabiltzaileaController();
@@ -153,6 +156,9 @@
         if(isset($_GET["id"])){
             $erabiltzaile = $erabiltzaileaController -> getById($_GET["id"]);
             echo json_encode($erabiltzaile);
+        }elseif(isset($_GET["zutabea"])){
+            $erabiltzailea = $erabiltzaileaController -> getByFilter($_GET["zutabea"], $_GET["datua"]);
+            echo json_encode($erabiltzailea);
         }else{
             $erabiltzaile = $erabiltzaileaController -> getAll();
             echo json_encode($erabiltzaile);

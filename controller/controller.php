@@ -6,6 +6,7 @@
         private $check;
 
         abstract function getById($id); //id-aren arabera SELECT egiteko
+        abstract function getByFilter($zutabea, $datua); //filtroarekin SELECT egiteko
         abstract function getAll(); //Taula horretako datu guztiak lortzeko
         abstract function post($json); //INSERT bat egiteko
         abstract function delete($json); //DELETE egiteko

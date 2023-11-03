@@ -1,9 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     const erabiltzaileaInput = document.getElementById("erabiltzailea");
-
-//     console.log(erabiltzaileaInput.value);
-// });
-
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
@@ -14,7 +8,7 @@ const bilaketaTestu = document.getElementById("bilaketa");
 
 // BOTOIAK AKTIBATU ETA DESAKTIBATZEKO
 document.addEventListener("DOMContentLoaded", function () {
-    const checkboxContainer = document.getElementById("kokalekuaTable");
+    const checkboxContainer = document.getElementById("gelaTable");
     const editatuButton = document.getElementById("editatuButton");
     const ezabatuButton = document.getElementById("ezabatuButton");
 
@@ -61,7 +55,7 @@ function insertData(){
         izena: izenaInputValue,
         taldea: taldeaInputValue
     };
-    fetch('http://localhost/erronka1/controller/kokalekuacontroller.php', {
+    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -114,7 +108,7 @@ function editData(){
     }
 
     
-    fetch('http://localhost/erronka1/controller/kokalekuacontroller.php', {
+    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -136,7 +130,7 @@ function editData(){
 //EZABATZEKO LOGIKA
 function deleteData(){
     // Lortu ID-ak
-    const checkboxContainer = document.getElementById("kokalekuaTable");
+    const checkboxContainer = document.getElementById("gelaTable");
     const checkedCheckboxes = Array.from(checkboxContainer.querySelectorAll('.checkbox-item:checked'));
 
     const checkboxIDs = [];
@@ -155,7 +149,7 @@ function deleteData(){
     const konfirmatu = window.confirm("Ziur al zaude " + checkboxIDs + " elementuak ezabatu nahi dituzula?");
     if(konfirmatu){
         //Deia egin
-        fetch('http://localhost/erronka1/controller/kokalekuacontroller.php', {
+        fetch('http://localhost/erronka1/controller/gelacontroller.php', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -180,13 +174,13 @@ ezabatuButton.addEventListener("click", function (){
 });
 
 //PAGINATZEKO LOGIKA
-var dataKokalekua = [];
+var dataGela = [];
 const tableLines = 10;
 var actualPag = 1;
 
 //PAGINAR LA TABLA INBENTARIOA
-function paginarKokalekua(direccion) {
-    let totalPages = Math.ceil(dataKokalekua.length / tableLines);
+function paginarGela(direccion) {
+    let totalPages = Math.ceil(dataGela.length / tableLines);
 
     actualPag += direccion;
     if (actualPag < 1) {
@@ -196,14 +190,14 @@ function paginarKokalekua(direccion) {
         actualPag = totalPages;
     }
 
-    viewTableKokalekua(dataKokalekua, actualPag);
+    viewTableGela(dataGela, actualPag);
 
     document.getElementById("page-number").innerHTML = actualPag;
     document.getElementById("total-pages").innerHTML = totalPages;
 }
 
 function getData() {
-    fetch('http://localhost/erronka1/controller/kokalekuacontroller.php', {
+    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -213,9 +207,9 @@ function getData() {
         return response.json();
     })
     .then(data => {
-        dataKokalekua = data;
-        totalPages = Math.ceil(dataKokalekua.length / tableLines);
-        paginarKokalekua(0); // Para asegurar que se inicie en la página 1
+        dataGela = data;
+        totalPages = Math.ceil(dataGela.length / tableLines);
+        paginarGela(0); // Para asegurar que se inicie en la página 1
     })
     .catch(err => {
         console.error("ERROR: " + err.message);
@@ -223,20 +217,18 @@ function getData() {
 }
 
 
-function viewTableKokalekua(dataKokalekua, actualPag) {
+function viewTableGela(dataGela, actualPag) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
     
-    for (var i = start; i < Math.min(end, dataKokalekua.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataKokalekua[i]["etiketa"] + "></td>";
-        tableHtml += "<td>" + dataKokalekua[i]["etiketa"] + "</td>";
-        tableHtml += "<td>" + dataKokalekua[i]["ekipamenduIzena"] + "</td>";
-        tableHtml += "<td>" + dataKokalekua[i]["gelaIzena"] + "</td>";
-        tableHtml += "<td>" + dataKokalekua[i]["hasieraData"] + "</td>";
-        tableHtml += "<td>" + dataKokalekua[i]["amaieraData"] + "</td></tr>";
+    for (var i = start; i < Math.min(end, dataGela.length); i++){
+        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataGela[i]["id"] + "></td>";
+        tableHtml += "<td>" + dataGela[i]["id"] + "</td>";
+        tableHtml += "<td>" + dataGela[i]["izena"] + "</td>";
+        tableHtml += "<td>" + dataGela[i]["taldea"] + "</td></tr>";
     }
-    document.getElementById("showDataKokalekua").innerHTML = tableHtml;
+    document.getElementById("showDataGela").innerHTML = tableHtml;
 }
 
 window.addEventListener("load", function(){
@@ -259,7 +251,7 @@ function filterData(){
     const bilaketaInputValue = document.getElementById("bilaketa").value;
     const filtroSelectValue = document.getElementById("filtro").value;
 
-    const url = `http://localhost/erronka1/controller/kokalekuacontroller.php?datua=${bilaketaInputValue}&zutabea=${filtroSelectValue}`;
+    const url = `http://localhost/erronka1/controller/gelacontroller.php?datua=${bilaketaInputValue}&zutabea=${filtroSelectValue}`;
 
     fetch(url, {
         method: 'GET',
@@ -274,9 +266,9 @@ function filterData(){
         if(data == null){
             alert("Kontuz! Ez dago daturik kontsulta horrekin!");
         } else {
-            dataKokalekua = data;
-            totalPages = Math.ceil(dataKokalekua.length / tableLines);
-            paginarKokalekua(0); // Para asegurar que se inicie en la página 1
+            dataGela = data;
+            totalPages = Math.ceil(dataGela.length / tableLines);
+            paginarGela(0); // Para asegurar que se inicie en la página 1
         }
     })  
     .catch(err => {
