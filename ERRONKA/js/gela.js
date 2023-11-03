@@ -1,3 +1,26 @@
+window.addEventListener("load", function(){
+    if (document.getElementById("gelaTable") != undefined){
+        getDataFromURL("gelaTable");
+    }
+});
+
+function viewTable(dataAll, actualPag, tableId) {
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "gelaTable") {
+            tableHtml += "<tr><td><input type='checkbox' id='" + tableData[tableId].data[i]['id'] + "'></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["id"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataGela").innerHTML = tableHtml;
+    //console.log(tableHtml);
+}
+
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
@@ -173,68 +196,6 @@ ezabatuButton.addEventListener("click", function (){
     deleteData();
 });
 
-//PAGINATZEKO LOGIKA
-var dataGela = [];
-const tableLines = 10;
-var actualPag = 1;
-
-//PAGINAR LA TABLA INBENTARIOA
-function paginarGela(direccion) {
-    let totalPages = Math.ceil(dataGela.length / tableLines);
-
-    actualPag += direccion;
-    if (actualPag < 1) {
-        actualPag = 1;
-    }
-    if (actualPag > totalPages) {
-        actualPag = totalPages;
-    }
-
-    viewTableGela(dataGela, actualPag);
-
-    document.getElementById("page-number").innerHTML = actualPag;
-    document.getElementById("total-pages").innerHTML = totalPages;
-}
-
-function getData() {
-    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        dataGela = data;
-        totalPages = Math.ceil(dataGela.length / tableLines);
-        paginarGela(0); // Para asegurar que se inicie en la página 1
-    })
-    .catch(err => {
-        console.error("ERROR: " + err.message);
-    })
-}
-
-
-function viewTableGela(dataGela, actualPag) {
-    var tableHtml = "";
-    var start = (actualPag - 1) * tableLines;
-    var end = start + tableLines;
-    
-    for (var i = start; i < Math.min(end, dataGela.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataGela[i]["id"] + "></td>";
-        tableHtml += "<td>" + dataGela[i]["id"] + "</td>";
-        tableHtml += "<td>" + dataGela[i]["izena"] + "</td>";
-        tableHtml += "<td>" + dataGela[i]["taldea"] + "</td></tr>";
-    }
-    document.getElementById("showDataGela").innerHTML = tableHtml;
-}
-
-window.addEventListener("load", function(){
-    getData();
-})
-
 // FILTROA
 bilaketaButton.addEventListener("click", function(){
     filterData();
@@ -247,7 +208,7 @@ bilaketaTestu.addEventListener("keypress", function(event) {
     }
 });
 
-function filterData(){
+function filterData(actualPag){
     const bilaketaInputValue = document.getElementById("bilaketa").value;
     const filtroSelectValue = document.getElementById("filtro").value;
 
@@ -268,7 +229,7 @@ function filterData(){
         } else {
             dataGela = data;
             totalPages = Math.ceil(dataGela.length / tableLines);
-            paginarGela(0); // Para asegurar que se inicie en la página 1
+            paginar(0); // Para asegurar que se inicie en la página 1
         }
     })  
     .catch(err => {

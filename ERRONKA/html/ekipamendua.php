@@ -33,7 +33,7 @@
                 <li><a href="kategoria.php">Kategoria</a></li>
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
-                <li><a href="#">Erabiltzailea</a></li>
+                <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
         </nav>
@@ -81,7 +81,7 @@
         </div>
 
         <script src="../js/viewTables.js"></script>
-        <script src="../js/viewTableEkipamendua.js"></script>
+        <script src="../js/ekipamendua.js"></script>
 
         <!-- FOOTER -->
         <div class="footer">

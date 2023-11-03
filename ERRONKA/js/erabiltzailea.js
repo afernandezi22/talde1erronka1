@@ -1,4 +1,4 @@
-//BOTOIAK
+/*//BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
 const editatuButton = document.getElementById("editatuButton");
@@ -171,10 +171,10 @@ function deleteData(){
 
 ezabatuButton.addEventListener("click", function (){
     deleteData();
-});
+});*/
 
 //PAGINATZEKO LOGIKA
-var dataErabiltzailea = [];
+/*var dataErabiltzailea = [];
 const tableLines = 10;
 var actualPag = 1;
 
@@ -214,10 +214,34 @@ function getData() {
     .catch(err => {
         console.error("ERROR: " + err.message);
     })
+}*/
+
+
+function viewTable(dataAll, actualPag, tableId) {
+    //console.log(dataAll);
+    //var dataErabiltzailea = dataAll;
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "erabiltzaileaTable"){    
+            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["nan"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["nan"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["abizena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["erabiltzailea"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["rola"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["irudia"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
+    //console.log(tableHtml);
 }
 
 
-function viewTableErabiltzailea(dataErabiltzailea, actualPag) {
+//? NO TOCAR: VIEWTABLE ORIGINAL DE ASIER !!!!!!!!!!!!!!!!!!!!!!!
+/*function viewTableErabiltzailea(dataErabiltzailea, actualPag) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
@@ -232,11 +256,13 @@ function viewTableErabiltzailea(dataErabiltzailea, actualPag) {
         tableHtml += "<td>" + dataErabiltzailea[i]["irudia"] + "</td></tr>";
     }
     document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
-}
+}*/
 
-window.addEventListener("load", function(){
-    getData();
-})
+/*window.addEventListener("load", function(){
+    if(document.getElementById("erabiltzaileaTable") != undefined){
+        getDataFromURL("erabiltzaileaTable");
+    }
+});
 
 // FILTROA
 bilaketaButton.addEventListener("click", function(){
@@ -281,4 +307,4 @@ function filterData(){
 
 resetButton.addEventListener("click", function(){
     getData();
-});
+});*/

@@ -38,6 +38,11 @@ var tableData = {
         data: [],
         totalPages: 0,
         actualPag: 1
+    },
+    'erabiltzaileaTable':{
+        data:[],
+        totalPages: 0,
+        actualPag:1
     }
 };
 
@@ -76,6 +81,8 @@ function getDataFromURL(tableId) {
         url = "http://localhost/erronka1/controller/kategoriacontroller.php";
     } else if (tableId == "kokalekuaTable"){
         url = "http://localhost/erronka1/controller/kokalekuacontroller.php";
+    } else if (tableId == "erabiltzaileaTable"){
+        url = "http://localhost/erronka1/controller/erabiltzaileacontroller.php";
     } else {
         console.error("ERROR: Invalid tableID");
         return;
