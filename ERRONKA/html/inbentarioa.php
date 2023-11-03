@@ -84,6 +84,7 @@
             </div>
         </div>
         <script src="../js/viewTables.js"></script>
+        <script src="../js/viewTableInbentarioa.js"></script>
 
         <div class="footer">
             <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>

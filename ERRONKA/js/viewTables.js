@@ -1,4 +1,4 @@
-// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
+/*// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
 window.addEventListener("load", function(){
     if(document.getElementById("ekipamenduaTable")!= undefined){
         getDataFromURL("ekipamenduaTable");
@@ -11,7 +11,7 @@ window.addEventListener("load", function(){
     } else if (document.getElementById("kokalekuaTable") != undefined){
         getDataFromURL("kokalekuaTable");
     }
-});
+});*/
 
 var tableData = {
     'ekipamenduaTable': {
@@ -97,7 +97,7 @@ function getDataFromURL(tableId) {
 }
 
 // FUNCION PARA MOSTRAR LOS DATOS EN FORMATO TABLA
-function viewTable(dataAll, actualPag, tableId) {
+/*function viewTable(dataAll, actualPag, tableId) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
@@ -153,4 +153,4 @@ function viewTable(dataAll, actualPag, tableId) {
         return;
     }
 }
-
+*/

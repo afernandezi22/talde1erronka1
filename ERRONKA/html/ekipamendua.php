@@ -81,7 +81,7 @@
         </div>
 
         <script src="../js/viewTables.js"></script>
-        <!-- <script src="../js/viewTableEkipamendua.js"></script> -->
+        <script src="../js/viewTableEkipamendua.js"></script>
 
         <!-- FOOTER -->
         <div class="footer">
