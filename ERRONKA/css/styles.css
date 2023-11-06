@@ -276,7 +276,7 @@ table tr:hover{
 }
 
 /* Estilos para las pantallas mas grandes que 1200px */
- @media (max-width: 975px){
+@media (max-width: 975px){
     .checkbtn{
         display: block;
     }
@@ -373,9 +373,9 @@ table tr:hover{
 
 input[type="text"],
 input[type="password"] {
-  width: 100%;
-  border: none;
-  padding: 6px;
+    width: 100%;
+    border: none;
+    padding: 6px;
 }
 
 
