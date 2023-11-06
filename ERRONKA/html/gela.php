@@ -114,9 +114,9 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script src="../js/gela.js"></script>
     <script src="../js/viewTables.js"></script>
-    <!-- <script src="../js/viewTableGela.js"></script> -->
 </body>
 
 </html>

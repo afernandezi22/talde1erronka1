@@ -18,8 +18,8 @@
             <li><a href="kategoria.php">Kategoria</a></li>
             <li><a href="gela.php">Gela</a></li>
             <li><a href="inbentarioa.php">Inbentarioa</a></li>
-            <li><a href="#">Erabiltzailea</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
+            <li><a href="login.php">Logout</a></li>
         </ul>
     </nav>
 </html>

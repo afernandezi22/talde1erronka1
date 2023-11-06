@@ -1,3 +1,31 @@
+//DATUAK TAULAN BISTARATZEKO PAGINA KARGATZERAKOAN
+window.addEventListener("load", function(){
+    if (document.getElementById("kategoriaTable")!= undefined){
+        getDataFromURL("kategoriaTable");
+    }
+})
+
+//DATUAK TAULA FORMATUAN BISTARATZEKO
+function viewTable(dataAll, actualPag, tableId) {
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "kategoriaTable") {
+            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["id"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["id"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataKategoria").innerHTML = tableHtml;
+}
+
+
+
+
+
+
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
@@ -168,7 +196,7 @@ ezabatuButton.addEventListener("click", function (){
 });
 
 //PAGINATZEKO LOGIKA
-var dataKategoria = [];
+/*var dataKategoria = [];
 const tableLines = 10;
 var actualPag = 1;
 
@@ -226,7 +254,7 @@ function viewTableKategoria(dataKategoria, actualPag) {
 
 window.addEventListener("load", function(){
     getData();
-})
+})*/
 
 // FILTROA
 bilaketaButton.addEventListener("click", function(){

@@ -1,4 +1,37 @@
-/*//BOTOIAK
+// DATUAK TAULAN BISTARATZEKO PAGINA KARGATZERAKOAN
+window.addEventListener("load", function () {
+    if (document.getElementById("erabiltzaieaTable")!= undefined){
+        getDataFromURL("erabiltzaileaTable");
+    }
+})
+
+// DATUAK TAULAN FORMATUAN BISTARATZEKO
+function viewTable(dataAll, actualPag, tableId) {
+    //console.log(dataAll);
+    //var dataErabiltzailea = dataAll;
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "erabiltzaileaTable"){    
+            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["nan"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["nan"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["abizena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["erabiltzailea"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["rola"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["irudia"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
+    console.log(tableHtml);
+}
+
+
+
+
+//BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
 const editatuButton = document.getElementById("editatuButton");
@@ -171,97 +204,6 @@ function deleteData(){
 
 ezabatuButton.addEventListener("click", function (){
     deleteData();
-});*/
-
-//PAGINATZEKO LOGIKA
-/*var dataErabiltzailea = [];
-const tableLines = 10;
-var actualPag = 1;
-
-//PAGINAR LA TABLA INBENTARIOA
-function paginarErabiltzailea(direccion) {
-    let totalPages = Math.ceil(dataErabiltzailea.length / tableLines);
-
-    actualPag += direccion;
-    if (actualPag < 1) {
-        actualPag = 1;
-    }
-    if (actualPag > totalPages) {
-        actualPag = totalPages;
-    }
-
-    viewTableErabiltzailea(dataErabiltzailea, actualPag);
-
-    document.getElementById("page-number").innerHTML = actualPag;
-    document.getElementById("total-pages").innerHTML = totalPages;
-}
-
-function getData() {
-    fetch('http://localhost/erronka1/controller/erabiltzaileacontroller.php', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        dataErabiltzailea = data;
-        totalPages = Math.ceil(dataErabiltzailea.length / tableLines);
-        paginarErabiltzailea(0); // Para asegurar que se inicie en la página 1
-    })
-    .catch(err => {
-        console.error("ERROR: " + err.message);
-    })
-}*/
-
-
-function viewTable(dataAll, actualPag, tableId) {
-    //console.log(dataAll);
-    //var dataErabiltzailea = dataAll;
-    var tableHtml = "";
-    var start = (actualPag - 1) * tableLines;
-    var end = start + tableLines;
-    
-    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
-        if (tableId == "erabiltzaileaTable"){    
-            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["nan"] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["nan"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["abizena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["erabiltzailea"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["rola"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["irudia"] + "</td></tr>";
-        }
-    }
-    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
-    //console.log(tableHtml);
-}
-
-
-//? NO TOCAR: VIEWTABLE ORIGINAL DE ASIER !!!!!!!!!!!!!!!!!!!!!!!
-/*function viewTableErabiltzailea(dataErabiltzailea, actualPag) {
-    var tableHtml = "";
-    var start = (actualPag - 1) * tableLines;
-    var end = start + tableLines;
-    
-    for (var i = start; i < Math.min(end, dataErabiltzailea.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataErabiltzailea[i]["nan"] + "></td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["nan"] + "</td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["izena"] + "</td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["abizena"] + "</td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["erabiltzailea"] + "</td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["rola"] + "</td>";
-        tableHtml += "<td>" + dataErabiltzailea[i]["irudia"] + "</td></tr>";
-    }
-    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
-}*/
-
-/*window.addEventListener("load", function(){
-    if(document.getElementById("erabiltzaileaTable") != undefined){
-        getDataFromURL("erabiltzaileaTable");
-    }
 });
 
 // FILTROA
@@ -307,4 +249,4 @@ function filterData(){
 
 resetButton.addEventListener("click", function(){
     getData();
-});*/
+});

@@ -34,7 +34,7 @@
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
                 <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="login.php">Logout</a></li>
             </ul>
         </nav>
 
@@ -80,14 +80,15 @@
             </div>
         </div>
 
-        <script src="../js/viewTables.js"></script>
-        <script src="../js/ekipamendua.js"></script>
-
         <!-- FOOTER -->
         <div class="footer">
             <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/viewTables.js"></script>
+    <script src="../js/ekipamendua.js"></script>
 </body>
 
 </html>

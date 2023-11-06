@@ -12,9 +12,6 @@
     </head>
 
     <body>
-        <script src="../js/viewTables.js"></script>
-        <script src="../js/erabiltzailea.js"></script>
-
         <div class="container">
 
             <nav>
@@ -134,14 +131,18 @@
                 </div>
 
                 <div class="tab-control">
-                    <img class="geziak" src="../img/flecha-izquierda.png" id="previous" onclick="paginarErabiltzailea(-1)" />
+                    <img class="geziak" src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'erabiltzileaTable')" />
                     <span id="page-number">1</span> / <span id="total-pages">-</span>
-                    <img class="geziak" src="../img/flecha-derecha.png" id="next" onclick="paginarErabiltzailea(1)" />
+                    <img class="geziak" src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'erabiltzaileaTable')" />
                 </div>
             </div>
             <div class="footer">
                 <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
             </div>
         </div>
+
+        <!-- SCRIPTS -->
+        <script src="../js/viewTables.js"></script>
+        <script src="../js/erabiltzailea.js"></script>
     </body>
 </html>

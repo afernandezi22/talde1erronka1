@@ -30,8 +30,8 @@
                 <li><a href="kategoria.php">Kategoria</a></li>
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
-                <li><a href="#">Erabiltzailea</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
+                <li><a href="login.php">Logout</a></li>
             </ul>
         </nav>
 
@@ -92,18 +92,20 @@
                 </div>
             </div>
 
-            <script src="../js/kategoria.js"></script>
-
             <div class="tab-control">
-                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginarGela(-1)" />
+                <img src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'kategoriaTable')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img src="../img/flecha-derecha.png" id="next" onclick="paginarGela(1)" />
+                <img src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'kategoriaTable')" />
             </div>
         </div>        
         <div class="footer">
             <iframe src="footer.php" width="100%" height="70px" frameborder="0"></iframe>
         </div>
     </div>
+
+    <!-- SCRIPTS -->
+    <script src="../js/viewTables.js"></script>
+    <script src="../js/kategoria.js"></script>
     
 </body>
 

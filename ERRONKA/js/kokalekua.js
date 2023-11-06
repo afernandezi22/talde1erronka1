@@ -1,8 +1,37 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     const erabiltzaileaInput = document.getElementById("erabiltzailea");
+// TAULAN DATUAK BISTARATZEKO PGINA KARGATZERAKOAN
+window.addEventListener("load", function(){
+    if (document.getElementById("kokalekuaTable")!= undefined){
+        getDataFromURL("kokalekuaTable");
+    }
+})
 
-//     console.log(erabiltzaileaInput.value);
-// });
+// DATUAK TAULA FORMATUAN BISTARATZEKO
+function viewTable(dataAll, actualPag, tableId) {
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "kokalekuaTable"){
+            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["etiketa"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["ekipamenduIzena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["idGela"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["gelaIzena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["hasieraData"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["amaieraData"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataKokalekua").innerHTML = tableHtml;
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const erabiltzaileaInput = document.getElementById("erabiltzailea");
+    //console.log(erabiltzaileaInput.value);
+});
 
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
@@ -179,7 +208,7 @@ ezabatuButton.addEventListener("click", function (){
     deleteData();
 });
 
-//PAGINATZEKO LOGIKA
+/*//PAGINATZEKO LOGIKA
 var dataKokalekua = [];
 const tableLines = 10;
 var actualPag = 1;
@@ -241,7 +270,7 @@ function viewTableKokalekua(dataKokalekua, actualPag) {
 
 window.addEventListener("load", function(){
     getData();
-})
+})*/
 
 // FILTROA
 bilaketaButton.addEventListener("click", function(){
@@ -274,7 +303,7 @@ function filterData(){
         if(data == null){
             alert("Kontuz! Ez dago daturik kontsulta horrekin!");
         } else {
-            dataKokalekua = data;
+            var dataKokalekua = data;
             totalPages = Math.ceil(dataKokalekua.length / tableLines);
             paginarKokalekua(0); // Para asegurar que se inicie en la página 1
         }

@@ -1,9 +1,11 @@
+//TAULAKO DATUAK VISTARATZEKO PAGINA KARGATZEAN
 window.addEventListener("load", function(){
     if (document.getElementById("gelaTable") != undefined){
         getDataFromURL("gelaTable");
     }
 });
 
+//DATUEI TAULAKO FORMATUA EMATEKO
 function viewTable(dataAll, actualPag, tableId) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
@@ -20,6 +22,8 @@ function viewTable(dataAll, actualPag, tableId) {
     document.getElementById("showDataGela").innerHTML = tableHtml;
     //console.log(tableHtml);
 }
+
+
 
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");

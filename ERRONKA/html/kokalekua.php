@@ -34,8 +34,8 @@
                 <li><a href="kategoria.php">Kategoria</a></li>
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
-                <li><a href="#">Erabiltzailea</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
+                <li><a href="login.php">Logout</a></li>
             </ul>
         </nav>
 
@@ -120,12 +120,11 @@
             </div>
 
             <div class="tab-control">
-                <img class="geziak" src="../img/flecha-izquierda.png" id="previous" onclick="paginarKokalekua(-1)" />
+                <img class="geziak" src="../img/flecha-izquierda.png" id="previous" onclick="paginar(-1, 'kokalekuaTable')" />
                 <span id="page-number">1</span> / <span id="total-pages">-</span>
-                <img class="geziak" src="../img/flecha-derecha.png" id="next" onclick="paginarKokalekua(1)" />
+                <img class="geziak" src="../img/flecha-derecha.png" id="next" onclick="paginar(1, 'kokalekuaTable')" />
             </div>
         </div>
-        <script src="../js/kokalekua.js"></script>
 
         <h1>ORDENAGAILUEN EGOERA</h1>
 
@@ -172,6 +171,10 @@
         </div>
     </div>
     
+    <!-- SCRIPTS -->
+    <script src="../js/viewTables.js"></script>
+    <script src="../js/kokalekua.js"></script>
+
 </body>
 
 </html>
