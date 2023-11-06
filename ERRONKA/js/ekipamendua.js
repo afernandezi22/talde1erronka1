@@ -1,9 +1,15 @@
+// DATUAK TAULAN BISTARAZTEKO PAGINA KARGATZERAKOAN
 window.addEventListener("load", function(){
     if(document.getElementById("ekipamenduaTable")!= undefined){
         getDataFromURL("ekipamenduaTable");
+        for (let i = 0; i < th.length; i++) {
+            th[i].addEventListener("click", headerClicked);
+            
+        }
     }
 });
 
+// DATUAK TAULA FORMATUAN BISTARATZEKO
 function viewTable(dataAll, actualPag, tableId) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
@@ -23,4 +29,45 @@ function viewTable(dataAll, actualPag, tableId) {
     
     //console.log("tableHtml" + tableHtml);
     document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
+}
+
+// DATUAK ZUBETATIK ORDENATZEKO
+const th = document.getElementsByTagName("th");
+function headerClicked(e) {
+    // console.log(e.target.cellIndex);
+    const sortColumn = e.target.cellIndex !== undefined? e.target.cellIndex : e.target.parentNode.cellIndex;
+    // console.log(sortColumn);
+    sortTableByColumn(sortColumn);
+}
+
+function sortTableByColumn(sortColumn) {
+    const tableBody = document.getElementById("ekipamenduaTable");
+    // console.log(tableBody);
+    const rows = Array.from(tableBody.rows);
+    // console.log(rows);
+    var asc = true;
+    if (asc === true && sortColumn !== 2){
+        var sortedRows = rows.sort(function(a,b){
+            // console.log(a.cells[sortColumn]);
+            const aText = a.cells[sortColumn].textContent;
+            const bText = b.ceils[sortColumn].textContent;
+            return aText.localeCompare(bText);
+        });
+    }
+    if (asc === false && sortColumn !== 2){
+        var sortedRows = rows.sort(function(a,b){
+            // console.log(a.cells[sortColumn]);
+            const aText = a.cells[sortColumn].textContent;
+            const bText = b.ceils[sortColumn].textContent;
+            return bText.localeCompare(aText);
+        });
+    }
+    if (asc === true && sortColumn === 2){
+        console.log("Ascendente y por fecha");
+    }
+    if (asc !== true && sortColumn === 2){
+
+    }
+    console.log(sortedRows);
+
 }

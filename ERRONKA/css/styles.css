@@ -183,6 +183,11 @@ table th{
     color: #ffffff;
 }
 
+i {
+    display: contents !important;
+    margin-left: 5px;
+}
+
 table tr:nth-child(odd){
     background-color: #f8f9fa;
 }
@@ -271,7 +276,7 @@ table tr:hover{
 }
 
 /* Estilos para las pantallas mas grandes que 1200px */
- @media (max-width: 975px){
+@media (max-width: 975px){
     .checkbtn{
         display: block;
     }
