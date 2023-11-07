@@ -4,10 +4,11 @@ window.addEventListener("load", function(){
         getDataFromURL("ekipamenduaTable");
         for (let i = 0; i < th.length; i++) {
             th[i].addEventListener("click", headerClicked);
-            
         }
     }
 });
+
+const th = document.getElementsByTagName("th");
 
 // DATUAK TAULA FORMATUAN BISTARATZEKO
 function viewTable(dataAll, actualPag, tableId) {
@@ -32,21 +33,21 @@ function viewTable(dataAll, actualPag, tableId) {
 }
 
 // DATUAK ZUBETATIK ORDENATZEKO
-const th = document.getElementsByTagName("th");
+//const th = document.getElementsByTagName("th");
 function headerClicked(e) {
-    // console.log(e.target.cellIndex);
-    const sortColumn = e.target.cellIndex !== undefined? e.target.cellIndex : e.target.parentNode.cellIndex;
-    // console.log(sortColumn);
+    // console.log(e.target.parentNode.cellIndex);
+    const sortColumn = e.target.cellIndex !== undefined ? e.target.cellIndex : e.target.parentNode.cellIndex;
+    console.log(sortColumn);
     sortTableByColumn(sortColumn);
 }
 
 function sortTableByColumn(sortColumn) {
-    const tableBody = document.getElementById("ekipamenduaTable");
+    const tableBody = document.getElementById("showDataEkipamendua");
     // console.log(tableBody);
     const rows = Array.from(tableBody.rows);
     // console.log(rows);
     var asc = true;
-    if (asc === true && sortColumn !== 2){
+    if (asc === true){
         var sortedRows = rows.sort(function(a,b){
             // console.log(a.cells[sortColumn]);
             const aText = a.cells[sortColumn].textContent;
@@ -54,7 +55,7 @@ function sortTableByColumn(sortColumn) {
             return aText.localeCompare(bText);
         });
     }
-    if (asc === false && sortColumn !== 2){
+    if (asc === false){
         var sortedRows = rows.sort(function(a,b){
             // console.log(a.cells[sortColumn]);
             const aText = a.cells[sortColumn].textContent;
@@ -62,12 +63,10 @@ function sortTableByColumn(sortColumn) {
             return bText.localeCompare(aText);
         });
     }
-    if (asc === true && sortColumn === 2){
-        console.log("Ascendente y por fecha");
-    }
-    if (asc !== true && sortColumn === 2){
-
-    }
     console.log(sortedRows);
+    tableBody = ""; 
+    sortedRows.forEach(row=>{
+        tableBody.appendChild(row);
+    })
 
 }

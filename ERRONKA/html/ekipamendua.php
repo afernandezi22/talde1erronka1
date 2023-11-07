@@ -61,15 +61,15 @@
             </div>
 
             <table id="ekipamenduaTable">
-                <tr>
-                    <th></th>
-                    <th>ID<i class='bx bxs-sort-alt'></i></th>
-                    <th>Izena<i class='bx bxs-sort-alt'></i></th>
-                    <th>Deskribapena</i></th>
-                    <th>Marka<i class='bx bxs-sort-alt'></i></th>
-                    <th>Modelo<i class='bx bxs-sort-alt'></i></th>
-                    <th>Stock<i class='bx bxs-sort-alt'></i></th>
-                </tr>
+            <tr>
+                <th></th>
+                <th class="sortable" data-column="id">ID<i class='bx bxs-sort-alt'></i></th>
+                <th class="sortable" data-column="izena">Izena<i class='bx bxs-sort-alt'></i></th>
+                <th>Deskribapena</th>
+                <th class="sortable" data-column="marka">Marka<i class='bx bxs-sort-alt'></i></th>
+                <th class="sortable" data-column="modelo">Modelo<i class='bx bxs-sort-alt'></i></th>
+                <th class="sortable" data-column="stock">Stock<i class='bx bxs-sort-alt'></i></th>
+            </tr>
 
                 <tbody id="showDataEkipamendua"></tbody>
             </table>
