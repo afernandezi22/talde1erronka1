@@ -2,13 +2,14 @@
 window.addEventListener("load", function(){
     if(document.getElementById("ekipamenduaTable")!= undefined){
         getDataFromURL("ekipamenduaTable");
+        const th = document.getElementsByTagName("th");
         for (let i = 0; i < th.length; i++) {
             th[i].addEventListener("click", headerClicked);
         }
     }
 });
 
-const th = document.getElementsByTagName("th");
+
 
 // DATUAK TAULA FORMATUAN BISTARATZEKO
 function viewTable(dataAll, actualPag, tableId) {
@@ -31,13 +32,14 @@ function viewTable(dataAll, actualPag, tableId) {
     //console.log("tableHtml" + tableHtml);
     document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
 }
-
+var asc = true;
 // DATUAK ZUBETATIK ORDENATZEKO
 //const th = document.getElementsByTagName("th");
 function headerClicked(e) {
     // console.log(e.target.parentNode.cellIndex);
     const sortColumn = e.target.cellIndex !== undefined ? e.target.cellIndex : e.target.parentNode.cellIndex;
-    console.log(sortColumn);
+    //console.log(sortColumn);
+    asc = !asc;
     sortTableByColumn(sortColumn);
 }
 
@@ -46,12 +48,12 @@ function sortTableByColumn(sortColumn) {
     // console.log(tableBody);
     const rows = Array.from(tableBody.rows);
     // console.log(rows);
-    var asc = true;
+    //var asc = true;
     if (asc === true){
         var sortedRows = rows.sort(function(a,b){
             // console.log(a.cells[sortColumn]);
             const aText = a.cells[sortColumn].textContent;
-            const bText = b.ceils[sortColumn].textContent;
+            const bText = b.cells[sortColumn].textContent;
             return aText.localeCompare(bText);
         });
     }
@@ -59,14 +61,13 @@ function sortTableByColumn(sortColumn) {
         var sortedRows = rows.sort(function(a,b){
             // console.log(a.cells[sortColumn]);
             const aText = a.cells[sortColumn].textContent;
-            const bText = b.ceils[sortColumn].textContent;
+            const bText = b.cells[sortColumn].textContent;
             return bText.localeCompare(aText);
         });
     }
-    console.log(sortedRows);
-    tableBody = ""; 
+    //console.log(sortedRows);
+    tableBody.innerHTML = ""; 
     sortedRows.forEach(row=>{
         tableBody.appendChild(row);
-    })
-
+    });
 }
