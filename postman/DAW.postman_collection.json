@@ -38,7 +38,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php?id=2",
+									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php?id=3",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -51,7 +51,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "3"
 										}
 									]
 								}
@@ -191,6 +191,61 @@
 											"key": "id",
 											"value": "12345678W"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ERABILTZAILEA erabiltzailea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php?erabiltzailea=jcaballero",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									],
+									"query": [
+										{
+											"key": "erabiltzailea",
+											"value": "jcaballero"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LOGIN erabiltzailea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"erabil\": \"jcaballero\",\r\n    \"pass\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
 									]
 								}
 							},
@@ -341,7 +396,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"izena\": \"113A\",\r\n    \"taldea\": \"WAG\"\r\n}",
+									"raw": "{\r\n    \"izena\": \"1\",\r\n    \"taldea\": \"GAW\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -585,10 +640,47 @@
 							"response": []
 						},
 						{
-							"name": "GET BY ID kategoria",
+							"name": "GET BY FILTER kategoria",
 							"request": {
 								"method": "GET",
 								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/kategoriacontroller.php?zutabea=id&datua=12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "id"
+										},
+										{
+											"key": "datua",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ID kategoria",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "http://localhost/erronka1/controller/kategoriacontroller.php?id=1",
 									"protocol": "http",
@@ -675,7 +767,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": [2]\r\n}",
+									"raw": "{\r\n    \"id\": [1,2,3,4,5,6,7]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -708,7 +800,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -716,7 +808,7 @@
 									"path": [
 										"erronka1",
 										"controller",
-										"ekipamenduacontroller.php"
+										"kokalekuacontroller.php"
 									]
 								}
 							},
@@ -728,7 +820,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php?id=1",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php?id=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -736,7 +828,7 @@
 									"path": [
 										"erronka1",
 										"controller",
-										"ekipamenduacontroller.php"
+										"kokalekuacontroller.php"
 									],
 									"query": [
 										{
@@ -763,7 +855,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -771,7 +863,7 @@
 									"path": [
 										"erronka1",
 										"controller",
-										"ekipamenduacontroller.php"
+										"kokalekuacontroller.php"
 									]
 								}
 							},
@@ -792,7 +884,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -800,7 +892,7 @@
 									"path": [
 										"erronka1",
 										"controller",
-										"ekipamenduacontroller.php"
+										"kokalekuacontroller.php"
 									]
 								}
 							},
@@ -821,7 +913,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -829,7 +921,7 @@
 									"path": [
 										"erronka1",
 										"controller",
-										"ekipamenduacontroller.php"
+										"kokalekuacontroller.php"
 									]
 								}
 							},

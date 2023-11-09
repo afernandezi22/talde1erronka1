@@ -38,16 +38,17 @@
             try{
                 $emaitza = $this -> conn -> query($sql);
                 if ($emaitza -> num_rows > 0){
+                    //Konexioa itxi
+                    $this -> conn -> close();
                     return $emaitza;
                 }else{
-                    return 0;
+                    //Konexioa itxi
+                    $this -> conn -> close();
+                    return null;
                 }
             } catch (Exception $e) {
                 //echo "ERROREA " . $e;
             }
-
-            //Konexioa itxi
-            $this -> conn -> close();
         }
 
         //INSERT, UPDATE eta DELETE egiteko erabiltzen den funtzioa
@@ -56,12 +57,14 @@
             $this -> connect();
             //Sententzia ondo exekutatzen bada emaitza bueltatu, bestela 0 bueltatu
             if ($emaitza = $this -> conn -> query($sql)){
+                //Konexioa itxi
+                $this -> conn -> close();
                 return $emaitza;
             }else{
+                //Konexioa itxi
+                $this -> conn -> close();
                 return 0;
             }
-            //Konexioa itxi
-            $this -> conn -> close();
         }
     }
 ?>

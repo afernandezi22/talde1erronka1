@@ -5,8 +5,12 @@
     class EkipamenduaController extends Controller{
         public function getAll(){
             $this -> db = new DB();
+<<<<<<< HEAD
+            $sql = "SELECT * FROM ekipamendua";
+=======
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
             WHERE K.id = E.idKategoria";
+>>>>>>> develop
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
                 foreach($emaitza as $ekipamendua){
@@ -29,19 +33,29 @@
                 return $ekipamenduak;
             }
         }
-	public function getByFilter($zutabea, $datua){
+
+        public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
+<<<<<<< HEAD
+            $sql = "SELECT * FROM ekipamendua WHERE " . $zutabea. " = '" . $datua . "'"; 
+            $emaitza = $this -> db -> select($sql);
+            if(!$emaitza == null){
+                foreach($emaitza as $gela){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"]);
+=======
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
             WHERE K.id = E.idKategoria AND E." . $zutabea. " = '" . $datua . "'"; 
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
                 foreach($emaitza as $gela){
                     $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
+>>>>>>> develop
                 }
     
                 return $gelak;
             }
         }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -59,7 +73,7 @@
             }
         }
 
-        ublic function post($json){
+        public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
 

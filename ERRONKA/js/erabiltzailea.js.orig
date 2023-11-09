@@ -1,3 +1,39 @@
+<<<<<<< HEAD
+// DATUAK TAULAN BISTARATZEKO PAGINA KARGATZERAKOAN
+window.addEventListener("load", function () {
+    if (document.getElementById("erabiltzaieaTable")!= undefined){
+        getDataFromURL("erabiltzaileaTable");
+    }
+})
+
+// DATUAK TAULAN FORMATUAN BISTARATZEKO
+function viewTable(dataAll, actualPag, tableId) {
+    //console.log(dataAll);
+    //var dataErabiltzailea = dataAll;
+    var tableHtml = "";
+    var start = (actualPag - 1) * tableLines;
+    var end = start + tableLines;
+    
+    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
+        if (tableId == "erabiltzaileaTable"){    
+            tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + tableData[tableId].data[i]["nan"] + "></td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["nan"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["abizena"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["erabiltzailea"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["rola"] + "</td>";
+            tableHtml += "<td>" + tableData[tableId].data[i]["irudia"] + "</td></tr>";
+        }
+    }
+    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
+    console.log(tableHtml);
+}
+
+
+
+
+=======
+>>>>>>> develop
 //BOTOIAK
 const ezabatuButton = document.getElementById("ezabatuButton");
 const gehituButton = document.getElementById("gehituButton");
@@ -8,7 +44,7 @@ const bilaketaTestu = document.getElementById("bilaketa");
 
 // BOTOIAK AKTIBATU ETA DESAKTIBATZEKO
 document.addEventListener("DOMContentLoaded", function () {
-    const checkboxContainer = document.getElementById("gelaTable");
+    const checkboxContainer = document.getElementById("erabiltzaileaTable");
     const editatuButton = document.getElementById("editatuButton");
     const ezabatuButton = document.getElementById("ezabatuButton");
 
@@ -55,7 +91,7 @@ function insertData(){
         izena: izenaInputValue,
         taldea: taldeaInputValue
     };
-    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
+    fetch('http://localhost/erronka1/controller/erabiltzaileacontroller.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -108,7 +144,7 @@ function editData(){
     }
 
     
-    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
+    fetch('http://localhost/erronka1/controller/erabiltzaileacontroller.php', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -130,7 +166,7 @@ function editData(){
 //EZABATZEKO LOGIKA
 function deleteData(){
     // Lortu ID-ak
-    const checkboxContainer = document.getElementById("gelaTable");
+    const checkboxContainer = document.getElementById("erabiltzaileaTable");
     const checkedCheckboxes = Array.from(checkboxContainer.querySelectorAll('.checkbox-item:checked'));
 
     const checkboxIDs = [];
@@ -149,7 +185,7 @@ function deleteData(){
     const konfirmatu = window.confirm("Ziur al zaude " + checkboxIDs + " elementuak ezabatu nahi dituzula?");
     if(konfirmatu){
         //Deia egin
-        fetch('http://localhost/erronka1/controller/gelacontroller.php', {
+        fetch('http://localhost/erronka1/controller/erabiltzaileacontroller.php', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -173,14 +209,16 @@ ezabatuButton.addEventListener("click", function (){
     deleteData();
 });
 
+<<<<<<< HEAD
+=======
 //PAGINATZEKO LOGIKA
-var dataGela = [];
+var dataErabiltzailea = [];
 const tableLines = 10;
 var actualPag = 1;
 
 //PAGINAR LA TABLA INBENTARIOA
-function paginarGela(direccion) {
-    let totalPages = Math.ceil(dataGela.length / tableLines);
+function paginarErabiltzailea(direccion) {
+    let totalPages = Math.ceil(dataErabiltzailea.length / tableLines);
 
     actualPag += direccion;
     if (actualPag < 1) {
@@ -190,14 +228,14 @@ function paginarGela(direccion) {
         actualPag = totalPages;
     }
 
-    viewTableGela(dataGela, actualPag);
+    viewTableErabiltzailea(dataErabiltzailea, actualPag);
 
     document.getElementById("page-number").innerHTML = actualPag;
     document.getElementById("total-pages").innerHTML = totalPages;
 }
 
 function getData() {
-    fetch('http://localhost/erronka1/controller/gelacontroller.php', {
+    fetch('http://localhost/erronka1/controller/erabiltzaileacontroller.php', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -207,9 +245,9 @@ function getData() {
         return response.json();
     })
     .then(data => {
-        dataGela = data;
-        totalPages = Math.ceil(dataGela.length / tableLines);
-        paginarGela(0); // Para asegurar que se inicie en la página 1
+        dataErabiltzailea = data;
+        totalPages = Math.ceil(dataErabiltzailea.length / tableLines);
+        paginarErabiltzailea(0); // Para asegurar que se inicie en la página 1
     })
     .catch(err => {
         console.error("ERROR: " + err.message);
@@ -217,24 +255,28 @@ function getData() {
 }
 
 
-function viewTableGela(dataGela, actualPag) {
+function viewTableErabiltzailea(dataErabiltzailea, actualPag) {
     var tableHtml = "";
     var start = (actualPag - 1) * tableLines;
     var end = start + tableLines;
     
-    for (var i = start; i < Math.min(end, dataGela.length); i++){
-        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataGela[i]["id"] + "></td>";
-        tableHtml += "<td>" + dataGela[i]["id"] + "</td>";
-        tableHtml += "<td>" + dataGela[i]["izena"] + "</td>";
-        tableHtml += "<td>" + dataGela[i]["taldea"] + "</td></tr>";
+    for (var i = start; i < Math.min(end, dataErabiltzailea.length); i++){
+        tableHtml += "<tr><td><input type='checkbox' class='checkbox-item' id=" + dataErabiltzailea[i]["nan"] + "></td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["nan"] + "</td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["izena"] + "</td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["abizena"] + "</td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["erabiltzailea"] + "</td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["rola"] + "</td>";
+        tableHtml += "<td>" + dataErabiltzailea[i]["irudia"] + "</td></tr>";
     }
-    document.getElementById("showDataGela").innerHTML = tableHtml;
+    document.getElementById("showDataErabiltzailea").innerHTML = tableHtml;
 }
 
 window.addEventListener("load", function(){
     getData();
 })
 
+>>>>>>> develop
 // FILTROA
 bilaketaButton.addEventListener("click", function(){
     filterData();
@@ -251,7 +293,7 @@ function filterData(){
     const bilaketaInputValue = document.getElementById("bilaketa").value;
     const filtroSelectValue = document.getElementById("filtro").value;
 
-    const url = `http://localhost/erronka1/controller/gelacontroller.php?datua=${bilaketaInputValue}&zutabea=${filtroSelectValue}`;
+    const url = `http://localhost/erronka1/controller/erabiltzaileacontroller.php?datua=${bilaketaInputValue}&zutabea=${filtroSelectValue}`;
 
     fetch(url, {
         method: 'GET',
@@ -266,9 +308,9 @@ function filterData(){
         if(data == null){
             alert("Kontuz! Ez dago daturik kontsulta horrekin!");
         } else {
-            dataGela = data;
-            totalPages = Math.ceil(dataGela.length / tableLines);
-            paginarGela(0); // Para asegurar que se inicie en la página 1
+            dataErabiltzailea = data;
+            totalPages = Math.ceil(dataErabiltzailea.length / tableLines);
+            paginarErabiltzailea(0); // Para asegurar que se inicie en la página 1
         }
     })  
     .catch(err => {
