@@ -1,18 +1,3 @@
-/*// LLAMAR A LAS FUNCIONES AL CARGAR LA PÁGINA
-window.addEventListener("load", function(){
-    if(document.getElementById("ekipamenduaTable")!= undefined){
-        getDataFromURL("ekipamenduaTable");
-    } else if (document.getElementById("gelaTable") != undefined){
-        getDataFromURL("gelaTable");
-    } else if (document.getElementById("inbentarioaTable") != undefined){
-        getDataFromURL("inbentarioaTable");
-    } else if (document.getElementById("kategoriaTable") != undefined){
-        getDataFromURL("kategoriaTable");
-    } else if (document.getElementById("kokalekuaTable") != undefined){
-        getDataFromURL("kokalekuaTable");
-    }
-});*/
-
 var tableData = {
     'ekipamenduaTable': {
         data: [],
@@ -91,7 +76,7 @@ function getDataFromURL(tableId) {
     fetch(url, options)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             var table = tableData[tableId];
             table.data = data;
 
@@ -102,62 +87,3 @@ function getDataFromURL(tableId) {
             console.error("ERROR: " + err.message);
         });
 }
-
-// FUNCION PARA MOSTRAR LOS DATOS EN FORMATO TABLA
-/*function viewTable(dataAll, actualPag, tableId) {
-    var tableHtml = "";
-    var start = (actualPag - 1) * tableLines;
-    var end = start + tableLines;
-    
-    // DARLE EL FORMATO DE TABLA A LOS DATOS SEGÚN EL ID DE LA TABLA
-    for (let i = start; i < Math.min(end, tableData[tableId].data.length); i++) {
-        if (tableId == "ekipamenduaTable"){
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['id'] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["id"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["deskribapena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["marka"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["modelo"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["stock"] + "</td></tr>";
-        } else if (tableId == "gelaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['id'] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
-        } else if (tableId == "inbentarioaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['etiketa'] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["idEkipamendu"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["erosketaData"] + "</td></tr>";
-        } else if (tableId == "kategoriaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['izena'] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["izena"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["taldea"] + "</td></tr>";
-        } else if (tableId == "kokalekuaTable") {
-            tableHtml += "<tr><td><input type='checkbox' id=" + tableData[tableId].data[i]['etiketa'] + "></td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["etiketa"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["idGela"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["hasieraData"] + "</td>";
-            tableHtml += "<td>" + tableData[tableId].data[i]["amaieraData"] + "</td></tr>";
-        } else {
-            console.error("ERROR: Invalid tableID");
-            return;
-        }
-    }
-
-    // ESCRIBIR EN LA TABLA LOS DATOS DEL JSON
-    if (tableId == "ekipamenduaTable") {
-        document.getElementById("showDataEkipamendua").innerHTML = tableHtml;
-    } else if (tableId == "gelaTable") {
-        document.getElementById("showDataGela").innerHTML = tableHtml;
-    } else if (tableId == "inbentarioaTable") {
-        document.getElementById("showDataInbentarioa").innerHTML = tableHtml;
-    } else if (tableId == "kategoriaTable") {
-        document.getElementById("showDataKategoria").innerHTML = tableHtml;
-    } else if (tableId == "kokalekuaTable") {
-        document.getElementById("showDataKokalekua").innerHTML = tableHtml;
-    } else {
-        console.error("ERROR: Invalid tableID");
-        return;
-    }
-}
-*/
