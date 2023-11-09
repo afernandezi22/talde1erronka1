@@ -49,7 +49,7 @@
             //Baliozkotzea: kategoria izena ezin da errepikatu
             $sql = "SELECT * FROM kategoria WHERE izena = '" . $data["izena"] ."'";
             $result = $this -> db -> select($sql);
-            if($result -> num_rows < 0){
+            if($result == null){
                 $sql = "UPDATE kategoria SET izena = '" . $data["izena"]
                     . "' WHERE id = " . $data["id"];
                 if($this -> db -> do($sql)){
@@ -59,7 +59,6 @@
                 }
             } else {
                 //Errorea badagoelako kategoria izen horrekin
-                //throw new Exception("Badago kategoria izen horrekin!");
             }
         }
 
@@ -70,7 +69,7 @@
             //Baliozkotzea: kategoria izena ezin da errepikatu
             $sql = "SELECT * FROM kategoria WHERE izena = '" . $data["izena"] ."'";
             $result = $this -> db -> select($sql);
-            if($result -> num_rows < 0){
+            if($result == null){
                 $sql = "INSERT INTO kategoria (izena) VALUES ('" . $data["izena"] . "')";
                 if($this -> db -> do($sql)){
                     //Ondo
@@ -79,7 +78,6 @@
                 }
             } else {
                 //Errorea badagoelako kategoria izen horrekin
-                //throw new Exception("Badago kategoria izen horrekin!");
             }
         }
 
@@ -87,21 +85,14 @@
             $this -> db = new DB();
             $data = json_decode($json, true);
             $sql = "DELETE FROM kategoria WHERE id IN(";
-            $lehenengoa = true;
             for($i = 0; $i < count($data["id"]); $i++){
                 //Baliozkotzea: ez da gehituko ezabatzeko array-ra ekipamenduko taulan kategoria horren ekipamendua badago
                 $sqlSelect = "SELECT * FROM ekipamendua WHERE idKategoria = " . $data["id"][$i];
                 $result = $this -> db -> select($sqlSelect);
-                if($result -> num_rows < 0){
-                    if($lehenengoa){
-                        $sql = $sql . $data["id"][$i] . ",";
-                        $lehenengoa = false;
-                    }else{
-                        $sql = $sql . $data["id"][$i] . ",";
-                    }
+                if($result == null){
+                    $sql = $sql . $data["id"][$i] . ",";
                 } else {
                     //Baliozkotzea: ez da ezabatuko
-                    //throw new Exception("Badago kategoria izen horrekin!");
                 }
             }
             $sql = $sql . "0)";

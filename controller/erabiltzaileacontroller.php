@@ -48,7 +48,7 @@
             //Baliozkotzea: ezin da erabiltzaile-izen berarekin editatu
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."'";
             $result = $this -> db -> select($sql);
-                if($result -> num_rows < 0){
+                if($result == null){
                 $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
                     . "', abizena = '" . $data["abizena"]
                     . "', erabiltzailea = '" . $data["erabiltzailea"]
@@ -74,7 +74,7 @@
             //Baliozkotzea: erabiltzailea ezin da errepikatu
             $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."'";
             $result = $this -> db -> select($sql);
-            if($result -> num_rows < 0){
+            if($result == null){
                 //Ez dago erabiltzailerik erabiltzaile-izen horrekin
                 $sql = "INSERT INTO erabiltzailea VALUES ('" . $data["nan"]
                 . "', '" . $data["izena"]

@@ -45,46 +45,61 @@
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "UPDATE gela SET izena = '" . $data["izena"]
-                . "', taldea = '" . $data["taldea"]
-                . "' WHERE id = " . $data["id"];
-            if($this -> db -> do($sql)){
-                return true;
-            } else{
-                return false;
+
+            //Baliozkotze: begiratzen du ea beste gelaren bat dagoen izen berarekin
+            $sqlSelect = "SELECT * FROM gela WHERE izena = '" . $data["izena"] . "'";
+            $result = $this -> db -> select($sqlSelect);
+            if($result == null){
+                $sql = "UPDATE gela SET izena = '" . $data["izena"]
+                    . "', taldea = '" . $data["taldea"]
+                    . "' WHERE id = " . $data["id"];
+                if($this -> db -> do($sql)){
+                    // return true;
+                } else{
+                    // return false;
+                }
             }
         }
 
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO gela (izena, taldea) VALUES ('" . $data["izena"]
-                . "', '" . $data["taldea"] . "')";
-            if($this -> db -> do($sql)){
-                return true;
-            } else{
-                return false;
+
+            //Baliozkotze: begiratzen du ea beste gelaren bat dagoen izen berarekin
+            $sqlSelect = "SELECT * FROM gela WHERE izena = '" . $data["izena"] . "'";
+            $result = $this -> db -> select($sqlSelect);
+            if($result == null){
+                $sql = "INSERT INTO gela (izena, taldea) VALUES ('" . $data["izena"]
+                    . "', '" . $data["taldea"] . "')";
+                if($this -> db -> do($sql)){
+                    // INSERT ONDO
+                } else{
+                    // INSERT TXARTO
+                }
             }
         }
 
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
+
             $sql = "DELETE FROM gela WHERE id IN(";
             for($i = 0; $i < count($data["id"]); $i++){
-                if($i == 0){
-                    $sql = $sql . $data["id"][$i];
-                }else{
-                    $sql = $sql . "," . $data["id"][$i];
+                //Baliozkotzea: begiratzen du ea gela kokalekuan agertzen den
+                $sqlSelect = "SELECT * FROM kokalekua WHERE idGela = " . $data["id"][$i];
+                $result = $this -> db -> select($sqlSelect);
+
+                if($result == null){
+                    $sql = $sql . $data["id"][$i] . ", ";
                 }
             }
 
-            $sql = $sql . ")";
+            $sql = $sql . "0)";
 
             if($this -> db -> do($sql)){
-                return true;
+                //return true;
             } else{
-                return true;
+                // return true;
             }
         }
     }

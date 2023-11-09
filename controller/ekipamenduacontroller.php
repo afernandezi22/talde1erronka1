@@ -64,17 +64,25 @@
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            $sql = "INSERT INTO ekipamendua (izena, deskribapena, marka, modelo, stock, idKategoria) VALUES ('" . $data["izena"]
-                . "', '" . $data["deskribapena"]
-                . "', '" . $data["marka"]
-                . "', '" . $data["modelo"]
-                . "', " . $data["stock"]
-                . ", " . $data["idKategoria"] . ")";
-                if($this -> db -> do($sql)){
-                    return true;
-                } else{
-                    return false;
-                }
+
+            //Baliozkotzea: ezin da marka eta modelo bera duen zerbait txertatu
+            $sql = "SELECT * FROM ekipamendua WHERE marka = '" . $data["marka"] . "' AND modelo = '" . $data["modelo"] . "'";
+            $result = $this -> db -> select($sql);
+            if($result == null){
+                $sql = "INSERT INTO ekipamendua (izena, deskribapena, marka, modelo, stock, idKategoria) VALUES ('" . $data["izena"]
+                    . "', '" . $data["deskribapena"]
+                    . "', '" . $data["marka"]
+                    . "', '" . $data["modelo"]
+                    . "', 0"
+                    . ", " . $data["idKategoria"] . ")";
+                    if($this -> db -> do($sql)){
+                        return true;
+                    } else{
+                        return false;
+                    }
+            } else{
+                echo "ezin da";
+            }
         }
 
         public function delete($json){
@@ -82,15 +90,20 @@
             $data = json_decode($json, true);
             $sql = "DELETE FROM ekipamendua WHERE id IN(";
             for($i = 0; $i < count($data["id"]); $i++){
-                if($i == 0){
-                    $sql = $sql . $data["id"][$i];
-                }else{
-                    $sql = $sql . "," . $data["id"][$i];
+                //Baliozkotzea: ez da ezabatuko stock-a badago.
+                $sqlSelect = "SELECT stock FROM ekipamendua WHERE id =" . $data["id"][$i];
+                $result = $this -> db -> select($sqlSelect);
+                foreach($result as $row){
+                    $stock = $row["stock"];
+                }
+                if($stock <= 0){
+                    $sql = $sql . $data["id"][$i] . ",";
+                } else {
+                    //Baliozkotzea: ez da ezabatuko
                 }
             }
 
-            $sql = $sql . ")";
-
+            $sql = $sql . "0)";
             if($this -> db -> do($sql)){
                 //Ondo
             } else{
@@ -123,6 +136,9 @@
         $ekipamenduController = new EkipamenduaController();
         if(!empty($_GET["id"])){
             $ekipamendu = $ekipamenduController -> getById($_GET["id"]);
+            echo json_encode($ekipamendu);
+        }elseif(isset($_GET["zutabea"])){
+            $ekipamendu = $ekipamenduController -> getByFilter($_GET["zutabea"], $_GET["datua"]);
             echo json_encode($ekipamendu);
         }else{
             $ekipamendu = $ekipamenduController -> getAll();
