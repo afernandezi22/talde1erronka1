@@ -9,6 +9,7 @@
     <link rel="icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../img/favicon2.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -33,8 +34,8 @@
                 <li><a href="kategoria.php">Kategoria</a></li>
                 <li><a href="gela.php">Gela</a></li>
                 <li><a href="inbentarioa.php">Inbentarioa</a></li>
-                <li><a href="#">Erabiltzailea</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="erabiltzailea.php">Erabiltzailea</a></li>
+                <li><a href="login.php">Logout</a></li>
             </ul>
         </nav>
 
@@ -62,12 +63,12 @@
             <table id="ekipamenduaTable">
                 <tr>
                     <th></th>
-                    <th>ID</th>
-                    <th>Izena</th>
-                    <th>Deskribapena</th>
-                    <th>Marka</th>
-                    <th>Modelo</th>
-                    <th>Stock</th>
+                    <th>ID<i class='bx bxs-sort-alt'></i></th>
+                    <th>Izena<i class='bx bxs-sort-alt'></i></th>
+                    <th>Deskribapena<i class='bx bxs-sort-alt'></i></th>
+                    <th>Marka<i class='bx bxs-sort-alt'></i></th>
+                    <th>Modelo<i class='bx bxs-sort-alt'></i></th>
+                    <th>Stock<i class='bx bxs-sort-alt'></i></th>
                 </tr>
 
                 <tbody id="showDataEkipamendua"></tbody>
