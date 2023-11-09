@@ -59,7 +59,7 @@
             }
         }
 
-        ublic function post($json){
+        public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
 

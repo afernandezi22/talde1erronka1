@@ -54,22 +54,22 @@
                 ROW_NUMBER() OVER (PARTITION BY E.izena ORDER BY E.izena) as rn
                 FROM inbentarioa I, ekipamendua E
                 WHERE etiketa NOT IN (
-                 SELECT etiketa
-                 FROM kokalekua
+                SELECT etiketa
+                FROM kokalekua
                 ) AND id = idEkipamendu
                 UNION
                 SELECT K.etiketa AS etiketa, E.izena AS izena,
                 ROW_NUMBER() OVER (PARTITION BY E.izena ORDER BY E.izena) as rn
                 FROM kokalekua K, inbentarioa I, ekipamendua E
                 WHERE K.etiketa NOT IN (
-                   SELECT etiketa
-                   FROM kokalekua
-                   WHERE amaieraData IS NULL
+                SELECT etiketa
+                FROM kokalekua
+                WHERE amaieraData IS NULL
                 ) AND amaieraData < CURRENT_DATE
                 AND K.etiketa = I.etiketa
                 AND I.idEkipamendu = E.id
-             )
-             SELECT etiketa, izena FROM CTE WHERE rn = 1";
+            )
+            SELECT etiketa, izena FROM CTE WHERE rn = 1";
             $emaitza = $this -> db -> select($sqlSelect);
             $etiketak = []; 
             foreach($emaitza as $libre){
@@ -98,16 +98,16 @@
             $sqlSelect = "SELECT etiketa
             FROM inbentarioa
             WHERE etiketa NOT IN (
-              SELECT etiketa
-              FROM kokalekua
+            SELECT etiketa
+            FROM kokalekua
             ) 
             UNION
             SELECT etiketa
                         FROM kokalekua
                         WHERE etiketa NOT IN (
-                          SELECT etiketa
-                          FROM kokalekua
-                          WHERE amaieraData IS NULL
+                        SELECT etiketa
+                        FROM kokalekua
+                        WHERE amaieraData IS NULL
                         ) AND amaieraData < CURRENT_DATE
                         AND etiketa = '" . $data["etiketa"] . "'";
             $result = $this -> db -> select($sqlSelect);
@@ -134,16 +134,16 @@
             $sqlSelect = "SELECT etiketa
             FROM inbentarioa
             WHERE etiketa NOT IN (
-              SELECT etiketa
-              FROM kokalekua
+            SELECT etiketa
+            FROM kokalekua
             ) 
             UNION
             SELECT etiketa
                         FROM kokalekua
                         WHERE etiketa NOT IN (
-                          SELECT etiketa
-                          FROM kokalekua
-                          WHERE amaieraData IS NULL
+                        SELECT etiketa
+                        FROM kokalekua
+                        WHERE amaieraData IS NULL
                         ) AND amaieraData < CURRENT_DATE
                         AND etiketa = '" . $data["etiketa"] . "'";
             $result = $this -> db -> select($sqlSelect);
