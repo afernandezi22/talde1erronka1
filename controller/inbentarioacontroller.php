@@ -54,9 +54,8 @@
             }
 
             if(!$beranduago){
-                $sql = "UPDATE inbentarioa SET idEkipamendu = " . $data["idEkipamendu"]
-                    . ", erosketaData = " . $data["erosketaData"]
-                    . " WHERE etiketa = " . $data["etiketa"];
+                $sql = "UPDATE inbentarioa SET erosketaData = '" . $data["erosketaData"]
+                    . "' WHERE etiketa = '" . $data["etiketa"] . "'";
                 if($this -> db -> do($sql)){
                     //return true;
                 } else{

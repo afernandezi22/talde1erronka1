@@ -40,11 +40,14 @@
             AND K.idGela = G.id
             AND " . $zutabea . " = '" . $datua . "'";
             $emaitza = $this -> db -> select($sql);
-            foreach($emaitza as $kokalekua){
-                $kokalekuak[] = new Kokalekua($kokalekua["etiketa"], $kokalekua["ekipamenduIzena"], $kokalekua["idGela"], $kokalekua["gelaIzena"], $kokalekua["hasieraData"], $kokalekua["amaieraData"]);
+            if($emaitza != null){
+                foreach($emaitza as $kokalekua){
+                    $kokalekuak[] = new Kokalekua($kokalekua["etiketa"], $kokalekua["ekipamenduIzena"], $kokalekua["idGela"], $kokalekua["gelaIzena"], $kokalekua["hasieraData"], $kokalekua["amaieraData"]);
+                }
+                return $kokalekuak;
+            }else{
+                return null;
             }
-
-            return $kokalekuak;
         }
 
         public function getFreeEkipamendu(){
@@ -77,6 +80,52 @@
             }
 
             return $libreak;
+        }
+
+        public function getZenbatPortatil(){
+            $this -> db = new DB();
+            $sql = "SELECT SUM(STOCK) AS TOTAL
+            FROM ekipamendua
+            WHERE idKategoria = 4";
+            $emaitza = $this -> db -> select($sql);
+            if($emaitza != null){
+                foreach($emaitza as $total){
+                    $zenbat["TOTAL"] = $total["TOTAL"];
+                }
+            } else{
+                $zenbat["TOTAL"] = 0;
+            }
+
+            $sql = "SELECT COUNT(ETIKETA) AS TOTAL FROM (
+                        SELECT I.etiketa AS ETIKETA
+                        FROM inbentarioa I, ekipamendua E
+                        WHERE I.etiketa NOT IN (
+                            SELECT etiketa
+                            FROM kokalekua
+                        ) AND I.idEkipamendu = E.id
+                        AND E.idKategoria = 4
+                        UNION
+                        SELECT K.etiketa AS ETIKETA
+                        FROM kokalekua K, inbentarioa I, ekipamendua E
+                        WHERE K.etiketa NOT IN (
+                            SELECT etiketa
+                            FROM kokalekua
+                            WHERE amaieraData IS NULL
+                        ) AND K.amaieraData < CURRENT_DATE
+                        AND K.etiketa = I.etiketa
+                        AND I.idEkipamendu = E.id
+                        AND E.idKategoria = 4
+                ) AS TOTAL";
+            $emaitza = $this -> db -> select($sql);
+            if($emaitza != null){
+                foreach($emaitza as $total){
+                    $zenbat["LIBRE"] = $total["TOTAL"];
+                }
+            } else{
+                $zenbat["LIBRE"] = 0;
+            }
+
+            return $zenbat;
         }
 
         public function gaurBainoBeranduago($dataStr){
@@ -114,9 +163,8 @@
             if($result != null){
                 //Baliozkotzea: begiratzen du ea hasieraData gaur baino beranduago den edo amaieraData gaur baino lehenago den
                 if(!($this -> gaurBainoBeranduago($data["hasieraData"])) || $this -> gaurBainoBeranduago($data["amaieraData"])){
-                    $sql = "UPDATE kokalekua SET etiketa = '" . $data["etiketa"] . "', hasieraData = " . $data["hasieraData"]
-                        . ", amaieraData = " . $data["amaieraData"]
-                        . " WHERE id = " . $data["id"];
+                    $sql = "UPDATE kokalekua SET amaieraData = '" . $data["amaieraData"]
+                        . "' WHERE etiketa = '" . $data["etiketa"] . "' AND hasieraData = '" . $data["hasieraData"] . "'";
                     if($this -> db -> do($sql)){
                         // UPDATE ondo
                     } else{
@@ -150,10 +198,16 @@
             if($result != null){
                 //Baliozkotzea: begiratzen du ea hasieraData gaur baino beranduago den edo amaieraData gaur baino lehenago den
                 if(!($this -> gaurBainoBeranduago($data["hasieraData"])) || $this -> gaurBainoBeranduago($data["amaieraData"])){
-                    $sql = "INSERT INTO kokalekua VALUES ('" . $data["etiketa"]
+                    if($data["amaieraData"] == "null"){
+                        $sql = "INSERT INTO kokalekua (etiketa, idGela, hasieraData) VALUES('" . $data["etiketa"]
                         . "', '" . $data["idGela"]
-                        . "', '" . $data["hasieraData"]
-                        . "', '" . $data["amaieraData"] . "')";
+                        . "', '" . $data["hasieraData"] ."')"; 
+                    } else{
+                        $sql = "INSERT INTO kokalekua VALUES ('" . $data["etiketa"]
+                            . "', '" . $data["idGela"]
+                            . "', '" . $data["hasieraData"]
+                            . "', '" . $data["amaieraData"] . "')";
+                    }
                     if($this -> db -> do($sql)){
                         //Ondo
                     } else{
@@ -213,6 +267,9 @@
             echo json_encode($kokaleku);
         }elseif(isset($_GET["free"])){
             $etiketak = $kokalekuaController -> getFreeEkipamendu();
+            echo json_encode($etiketak);
+        }elseif(isset($_GET["portatil"])){
+            $etiketak = $kokalekuaController -> getZenbatPortatil();
             echo json_encode($etiketak);
         }else{
             $kokaleku = $kokalekuaController -> getAll();
