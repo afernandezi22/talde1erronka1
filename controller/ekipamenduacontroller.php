@@ -29,19 +29,21 @@
                 return $ekipamenduak;
             }
         }
-	public function getByFilter($zutabea, $datua){
+
+	    public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
             WHERE K.id = E.idKategoria AND E." . $zutabea. " = '" . $datua . "'"; 
             $emaitza = $this -> db -> select($sql);
             if(!$emaitza == null){
-                foreach($emaitza as $gela){
+                foreach($emaitza as $ekipamendua){
                     $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
                 }
     
-                return $gelak;
+                return $ekipamenduak;
             }
         }
+
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -49,8 +51,7 @@
                 . "', deskribapena = '" . $data["deskribapena"]
                 . "', marka = '" . $data["marka"]
                 . "', modelo = '" . $data["modelo"]
-                . "', stock = " . $data["stock"]
-                . ", idKategoria = " . $data["idKategoria"]
+                . "', idKategoria = " . $data["idKategoria"]
                 . " WHERE id = " . $data["id"];
             if($this -> db -> do($sql)){
                 //Ondo
