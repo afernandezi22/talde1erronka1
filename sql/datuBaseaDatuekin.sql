@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2023 a las 12:48:26
+-- Tiempo de generación: 13-11-2023 a las 09:12:34
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,9 +42,9 @@ CREATE TABLE `ekipamendua` (
 --
 
 INSERT INTO `ekipamendua` (`id`, `izena`, `deskribapena`, `marka`, `modelo`, `stock`, `idKategoria`) VALUES
-(1, 'ASUS TUF Gaming F15', 'Intel Core i5-11400H/16GB/512GB SSD/RTX 3050/15.6', 'ASUS', 'FX506HC-HN004', 2, 4),
-(2, 'HP Victus 5L', 'Intel® Core™ i5-12400F, 16GB RAM, 512GB SSD, RTX™ 3060, W11 H, Plata', 'HP', 'TG02-0087ns', 1, 1),
-(3, 'HP Victus 15L', 'Intel® Core™ i5-12400F, 16GB RAM, 512GB SSD, GTX 1650, W11 Home, Plata Mica', 'HP', 'TG02-0045ns', 2, 1),
+(1, 'ASUS TUF Gaming F15', 'Intel Core i5-11400H/16GB/512GB SSD/RTX 3050/15.6', 'ASUS', 'FX506HC-HN004', 4, 4),
+(2, 'HP Victus 5L', 'Intel® Core™ i5-12400F, 16GB RAM, 512GB SSD, RTX™ 3060, W11 H, Plata', 'HP', 'TG02-0087ns', 2, 1),
+(3, 'HP Victus 15L', 'Intel® Core™ i5-12400F, 16GB RAM, 512GB SSD, GTX 1650, W11 Home, Plata Mica', 'HP', 'TG02-0045ns', 3, 1),
 (4, 'HP Victus', 'Intel® Core™ i5-12400F, 16GB RAM, 512GB SSD, RTX™ 3050, Windows 11 Home, Plata', 'HP', 'TG02-0145ns', 1, 1),
 (5, 'Samsung Monitor Essential', '24\", Full-HD, IPS, 5 ms, 75Hz, Negro', 'Samsung', 'LS24C310EAUXEN', 2, 2),
 (6, 'Xiaomi Mi Desktop', '27\" EU, Full HD, IPS, 6 ms, 75 Hz, 300 cd/m², Negro', 'Xiaomi', 'OB02608', 1, 2),
@@ -122,6 +122,8 @@ CREATE TABLE `inbentarioa` (
 --
 
 INSERT INTO `inbentarioa` (`etiketa`, `idEkipamendu`, `erosketaData`) VALUES
+('0PI0JCYZPM', 1, '2023-11-10'),
+('4GCRJLDOD4', 1, '2023-11-10'),
 ('ABC1234', 1, '2023-11-03'),
 ('ABC1235', 1, '2023-11-03'),
 ('ABC1236', 2, '2023-11-01'),
@@ -138,7 +140,9 @@ INSERT INTO `inbentarioa` (`etiketa`, `idEkipamendu`, `erosketaData`) VALUES
 ('ABC1247', 11, '2021-11-06'),
 ('ABC1248', 12, '2023-09-10'),
 ('ABC1249', 13, '2023-08-05'),
-('ABC1250', 13, '2023-09-02');
+('ABC1250', 13, '2023-09-02'),
+('GZECGBI7HY', 2, '2023-11-10'),
+('HJA4L1H5C4', 3, '2023-11-10');
 
 -- --------------------------------------------------------
 
@@ -182,8 +186,9 @@ CREATE TABLE `kokalekua` (
 --
 
 INSERT INTO `kokalekua` (`etiketa`, `idGela`, `hasieraData`, `amaieraData`) VALUES
+('0PI0JCYZPM', 1, '2023-11-10', '2023-11-12'),
 ('ABC1234', 5, '2023-10-01', NULL),
-('ABC1235', 1, '2023-11-03', NULL),
+('ABC1235', 1, '2023-11-03', '2023-11-10'),
 ('ABC1236', 2, '2023-10-01', '2023-11-03'),
 ('ABC1236', 3, '2023-11-03', NULL),
 ('ABC1237', 3, '2023-09-01', '2023-11-01'),
@@ -253,7 +258,7 @@ ALTER TABLE `kokalekua`
 -- AUTO_INCREMENT de la tabla `ekipamendua`
 --
 ALTER TABLE `ekipamendua`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `gela`
@@ -287,8 +292,8 @@ ALTER TABLE `inbentarioa`
 -- Filtros para la tabla `kokalekua`
 --
 ALTER TABLE `kokalekua`
-  ADD CONSTRAINT `fk_gela` FOREIGN KEY (`idGela`) REFERENCES `gela` (`id`),
-  ADD CONSTRAINT `fk_inbentarioa` FOREIGN KEY (`etiketa`) REFERENCES `inbentarioa` (`etiketa`);
+  ADD CONSTRAINT `fk_gela` FOREIGN KEY (`idGela`) REFERENCES `gela` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_inbentarioa` FOREIGN KEY (`etiketa`) REFERENCES `inbentarioa` (`etiketa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
