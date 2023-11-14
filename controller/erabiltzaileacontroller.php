@@ -152,11 +152,20 @@
                 foreach($emaitza as $lerro){
                     if($lerro["pasahitza"] == $data["pass"]){
                         $pass = true;
-                        $info = ["erabil" => $erabil, "pass" => $pass];
+                        //LOGIN-a ondo egin da. Horregatik sesioko aldagai ezartzen dira
+                        session_start();
+                        $_SESSION["username"] = $data["erabil"];
+                        $_SESSION["rol"] = $lerro["rola"];
+                        $_SESSION["name"] = $lerro["izena"];
+                        if($lerro["irudia"] == null){
+                            $_SESSION["avatar"] = "../img/avatar/default.jpg";
+                        }else{
+                            $_SESSION["avatar"] = $lerro["irudia"];
+                        }
                     } else{
                         $pass = false;
-                        $info= ["erabil" => $erabil, "pass" => $pass];
                     }
+                    $info= ["erabil" => $erabil, "pass" => $pass];
                 }
             }
             return json_encode($info);
@@ -179,7 +188,6 @@
             $erabiltzaileaController = new ErabiltzaileaController();
             echo $erabiltzaileaController -> login($json);
         } else{
-            $json = file_get_contents('php://input');
             $erabiltzaileaController = new ErabiltzaileaController();
             $erabiltzaileaController -> post($json);
         }
