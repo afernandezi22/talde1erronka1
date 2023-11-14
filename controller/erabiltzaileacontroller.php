@@ -46,24 +46,34 @@
             $data = json_decode($json, true);
             
             //Baliozkotzea: ezin da erabiltzaile-izen berarekin editatu
-            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."'";
+            $sql = "SELECT * FROM erabiltzailea WHERE erabiltzailea = '" . $data["erabiltzailea"] ."' AND nan <> '" . $data["nan"] . "'";
             $result = $this -> db -> select($sql);
-                if($result == null){
-                $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
-                    . "', abizena = '" . $data["abizena"]
-                    . "', erabiltzailea = '" . $data["erabiltzailea"]
-                    . "', pasahitza = '" . $data["pasahitza"]
-                    . "', rola = " . $data["rola"]
-                    . ", irudia = '" . $data["irudia"]
-                    . "' WHERE nan = '" . $data["nan"] . "'";
-                if($this -> db -> do($sql)){
-                    //Ondo
-                } else{
-                    //Txarto
-                }
+            if($result == null){
+                    if($data["irudia"] != ""){
+                        $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
+                            . "', abizena = '" . $data["abizena"]
+                            . "', erabiltzailea = '" . $data["erabiltzailea"]
+                            . "', pasahitza = '" . $data["pasahitza"]
+                            . "', rola = " . $data["rola"]
+                            . ", irudia = '" . $data["irudia"]
+                            . "' WHERE nan = '" . $data["nan"] . "'";
+                    } else{
+                        $sql = "UPDATE erabiltzailea SET izena = '" . $data["izena"]
+                        . "', abizena = '" . $data["abizena"]
+                        . "', erabiltzailea = '" . $data["erabiltzailea"]
+                        . "', pasahitza = '" . $data["pasahitza"]
+                        . "', rola = " . $data["rola"]
+                        . ", irudia = null"
+                        . " WHERE nan = '" . $data["nan"] . "'";
+                    }
+                    if($this -> db -> do($sql)){
+                        //Ondo
+                    } else{
+                        //Txarto
+                    }
             } else {
                 //Errorea badagoelako erabiltzailea erabiltzaile-izen horrekin
-                throw new Exception("Badago erabiltzailea izen horrekin!");
+                // throw new Exception("Badago erabiltzailea izen horrekin!");
             }
         }
 
@@ -76,13 +86,23 @@
             $result = $this -> db -> select($sql);
             if($result == null){
                 //Ez dago erabiltzailerik erabiltzaile-izen horrekin
-                $sql = "INSERT INTO erabiltzailea VALUES ('" . $data["nan"]
-                . "', '" . $data["izena"]
-                . "', '" . $data["abizena"]
-                . "', '" . $data["erabiltzailea"]
-                . "', '" . $data["pasahitza"]
-                . "', " . $data["rola"] 
-                . ", '" . $data["irudia"] . "')";
+                //Begiratu ea irudia daukan edo ez
+                if($data["irudia"] != ""){
+                    $sql = "INSERT INTO erabiltzailea VALUES ('" . $data["nan"]
+                    . "', '" . $data["izena"]
+                    . "', '" . $data["abizena"]
+                    . "', '" . $data["erabiltzailea"]
+                    . "', '" . $data["pasahitza"]
+                    . "', " . $data["rola"] 
+                    . ", '" . $data["irudia"] . "')";
+                } else{
+                    $sql = "INSERT INTO erabiltzailea (nan, izena, abizena, erabiltzailea, pasahitza, rola) VALUES ('" . $data["nan"]
+                    . "', '" . $data["izena"]
+                    . "', '" . $data["abizena"]
+                    . "', '" . $data["erabiltzailea"]
+                    . "', '" . $data["pasahitza"]
+                    . "', " . $data["rola"] . ")";
+                }
                 if($this -> db -> do($sql)){
                     //Ondo
                 } else{
