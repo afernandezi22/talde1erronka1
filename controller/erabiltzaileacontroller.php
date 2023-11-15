@@ -156,20 +156,23 @@
                 foreach($emaitza as $lerro){
                     if($lerro["pasahitza"] == $data["pass"]){
                         $pass = true;
+                        $irudia = null;
                         //LOGIN-a ondo egin da. Horregatik sesioko aldagai ezartzen dira
-                        session_start();
-                        $_SESSION["username"] = $data["erabil"];
-                        $_SESSION["rol"] = $lerro["rola"];
-                        $_SESSION["name"] = $lerro["izena"];
+                        // session_start();
+                        // $_SESSION["username"] = $data["erabil"];
+                        // $_SESSION["rol"] = $lerro["rola"];
+                        // $_SESSION["name"] = $lerro["izena"];
                         if($lerro["irudia"] == null){
-                            $_SESSION["avatar"] = "../img/avatar/default.jpg";
+                            $irudia = "../img/avatar/default.jpg";
                         }else{
-                            $_SESSION["avatar"] = $lerro["irudia"];
+                            $irudia = $lerro["irudia"];
                         }
+                        $rol = $lerro["rola"];
+                        $name = $lerro["izena"];
                     } else{
                         $pass = false;
                     }
-                    $info= ["erabil" => $erabil, "pass" => $pass];
+                    $info= ["erabil" => $erabil, "pass" => $pass, "username" => $data["erabil"], "rol" => $rol, "name" => $name, "avatar" => $irudia];
                 }
             }
             return json_encode($info);
