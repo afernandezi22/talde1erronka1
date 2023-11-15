@@ -160,36 +160,20 @@
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
-            //Baliozkotzea: begiratu behar da erabiliko den ekipamendua libre dagoen. 
-            //Hau da: kokalekuan okupatuta agertzen EZ dela edo kokalekuan agertzen ez dela (inoiz ez delako erabili)
-            $sqlSelect = "SELECT etiketa
-            FROM inbentarioa
-            WHERE etiketa NOT IN (
-            SELECT etiketa
-            FROM kokalekua
-            ) 
-            UNION
-            SELECT etiketa
-                        FROM kokalekua
-                        WHERE etiketa NOT IN (
-                        SELECT etiketa
-                        FROM kokalekua
-                        WHERE amaieraData IS NULL
-                        ) AND amaieraData < CURRENT_DATE
-                        AND etiketa = '" . $data["etiketa"] . "'";
-            $result = $this -> db -> select($sqlSelect);
-            if($result != null){
-                //Baliozkotzea: begiratzen du ea hasieraData gaur baino beranduago den edo amaieraData gaur baino lehenago den
-                if(!($this -> gaurBainoBeranduago($data["hasieraData"])) || $this -> gaurBainoBeranduago($data["amaieraData"])){
-                    $sql = "UPDATE kokalekua SET amaieraData = '" . $data["amaieraData"]
-                        . "' WHERE etiketa = '" . $data["etiketa"] . "' AND hasieraData = '" . $data["hasieraData"] . "'";
-                    if($this -> db -> do($sql)){
-                        // UPDATE ondo
-                    } else{
-                        // UPDATE txarto
-                    }
-                }
+            if($data["amaieraData"] == "null"){
+                $sql = "UPDATE kokalekua SET amaieraData = null WHERE etiketa = '" . $data["etiketa"] . "' AND hasieraData = '" . $data["hasieraData"] . "'";
+            //Baliozkotzea: begiratzen du ea hasieraData gaur baino beranduago den edo amaieraData gaur baino lehenago den
+            } else if(!($this -> gaurBainoBeranduago($data["hasieraData"])) && $this -> gaurBainoBeranduago($data["amaieraData"])){
+                $sql = "UPDATE kokalekua SET amaieraData = '" . $data["amaieraData"]
+                    . "' WHERE etiketa = '" . $data["etiketa"] . "' AND hasieraData = '" . $data["hasieraData"] . "'";
             }
+                
+            if($this -> db -> do($sql)){
+                // UPDATE ondo
+            } else{
+                // UPDATE txarto
+            }
+                
         }
 
         public function post($json){
