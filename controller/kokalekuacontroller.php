@@ -1,7 +1,7 @@
 <?php
-    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
     require "controller.php";
     require "../repository/db.php";
@@ -56,27 +56,41 @@
 
         public function getFreeEkipamendu(){
             $this -> db = new DB();
-            $sqlSelect = "WITH CTE AS (
-                SELECT I.etiketa AS etiketa, E.izena as izena,
-                ROW_NUMBER() OVER (PARTITION BY E.izena ORDER BY E.izena) as rn
-                FROM inbentarioa I, ekipamendua E
+            $sqlSelect = "SELECT
+            etiketa,
+            izena
+        FROM
+            (
+                SELECT
+                    I.etiketa AS etiketa,
+                    E.izena AS izena
+                FROM
+                    inbentarioa I
+                JOIN ekipamendua E ON I.idEkipamendu = E.id
                 WHERE etiketa NOT IN (
-                SELECT etiketa
-                FROM kokalekua
-                ) AND id = idEkipamendu
+                        SELECT etiketa
+                        FROM kokalekua
+                    )
+                
                 UNION
-                SELECT K.etiketa AS etiketa, E.izena AS izena,
-                ROW_NUMBER() OVER (PARTITION BY E.izena ORDER BY E.izena) as rn
-                FROM kokalekua K, inbentarioa I, ekipamendua E
-                WHERE K.etiketa NOT IN (
-                SELECT etiketa
-                FROM kokalekua
-                WHERE amaieraData IS NULL
-                ) AND amaieraData < CURRENT_DATE
-                AND K.etiketa = I.etiketa
-                AND I.idEkipamendu = E.id
-            )
-            SELECT etiketa, izena FROM CTE WHERE rn = 1";
+                
+                SELECT
+                    K.etiketa AS etiketa,
+                    E.izena AS izena
+                FROM
+                    kokalekua K
+                JOIN inbentarioa I ON K.etiketa = I.etiketa
+                JOIN ekipamendua E ON I.idEkipamendu = E.id
+                WHERE
+                    K.etiketa NOT IN (
+                        SELECT etiketa
+                        FROM kokalekua
+                        WHERE amaieraData IS NULL
+                    )
+                    AND amaieraData < CURRENT_DATE
+            ) AS subquery
+        GROUP BY
+            izena";
             $emaitza = $this -> db -> select($sqlSelect);
             $etiketak = []; 
             foreach($emaitza as $libre){
