@@ -53,7 +53,11 @@
             //Baliozkotze: begiratzen du ea beste gelaren bat dagoen izen berarekin
             $sqlSelect = "SELECT * FROM gela WHERE izena = '" . $data["izena"] . "'";
             $result = $this -> db -> select($sqlSelect);
-            if($result == null){
+            foreach($result as $gela){
+                $gelak[] = new Gela($gela["id"], $gela["izena"], $gela["taldea"]);
+            }
+
+            if($result == null || $data["id"] == $gelak[0] -> getId()){
                 $sql = "UPDATE gela SET izena = '" . $data["izena"]
                     . "', taldea = '" . $data["taldea"]
                     . "' WHERE id = " . $data["id"];

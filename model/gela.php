@@ -9,5 +9,9 @@
             $this -> izena = $izena;
             $this -> taldea = $taldea;
         }
+
+        public function getId(){
+            return $this -> id;
+        }
     }
 ?>
