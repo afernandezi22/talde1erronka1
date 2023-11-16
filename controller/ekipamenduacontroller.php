@@ -34,6 +34,20 @@
             }
         }
 
+        public function getByMarkaModelo($marka, $modelo){
+            $this -> db = new DB();
+            $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
+            WHERE K.id = E.idKategoria AND E.marka = '" . $marka . "' AND E.modelo = '" . $modelo . "'";
+            $emaitza = $this -> db -> select($sql);
+            
+            if(!$emaitza == null){
+                foreach($emaitza as $ekipamendua){
+                    $ekipamenduak[] = new Ekipamendua($ekipamendua["id"], $ekipamendua["izena"], $ekipamendua["deskribapena"], $ekipamendua["marka"], $ekipamendua["modelo"], $ekipamendua["stock"], $ekipamendua["idKategoria"], $ekipamendua["kategoriaIzena"]);
+                }
+                return $ekipamenduak;
+            }
+        }
+
 	    public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
@@ -142,6 +156,9 @@
             echo json_encode($ekipamendu);
         }elseif(isset($_GET["zutabea"])){
             $ekipamendu = $ekipamenduController -> getByFilter($_GET["zutabea"], $_GET["datua"]);
+            echo json_encode($ekipamendu);
+        }elseif(isset($_GET["marka"]) && isset($_GET["modelo"])){
+            $ekipamendu = $ekipamenduController -> getByMarkaModelo($_GET["marka"], $_GET["modelo"]);
             echo json_encode($ekipamendu);
         }else{
             $ekipamendu = $ekipamenduController -> getAll();
