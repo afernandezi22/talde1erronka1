@@ -1,12 +1,16 @@
 <?php
-    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-
+    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    /**
+     * @file
+     * Contiene la definición de la clase y funciones relacionadas.
+     */
     require "controller.php";
     require "../repository/db.php";
     require "../model/ekipamendua.php";
     class EkipamenduaController extends Controller{
+        
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
