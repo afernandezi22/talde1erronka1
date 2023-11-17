@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Kategoria objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Kategoria{
         public $id;
         public $izena;

@@ -1,0 +1,380 @@
+\doxysection{Kokalekua\+Controller Class Reference}
+\hypertarget{class_kokalekua_controller}{}\label{class_kokalekua_controller}\index{KokalekuaController@{KokalekuaController}}
+Inheritance diagram for Kokalekua\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_kokalekua_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a60f1e3f6a0f6a0319b044fbc86f0421d}{get\+Free\+Ekipamendu}} ()
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a775f664d2bc36d20d62e21c331a70317}{get\+Zenbat\+Portatil}} ()
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaur\+Baino\+Beranduago}} (\$data\+Str)
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_kokalekua_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kokalekuko taula kudeatzeko controller-\/a 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_kokalekua_controller_a9d586641271527823eb70d2d748f1d02}\label{class_kokalekua_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{KokalekuaController@{KokalekuaController}!delete@{delete}}
+\index{delete@{delete}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+DELETE egiteko funtzioa. Kasu honetan bi gako nagusi ditu, beraz string bakar batean ailegatzen dira JSON-\/ean eta gero split erabiliz bereizten dira. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$data[\textcolor{stringliteral}{"{}id"{}}]);\ \$i++)\{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stringSplit\ =\ preg\_split(\textcolor{stringliteral}{"{}/!/"{}},\ \$data[\textcolor{stringliteral}{"{}id"{}}][\$i]);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ kokalekua\ WHERE\ etiketa\ =\ '"{}}\ .\ \$stringSplit[0]\ .\ \textcolor{stringliteral}{"{}'\ AND\ hasieraData\ =\ '"{}}\ .\ \$stringSplit[1]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DELETE\ ondo}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DELETE\ txarto}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}\label{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2} 
+\index{KokalekuaController@{KokalekuaController}!gaurBainoBeranduago@{gaurBainoBeranduago}}
+\index{gaurBainoBeranduago@{gaurBainoBeranduago}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{gaurBainoBeranduago()}{gaurBainoBeranduago()}}
+{\footnotesize\ttfamily gaur\+Baino\+Beranduago (\begin{DoxyParamCaption}\item[{}]{\$data\+Str }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$data\+Str} & Data bat string formatuan hartzen du. Erabilgarritasun funtzio bat da. Parametro bezala lortutako data gaur baino beranduago den edo ez bueltatuko du. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ DateTime::createFromFormat(\textcolor{stringliteral}{"{}Y-\/m-\/d"{}},\ \$dataStr);\ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$gaur\ =\ \textcolor{keyword}{new}\ DateTime();}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data\ >\ \$gaur)\{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_kokalekua_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{KokalekuaController@{KokalekuaController}!getAll@{getAll}}
+\index{getAll@{getAll}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ez du parametrorik hartzen eta kokalekuko taulako erregistro guztiak bueltatzen ditu 
+
+Reimplemented from \mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ K.etiketa\ as\ etiketa,\ E.izena\ as\ ekipamenduIzena,\ K.idGela\ as\ idGela,\ G.izena\ as\ gelaIzena,\ K.hasieraData\ as\ hasieraData,\ K.amaieraData\ as\ amaieraData\ \ }}
+\DoxyCodeLine{00019\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ ekipamendua\ E,\ gela\ G,\ inbentarioa\ I,\ kokalekua\ K\ }}
+\DoxyCodeLine{00020\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.etiketa\ =\ I.etiketa\ }}
+\DoxyCodeLine{00021\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ AND\ I.idEkipamendu\ =\ \ E.id}}
+\DoxyCodeLine{00022\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ AND\ K.idGela\ =\ G.id"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$kokalekua)\{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$kokalekuak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_kokalekua}{Kokalekua}}(\$kokalekua[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}ekipamenduIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}idGela"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}gelaIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}hasieraData"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}amaieraData"{}}]);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$kokalekuak;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_kokalekua_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{KokalekuaController@{KokalekuaController}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})}
+
+Zutabe eta datu baten arabera kokalekuko erregistroak bueltatzen ditu. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ K.etiketa\ as\ etiketa,\ E.izena\ as\ ekipamenduIzena,\ K.idGela\ as\ idGela,\ G.izena\ as\ gelaIzena,\ K.hasieraData\ as\ hasieraData,\ K.amaieraData\ as\ amaieraData\ \ }}
+\DoxyCodeLine{00051\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ ekipamendua\ E,\ gela\ G,\ inbentarioa\ I,\ kokalekua\ K\ }}
+\DoxyCodeLine{00052\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.etiketa\ =\ I.etiketa\ }}
+\DoxyCodeLine{00053\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ AND\ I.idEkipamendu\ =\ \ E.id}}
+\DoxyCodeLine{00054\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ AND\ K.idGela\ =\ G.id}}
+\DoxyCodeLine{00055\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ AND\ "{}}\ .\ \$zutabea\ .\ \textcolor{stringliteral}{"{}\ =\ '"{}}\ .\ \$datua\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$kokalekua)\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$kokalekuak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_kokalekua}{Kokalekua}}(\$kokalekua[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}ekipamenduIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}idGela"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}gelaIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}hasieraData"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}amaieraData"{}}]);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$kokalekuak;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_kokalekua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{KokalekuaController@{KokalekuaController}!getById@{getById}}
+\index{getById@{getById}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+Metodo hau taula honetan ez da erabiltzen, baina agertu behar da klase abstraktuan agertzen delako. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ kokalekua\ WHERE\ id\ =\ "{}}\ .\ \$id;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$kokalekua)\{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$kokalekuak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_kokalekua}{Kokalekua}}(\$kokalekua[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}ekipamenduIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}idGela"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}gelaIzena"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}hasieraData"{}}],\ \$kokalekua[\textcolor{stringliteral}{"{}amaieraData"{}}]);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$kokalekuak;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a60f1e3f6a0f6a0319b044fbc86f0421d}\label{class_kokalekua_controller_a60f1e3f6a0f6a0319b044fbc86f0421d} 
+\index{KokalekuaController@{KokalekuaController}!getFreeEkipamendu@{getFreeEkipamendu}}
+\index{getFreeEkipamendu@{getFreeEkipamendu}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{getFreeEkipamendu()}{getFreeEkipamendu()}}
+{\footnotesize\ttfamily get\+Free\+Ekipamendu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Libre dauden ekipamenduak bueltatzen ditu. Hau da\+: noizbait erabili direnak baina orain libre daudenak + inoiz ez erabili ez direnak. Gainera bikoiztuta badaude bakarrik mota bakoitzeko bat agertuko da. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT}}
+\DoxyCodeLine{00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ etiketa,}}
+\DoxyCodeLine{00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ izena}}
+\DoxyCodeLine{00074\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ FROM}}
+\DoxyCodeLine{00075\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ (}}
+\DoxyCodeLine{00076\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT}}
+\DoxyCodeLine{00077\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I.etiketa\ AS\ etiketa,}}
+\DoxyCodeLine{00078\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ E.izena\ AS\ izena}}
+\DoxyCodeLine{00079\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM}}
+\DoxyCodeLine{00080\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inbentarioa\ I}}
+\DoxyCodeLine{00081\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JOIN\ ekipamendua\ E\ ON\ I.idEkipamendu\ =\ E.id}}
+\DoxyCodeLine{00082\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00083\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00084\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00085\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}}
+\DoxyCodeLine{00086\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00087\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UNION}}
+\DoxyCodeLine{00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT}}
+\DoxyCodeLine{00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ K.etiketa\ AS\ etiketa,}}
+\DoxyCodeLine{00091\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ E.izena\ AS\ izena}}
+\DoxyCodeLine{00092\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM}}
+\DoxyCodeLine{00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kokalekua\ K}}
+\DoxyCodeLine{00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JOIN\ inbentarioa\ I\ ON\ K.etiketa\ =\ I.etiketa}}
+\DoxyCodeLine{00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JOIN\ ekipamendua\ E\ ON\ I.idEkipamendu\ =\ E.id}}
+\DoxyCodeLine{00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE}}
+\DoxyCodeLine{00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ K.etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ amaieraData\ IS\ NULL}}
+\DoxyCodeLine{00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}}
+\DoxyCodeLine{00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ amaieraData\ <\ CURRENT\_DATE}}
+\DoxyCodeLine{00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ )\ AS\ subquery}}
+\DoxyCodeLine{00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ GROUP\ BY}}
+\DoxyCodeLine{00105\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ izena"{}};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \$etiketak\ =\ [];\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$libre)\{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$libreak[]\ =\ array(\textcolor{stringliteral}{"{}etiketa"{}}\ =>\ \$libre[\textcolor{stringliteral}{"{}etiketa"{}}],\ \textcolor{stringliteral}{"{}izena"{}}\ =>\ \$libre[\textcolor{stringliteral}{"{}izena"{}}]);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$libreak;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a775f664d2bc36d20d62e21c331a70317}\label{class_kokalekua_controller_a775f664d2bc36d20d62e21c331a70317} 
+\index{KokalekuaController@{KokalekuaController}!getZenbatPortatil@{getZenbatPortatil}}
+\index{getZenbatPortatil@{getZenbatPortatil}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{getZenbatPortatil()}{getZenbatPortatil()}}
+{\footnotesize\ttfamily get\+Zenbat\+Portatil (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Guztira zenbat portatil dauden eta zenbat LIBRE dauden bueltatuko duen funtzioa. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ SUM(STOCK)\ AS\ TOTAL}}
+\DoxyCodeLine{00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ ekipamendua}}
+\DoxyCodeLine{00121\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ idKategoria\ =\ 4"{}};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$total)\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$zenbat[\textcolor{stringliteral}{"{}TOTAL"{}}]\ =\ \$total[\textcolor{stringliteral}{"{}TOTAL"{}}];}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$zenbat[\textcolor{stringliteral}{"{}TOTAL"{}}]\ =\ 0;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ COUNT(ETIKETA)\ AS\ TOTAL\ FROM\ (}}
+\DoxyCodeLine{00132\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ I.etiketa\ AS\ ETIKETA}}
+\DoxyCodeLine{00133\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ inbentarioa\ I,\ ekipamendua\ E}}
+\DoxyCodeLine{00134\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ I.etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00135\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00136\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00137\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ AND\ I.idEkipamendu\ =\ E.id}}
+\DoxyCodeLine{00138\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ E.idKategoria\ =\ 4}}
+\DoxyCodeLine{00139\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UNION}}
+\DoxyCodeLine{00140\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ K.etiketa\ AS\ ETIKETA}}
+\DoxyCodeLine{00141\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua\ K,\ inbentarioa\ I,\ ekipamendua\ E}}
+\DoxyCodeLine{00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00143\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00144\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00145\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ amaieraData\ IS\ NULL}}
+\DoxyCodeLine{00146\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ AND\ K.amaieraData\ <\ CURRENT\_DATE}}
+\DoxyCodeLine{00147\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ K.etiketa\ =\ I.etiketa}}
+\DoxyCodeLine{00148\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ I.idEkipamendu\ =\ E.id}}
+\DoxyCodeLine{00149\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ E.idKategoria\ =\ 4}}
+\DoxyCodeLine{00150\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ AS\ TOTAL"{}};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$total)\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$zenbat[\textcolor{stringliteral}{"{}LIBRE"{}}]\ =\ \$total[\textcolor{stringliteral}{"{}TOTAL"{}}];}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$zenbat[\textcolor{stringliteral}{"{}LIBRE"{}}]\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$zenbat;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_kokalekua_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{KokalekuaController@{KokalekuaController}!post@{post}}
+\index{post@{post}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+INSERT egiteko funtzioa. Baliozkotze batzuk dauzka\+: hasiera\+Data gaur baino lehenago den eta amaiera\+Data gaur baino beranduago den begiratzen du. Erabiliko den ekipamendua libre dagoen edo ez begiratuko du ere. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ begiratu\ behar\ da\ erabiliko\ den\ ekipamendua\ libre\ dagoen.\ }}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Hau\ da:\ kokalekuan\ okupatuta\ agertzen\ EZ\ dela\ edo\ kokalekuan\ agertzen\ ez\ dela\ (inoiz\ ez\ delako\ erabili)}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ etiketa}}
+\DoxyCodeLine{00207\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ inbentarioa}}
+\DoxyCodeLine{00208\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00209\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00210\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00211\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ )\ }}
+\DoxyCodeLine{00212\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ UNION}}
+\DoxyCodeLine{00213\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00214\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00215\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ etiketa\ NOT\ IN\ (}}
+\DoxyCodeLine{00216\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SELECT\ etiketa}}
+\DoxyCodeLine{00217\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FROM\ kokalekua}}
+\DoxyCodeLine{00218\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WHERE\ amaieraData\ IS\ NULL}}
+\DoxyCodeLine{00219\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ AND\ amaieraData\ <\ CURRENT\_DATE}}
+\DoxyCodeLine{00220\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AND\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ begiratzen\ du\ ea\ hasieraData\ gaur\ baino\ beranduago\ den\ edo\ amaieraData\ gaur\ baino\ lehenago\ den}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!(\$this\ -\/>\ \mbox{\hyperlink{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}hasieraData"{}}]))\ ||\ \$this\ -\/>\ \mbox{\hyperlink{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}amaieraData"{}}]))\{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data[\textcolor{stringliteral}{"{}amaieraData"{}}]\ ==\ \textcolor{stringliteral}{"{}null"{}})\{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ kokalekua\ (etiketa,\ idGela,\ hasieraData)\ VALUES('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}idGela"{}}]}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}hasieraData"{}}]\ .\textcolor{stringliteral}{"{}')"{}};\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ kokalekua\ VALUES\ ('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}idGela"{}}]}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}hasieraData"{}}]}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}amaieraData"{}}]\ .\ \textcolor{stringliteral}{"{}')"{}};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//EZIN\ DA\ EGIN}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_kokalekua_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_kokalekua_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{KokalekuaController@{KokalekuaController}!put@{put}}
+\index{put@{put}!KokalekuaController@{KokalekuaController}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+UPDATE egiteko funtzioa. Baliozkotze bikoitz bat dauka\+: hasiera\+Data gaur baino lehenago den eta amaiera\+Data gaur baino beranduago den begiratzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data[\textcolor{stringliteral}{"{}amaieraData"{}}]\ ==\ \textcolor{stringliteral}{"{}null"{}})\{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ kokalekua\ SET\ amaieraData\ =\ null\ WHERE\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]\ .\ \textcolor{stringliteral}{"{}'\ AND\ hasieraData\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}hasieraData"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ begiratzen\ du\ ea\ hasieraData\ gaur\ baino\ beranduago\ den\ edo\ amaieraData\ gaur\ baino\ lehenago\ den}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(!(\$this\ -\/>\ \mbox{\hyperlink{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}hasieraData"{}}]))\ \&\&\ \$this\ -\/>\ \mbox{\hyperlink{class_kokalekua_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}amaieraData"{}}]))\{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ kokalekua\ SET\ amaieraData\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}amaieraData"{}}]}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}'\ WHERE\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]\ .\ \textcolor{stringliteral}{"{}'\ AND\ hasieraData\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}hasieraData"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UPDATE\ ondo}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ UPDATE\ txarto}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{kokalekuacontroller_8php}{kokalekuacontroller.\+php}}\end{DoxyCompactItemize}

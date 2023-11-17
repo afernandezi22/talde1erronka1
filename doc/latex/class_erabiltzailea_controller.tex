@@ -1,0 +1,290 @@
+\doxysection{Erabiltzailea\+Controller Class Reference}
+\hypertarget{class_erabiltzailea_controller}{}\label{class_erabiltzailea_controller}\index{ErabiltzaileaController@{ErabiltzaileaController}}
+Inheritance diagram for Erabiltzailea\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_erabiltzailea_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\item 
+\mbox{\hyperlink{class_erabiltzailea_controller_a65b1b60fe6f4a0e9607518d707ad38d0}{login}} (\$json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Erabiltzaileko taula kudeatzeko controller-\/a 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_erabiltzailea_controller_a9d586641271527823eb70d2d748f1d02}\label{class_erabiltzailea_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!delete@{delete}}
+\index{delete@{delete}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+DELETE egiteko funtzioa multzoka. ADMIN rola dutenek bakarrik ezabatu ahal izango dute. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ erabiltzailea\ WHERE\ nan\ IN('"{}};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$data[\textcolor{stringliteral}{"{}nan"{}}]);\ \$i++)\{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ ez\ da\ ezabatuko\ admin\ rola\ badauka}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ nan\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}][\$i]\ .\textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$result\ as\ \$erabiltzaile)\{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$erabiltzaile[\textcolor{stringliteral}{"{}rola"{}}]\ !=\ 0)\{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}][\$i]\ .\ \textcolor{stringliteral}{"{}',\ '"{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \textcolor{stringliteral}{"{}0')"{}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_erabiltzailea_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!getAll@{getAll}}
+\index{getAll@{getAll}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ez du parametrorik hartzen eta erabiltzaileen zerrenda bueltatzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$erabiltzailea)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$erabiltzaileak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_erabiltzailea}{Erabiltzailea}}(\$erabiltzailea[\textcolor{stringliteral}{"{}nan"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}izena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}abizena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}erabiltzailea"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}pasahitza"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}rola"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}irudia"{}}]);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$erabiltzaileak;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_erabiltzailea_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})}
+
+Zutabea eta datua aukeratuta erabiltzaile multzo zehatz bat bueltatzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ "{}}\ .\ \$zutabea.\ \textcolor{stringliteral}{"{}\ =\ '"{}}\ .\ \$datua\ .\ \textcolor{stringliteral}{"{}'"{}};\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$erabiltzailea)\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$erabiltzaileak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_erabiltzailea}{Erabiltzailea}}(\$erabiltzailea[\textcolor{stringliteral}{"{}nan"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}izena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}abizena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}erabiltzailea"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}pasahitza"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}rola"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}irudia"{}}]);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$erabiltzaileak;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_erabiltzailea_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!getById@{getById}}
+\index{getById@{getById}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+ID-\/aren arabera erabiltzaile zehatz bat bueltatzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ nan\ =\ '"{}}\ .\ \$id\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$erabiltzailea)\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$erabiltzaileak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_erabiltzailea}{Erabiltzailea}}(\$erabiltzailea[\textcolor{stringliteral}{"{}nan"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}izena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}abizena"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}erabiltzailea"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}pasahitza"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}rola"{}}],\ \$erabiltzailea[\textcolor{stringliteral}{"{}irudia"{}}]);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$erabiltzaileak;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_a65b1b60fe6f4a0e9607518d707ad38d0}\label{class_erabiltzailea_controller_a65b1b60fe6f4a0e9607518d707ad38d0} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!login@{login}}
+\index{login@{login}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily login (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+LOGIN-\/a egiteko funtzioa. POST bidez jasotako JSON-\/ean erabiltzaile izena eta pasahitza lortzen dira. Horiek datu-\/basean konparatzen dira eta horren arabera beste JSON bat bueltatzen da front-\/era informazio zehatzarekin. \doxylink{class_erabiltzailea}{Erabiltzailea} eta pasahitza ondo idatzi diren eta ondo egin bada beste informazio gehiago gehituko zaio\+: erabiltzailearen irudiaren esteka (null bada lehenetsitako izango da), erabiltzaile izena, rola eta izena. Informazio guzti hori gero front-\/ean erabiliko da cookia sortzeko. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \$erabil\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \$pass\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ erabiltzailea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabil"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$info\ =\ [\textcolor{stringliteral}{"{}erabil"{}}\ =>\ \$erabil,\ \textcolor{stringliteral}{"{}pass"{}}\ =>\ \$pass];}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$erabil\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$lerro)\{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$lerro[\textcolor{stringliteral}{"{}pasahitza"{}}]\ ==\ \$data[\textcolor{stringliteral}{"{}pass"{}}])\{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$pass\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$irudia\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$lerro[\textcolor{stringliteral}{"{}irudia"{}}]\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$irudia\ =\ \textcolor{stringliteral}{"{}../img/avatar/default.jpg"{}};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$irudia\ =\ \$lerro[\textcolor{stringliteral}{"{}irudia"{}}];}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$rol\ =\ \$lerro[\textcolor{stringliteral}{"{}rola"{}}];}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$name\ =\ \$lerro[\textcolor{stringliteral}{"{}izena"{}}];}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$pass\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$info=\ [\textcolor{stringliteral}{"{}erabil"{}}\ =>\ \$erabil,\ \textcolor{stringliteral}{"{}pass"{}}\ =>\ \$pass,\ \textcolor{stringliteral}{"{}username"{}}\ =>\ \$data[\textcolor{stringliteral}{"{}erabil"{}}],\ \textcolor{stringliteral}{"{}rol"{}}\ =>\ \$rol,\ \textcolor{stringliteral}{"{}name"{}}\ =>\ \$name,\ \textcolor{stringliteral}{"{}avatar"{}}\ =>\ \$irudia];}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ json\_encode(\$info);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_erabiltzailea_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!post@{post}}
+\index{post@{post}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+INSERT egiteko funtzioa. Baliozkotzea badauka\+: ezin da sortu erabiltzaile berri bat beste erabiltzaile baten erabiltzaile-\/izen berarekin. Irudirik ez bada sartzen NULL izango da zutabe horretan. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ erabiltzailea\ ezin\ da\ errepikatu}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ erabiltzailea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]\ .\textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ez\ dago\ erabiltzailerik\ erabiltzaile-\/izen\ horrekin}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Begiratu\ ea\ irudia\ daukan\ edo\ ez}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data[\textcolor{stringliteral}{"{}irudia"{}}]\ !=\ \textcolor{stringliteral}{"{}"{}})\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ erabiltzailea\ VALUES\ ('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}]}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}abizena"{}}]}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}pasahitza"{}}]}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}rola"{}}]\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{},\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}irudia"{}}]\ .\ \textcolor{stringliteral}{"{}')"{}};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ erabiltzailea\ (nan,\ izena,\ abizena,\ erabiltzailea,\ pasahitza,\ rola)\ VALUES\ ('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}]}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}abizena"{}}]}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}pasahitza"{}}]}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}rola"{}}]\ .\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Badago\ beste\ erabiltzaileren\ bat\ erabiltzaile-\/izen\ horrekin}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_erabiltzailea_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_erabiltzailea_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{ErabiltzaileaController@{ErabiltzaileaController}!put@{put}}
+\index{put@{put}!ErabiltzaileaController@{ErabiltzaileaController}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+UPDATE egiteko funtzioa. Baliozkotze bat dauka\+: beste erabiltzaileren bat topatzen badu erabiltzaile-\/izen berarekin ez du UPDATE-\/a egingo. Gainera argazkirik ez bada gehitzen "{}null"{} jarriko du zutabe horretan. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ ezin\ da\ erabiltzaile-\/izen\ berarekin\ editatu}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ erabiltzailea\ WHERE\ erabiltzailea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]\ .\textcolor{stringliteral}{"{}'\ AND\ nan\ <>\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data[\textcolor{stringliteral}{"{}irudia"{}}]\ !=\ \textcolor{stringliteral}{"{}"{}})\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ erabiltzailea\ SET\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ abizena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}abizena"{}}]}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ erabiltzailea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ pasahitza\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}pasahitza"{}}]}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ rola\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}rola"{}}]}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{},\ irudia\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}irudia"{}}]}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}'\ WHERE\ nan\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ erabiltzailea\ SET\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ abizena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}abizena"{}}]}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ erabiltzailea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erabiltzailea"{}}]}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ pasahitza\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}pasahitza"{}}]}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ rola\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}rola"{}}]}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{},\ irudia\ =\ null"{}}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}\ WHERE\ nan\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}nan"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Badago\ beste\ erabiltzaileren\ bat\ erabiltzaile-\/izen\ horrekin}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{erabiltzaileacontroller_8php}{erabiltzaileacontroller.\+php}}\end{DoxyCompactItemize}

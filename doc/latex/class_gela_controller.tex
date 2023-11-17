@@ -1,0 +1,216 @@
+\doxysection{Gela\+Controller Class Reference}
+\hypertarget{class_gela_controller}{}\label{class_gela_controller}\index{GelaController@{GelaController}}
+Inheritance diagram for Gela\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_gela_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gela_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_gela_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_gela_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_gela_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\item 
+\mbox{\hyperlink{class_gela_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_gela_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gelako taula kudeatzeko controller-\/a 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_gela_controller_a9d586641271527823eb70d2d748f1d02}\label{class_gela_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{GelaController@{GelaController}!delete@{delete}}
+\index{delete@{delete}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+DELETE egiteko funtzioa. Multzoka egiten du eta baliozkotze bat dauka\+: kokalekua taulan agertzen bada ez da ezabatuko. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ gela\ WHERE\ id\ IN("{}};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$data[\textcolor{stringliteral}{"{}id"{}}]);\ \$i++)\{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ begiratzen\ du\ ea\ gela\ kokalekuan\ agertzen\ den}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ kokalekua\ WHERE\ idGela\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}][\$i];}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}][\$i]\ .\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \textcolor{stringliteral}{"{}0)"{}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ true;}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ true;}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_gela_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_gela_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{GelaController@{GelaController}!getAll@{getAll}}
+\index{getAll@{getAll}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ez du parametrorik hartzen eta gela zerrenda osoa bueltatzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ gela"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$gela)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$gelak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_gela}{Gela}}(\$gela[\textcolor{stringliteral}{"{}id"{}}],\ \$gela[\textcolor{stringliteral}{"{}izena"{}}],\ \$gela[\textcolor{stringliteral}{"{}taldea"{}}]);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$gelak;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_gela_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_gela_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{GelaController@{GelaController}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})}
+
+Zutabe eta datu zehatz baten arabera gela multzoa bueltatuko du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ gela\ WHERE\ "{}}\ .\ \$zutabea.\ \textcolor{stringliteral}{"{}\ =\ '"{}}\ .\ \$datua\ .\ \textcolor{stringliteral}{"{}'"{}};\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$gela)\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$gelak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_gela}{Gela}}(\$gela[\textcolor{stringliteral}{"{}id"{}}],\ \$gela[\textcolor{stringliteral}{"{}izena"{}}],\ \$gela[\textcolor{stringliteral}{"{}taldea"{}}]);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$gelak;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_gela_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_gela_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{GelaController@{GelaController}!getById@{getById}}
+\index{getById@{getById}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+ID zehatz bat duen gela bueltatuko du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ gela\ WHERE\ id\ =\ "{}}\ .\ \$id;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$gela)\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$gelak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_gela}{Gela}}(\$gela[\textcolor{stringliteral}{"{}id"{}}],\ \$gela[\textcolor{stringliteral}{"{}izena"{}}],\ \$gela[\textcolor{stringliteral}{"{}taldea"{}}]);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$gelak;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_gela_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_gela_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{GelaController@{GelaController}!post@{post}}
+\index{post@{post}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+INSERT egiteko funtzioa. Baliozkotze bat dauka\+: beste gelaren bat badago izen berarekin ez du UPDATE-\/a egingo. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotze:\ begiratzen\ du\ ea\ beste\ gelaren\ bat\ dagoen\ izen\ berarekin}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ gela\ WHERE\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ gela\ (izena,\ taldea)\ VALUES\ ('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}taldea"{}}]\ .\ \textcolor{stringliteral}{"{}')"{}};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ INSERT\ ONDO}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ INSERT\ TXARTO}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_gela_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_gela_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{GelaController@{GelaController}!put@{put}}
+\index{put@{put}!GelaController@{GelaController}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+UPDATE egiteko funtzioa. Baliozkotze bat dauka\+: beste gelaren bat badago izen berarekin ez du UPDATE-\/a egingo. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotze:\ begiratzen\ du\ ea\ beste\ gelaren\ bat\ dagoen\ izen\ berarekin}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ gela\ WHERE\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$result\ as\ \$gela)\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$gelak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_gela}{Gela}}(\$gela[\textcolor{stringliteral}{"{}id"{}}],\ \$gela[\textcolor{stringliteral}{"{}izena"{}}],\ \$gela[\textcolor{stringliteral}{"{}taldea"{}}]);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null}\ ||\ \$data[\textcolor{stringliteral}{"{}id"{}}]\ ==\ \$gelak[0]\ -\/>\ getId())\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ gela\ SET\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ taldea\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}taldea"{}}]}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}'\ WHERE\ id\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}];}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ true;}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ false;}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{gelacontroller_8php}{gelacontroller.\+php}}\end{DoxyCompactItemize}

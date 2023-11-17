@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Erabiltzailea objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Erabiltzailea{
         public $nan;
         public $izena;

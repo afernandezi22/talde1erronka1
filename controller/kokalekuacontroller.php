@@ -1,12 +1,18 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
     require "controller.php";
     require "../repository/db.php";
     require "../model/kokalekua.php";
+    /**
+     * Kokalekuko taula kudeatzeko controller-a
+     */
     class KokalekuaController extends Controller{
+        /**
+         * Ez du parametrorik hartzen eta kokalekuko taulako erregistro guztiak bueltatzen ditu
+         */
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT K.etiketa as etiketa, E.izena as ekipamenduIzena, K.idGela as idGela, G.izena as gelaIzena, K.hasieraData as hasieraData, K.amaieraData as amaieraData  
@@ -21,7 +27,9 @@
 
             return $kokalekuak;
         }
-
+        /**
+         * Metodo hau taula honetan ez da erabiltzen, baina agertu behar da klase abstraktuan agertzen delako.
+         */
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM kokalekua WHERE id = " . $id;
@@ -34,7 +42,9 @@
                 return $kokalekuak;
             }
         }
-
+        /**
+         * Zutabe eta datu baten arabera kokalekuko erregistroak bueltatzen ditu.
+         */
         public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT K.etiketa as etiketa, E.izena as ekipamenduIzena, K.idGela as idGela, G.izena as gelaIzena, K.hasieraData as hasieraData, K.amaieraData as amaieraData  
@@ -53,7 +63,9 @@
                 return null;
             }
         }
-
+        /**
+         * Libre dauden ekipamenduak bueltatzen ditu. Hau da: noizbait erabili direnak baina orain libre daudenak + inoiz ez erabili ez direnak. Gainera bikoiztuta badaude bakarrik mota bakoitzeko bat agertuko da.
+         */
         public function getFreeEkipamendu(){
             $this -> db = new DB();
             $sqlSelect = "SELECT
@@ -99,7 +111,9 @@
 
             return $libreak;
         }
-
+        /**
+         * Guztira zenbat portatil dauden eta zenbat LIBRE dauden bueltatuko duen funtzioa.
+         */
         public function getZenbatPortatil(){
             $this -> db = new DB();
             $sql = "SELECT SUM(STOCK) AS TOTAL
@@ -145,7 +159,10 @@
 
             return $zenbat;
         }
-
+        /**
+         * @param $dataStr Data bat string formatuan hartzen du.
+         * Erabilgarritasun funtzio bat da. Parametro bezala lortutako data gaur baino beranduago den edo ez bueltatuko du.
+         */
         public function gaurBainoBeranduago($dataStr){
             $data = DateTime::createFromFormat("Y-m-d", $dataStr);    
             $gaur = new DateTime();
@@ -156,7 +173,9 @@
                 return false;
             }
         }
-
+        /**
+         * UPDATE egiteko funtzioa. Baliozkotze bikoitz bat dauka: hasieraData gaur baino lehenago den eta amaieraData gaur baino beranduago den begiratzen du.
+         */
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -175,7 +194,10 @@
             }
                 
         }
-
+        /**
+         * INSERT egiteko funtzioa. Baliozkotze batzuk dauzka: hasieraData gaur baino lehenago den eta amaieraData gaur baino beranduago den begiratzen du.
+         * Erabiliko den ekipamendua libre dagoen edo ez begiratuko du ere.
+         */
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -220,7 +242,9 @@
                 }
             }
         }
-
+        /**
+         * DELETE egiteko funtzioa. Kasu honetan bi gako nagusi ditu, beraz string bakar batean ailegatzen dira JSON-ean eta gero split erabiliz bereizten dira.
+         */
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);

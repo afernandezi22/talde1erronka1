@@ -1,9 +1,9 @@
 <?php
     /**
-     * Kontroladorean izango dituzten aldagaiak eta funtzioak definitzen dituen klase abstraktua
+     * Kontroladorean izango dituzten aldagaiak eta funtzioak definitzen dituen klase abstraktua. Metodoen erabilera controller bakoitzean azalduta daude.
+     * @param $db Datu-baseko objektua gordetzeko.
      */
     abstract class Controller{
-        //Gutxienez guztiek datubase bat izango dute
         private $db;
         private $check;
         /**

@@ -1,12 +1,18 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
     require "controller.php";
     require "../repository/db.php";
     require "../model/gela.php";
+    /**
+     * Gelako taula kudeatzeko controller-a
+     */
     class GelaController extends Controller{
+        /**
+         * Ez du parametrorik hartzen eta gela zerrenda osoa bueltatzen du.
+         */
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT * FROM gela";
@@ -19,7 +25,9 @@
                 return $gelak;
             }
         }
-
+        /**
+         * ID zehatz bat duen gela bueltatuko du.
+         */
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM gela WHERE id = " . $id;
@@ -32,7 +40,9 @@
                 return $gelak;
             }
         }
-
+        /**
+         * Zutabe eta datu zehatz baten arabera gela multzoa bueltatuko du.
+         */
         public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT * FROM gela WHERE " . $zutabea. " = '" . $datua . "'"; 
@@ -45,7 +55,9 @@
                 return $gelak;
             }
         }
-
+        /**
+         * UPDATE egiteko funtzioa. Baliozkotze bat dauka: beste gelaren bat badago izen berarekin ez du UPDATE-a egingo.
+         */
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -68,7 +80,9 @@
                 }
             }
         }
-
+        /**
+         * INSERT egiteko funtzioa. Baliozkotze bat dauka: beste gelaren bat badago izen berarekin ez du UPDATE-a egingo.
+         */
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -86,7 +100,9 @@
                 }
             }
         }
-
+        /**
+         * DELETE egiteko funtzioa. Multzoka egiten du eta baliozkotze bat dauka: kokalekua taulan agertzen bada ez da ezabatuko.
+         */
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);

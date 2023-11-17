@@ -1,12 +1,18 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
     require "controller.php";
     require "../repository/db.php";
     require "../model/inbentarioa.php";
+    /**
+     * Inbentarioko taula kudeatzeko controller-a
+     */
     class InbentarioaController extends Controller{
+        /**
+         * Ez du parametrorik hartzen eta inbentarioko erregistro guztiak bueltatzen ditu.
+         */
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT I.etiketa, I.idEkipamendu, E.izena AS izenaEkipamendu, I.erosketaData FROM inbentarioa I, ekipamendua E WHERE I.idEkipamendu = E.id";
@@ -19,7 +25,9 @@
                 return $inbentarioak;
             }
         }
-
+        /**
+         * ID zehatz baten arabera inbentarioko erregistro bat bueltatzen du.
+         */
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT I.etiketa, I.idEkipamendu, E.izena AS izenaEkipamendu, I.erosketaData FROM inbentarioa I, ekipamendua E WHERE I.idEkipamendu = E.id AND I.etiketa = " . $id;
@@ -32,7 +40,9 @@
                 return $inbentarioak;
             }
         }
-
+        /**
+         * Zutabe eta datu baten arabera lortzen dituen erregistro guztiak bueltatuko ditu.
+         */
         public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT I.etiketa, I.idEkipamendu, E.izena AS izenaEkipamendu, I.erosketaData FROM inbentarioa I, ekipamendua E WHERE I.idEkipamendu = E.id AND I.$zutabea = '" . $datua . "'";
@@ -45,7 +55,9 @@
                 return $inbentarioak;
             }
         }
-
+        /**
+         * UPDATE egiteko funtzioa. Baliozkotze bat dauka: gaurBainoBeranduago funtzioa erabiliz begiratzen du eta aukeratutako data gaur edo beranduago den eta horren arabera UPDATE egingo du edo ez.
+         */
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -67,7 +79,10 @@
                 }
             }
         }
-
+        /**
+         * @param $dataStr Data bat string formatuan hartzen du.
+         * Erabilgarritasun funtzio bat da. Parametro bezala lortutako data gaur baino beranduago den edo ez bueltatuko du.
+         */
         public function gaurBainoBeranduago($dataStr){
             $data = DateTime::createFromFormat("Y-m-d", $dataStr);    
             $gaur = new DateTime();
@@ -78,7 +93,9 @@
                 return false;
             }
         }
-
+        /**
+         * Modu aleatorioan etiketak sortzeko erabilgarritasun funtzio bat da. Gainera begiratzen du ea etiketa hori datu-basean dagoen edo ez bueltatu baino lehen.
+         */
         public function etiketaSortu(){
             $this -> db = new DB();
 
@@ -103,7 +120,9 @@
                 }
             }while($match);
         }
-
+        /**
+         * INSERT egiteko funtzioa. Baliozkotze bat dauka: begiratzen du erosketa data gaur baino beranduago den edo ez. Bukle baten barruan egiten dira INSERT-ak erregistro bat baino gehiago sortu daitezkelako aldi berean.
+         */
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -135,7 +154,9 @@
                 }
             }
         }
-
+        /**
+         * DELETE egiteko funtzioa. Multzoka egin daiteke eta baliozkotze bat dauka: kokalekuren batean bada ezin da ezabatu. Gainera bat ezabatzean ekipamendu horren stock-a eguneratzen da.
+         */
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);

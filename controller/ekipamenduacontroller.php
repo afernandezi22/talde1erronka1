@@ -1,16 +1,17 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     /**
-     * @file
-     * Contiene la definición de la clase y funciones relacionadas.
+     * Ekipamenduko taula kudeatzeko controller-a
      */
     require "controller.php";
     require "../repository/db.php";
     require "../model/ekipamendua.php";
     class EkipamenduaController extends Controller{
-        
+        /**
+         * Ez du parametrorik hartzen eta zuzenean ekipamenduko taulako SELECT bat bueltatzen du. Ekipamenduen array bat bueltatzen du, gero GET metodoarekin front-era JSON formatuan bidaliko dena.
+         */
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
@@ -23,7 +24,9 @@
                 return $ekipamenduak;
             }
         }
-
+        /**
+         * ID-aren arabera SELECT-a egiten du ekipamenduko taulan. Front-ean beharrezkoak diren datu zehatzak lortzeko erabiliko da.
+         */
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
@@ -37,7 +40,9 @@
                 return $ekipamenduak;
             }
         }
-
+        /**
+         * Front-ean ekipamendu berri bat sortzerakoan beste bat marka eta modelo berarekin dagoen edo ez begiratu behar du. Horretarako GET metodo hau erabiltzen da.
+         */
         public function getByMarkaModelo($marka, $modelo){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
@@ -51,7 +56,9 @@
                 return $ekipamenduak;
             }
         }
-
+        /**
+         * Tauletan nahi diren datuak bilatzeko filtro bat egin da. Metodo honekin taularen zutabea aukeratzen da, datua eta aukeratutako ekipamenduak bueltatzen dira.
+         */
 	    public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT E.id, E.izena, E.deskribapena, E.marka, E.modelo, E.stock, E.idKategoria, K.izena AS kategoriaIzena FROM ekipamendua E, kategoria K 
@@ -65,7 +72,9 @@
                 return $ekipamenduak;
             }
         }
-
+        /**
+         * UPDATE egiteko metodo sinplea.
+         */
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -81,7 +90,9 @@
                 //Txarto
             }
         }
-
+        /**
+         * INSERT egiteko metodoa. Honen barruan baliozkotze bat topatu daiteke. Marka eta modelo berarekin beste ekipamenduren bat badago ez du INSERT-a egingo.
+         */
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -105,7 +116,9 @@
                 echo "ezin da";
             }
         }
-
+        /**
+         * DELETE hau multzoka egiteko prestatuta dago eta baliozkotze bat dauka barruan. Lehenengo front-ean lortutako id array-a iteratzen du eta bakoitzean kontsulta bat egiten du datu-basera stock-a baudakan edo ez jakiteko.
+         */
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);

@@ -1,0 +1,310 @@
+\doxysection{Inbentarioa\+Controller Class Reference}
+\hypertarget{class_inbentarioa_controller}{}\label{class_inbentarioa_controller}\index{InbentarioaController@{InbentarioaController}}
+Inheritance diagram for Inbentarioa\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_inbentarioa_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaur\+Baino\+Beranduago}} (\$data\+Str)
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a3f7fb5fc0dd6e185c1cb49d82d35254d}{etiketa\+Sortu}} ()
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_inbentarioa_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Inbentarioko taula kudeatzeko controller-\/a 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_inbentarioa_controller_a9d586641271527823eb70d2d748f1d02}\label{class_inbentarioa_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{InbentarioaController@{InbentarioaController}!delete@{delete}}
+\index{delete@{delete}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+DELETE egiteko funtzioa. Multzoka egin daiteke eta baliozkotze bat dauka\+: kokalekuren batean bada ezin da ezabatu. Gainera bat ezabatzean ekipamendu horren stock-\/a eguneratzen da. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ inbentarioa\ WHERE\ etiketa\ IN('"{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$data[\textcolor{stringliteral}{"{}etiketa"{}}]);\ \$i++)\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ begiratzen\ du\ etiketa\ kokalekuren\ batean\ dagoen}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ kokalekua\ WHERE\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}][\$i]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelectId\ =\ \textcolor{stringliteral}{"{}SELECT\ idEkipamendu\ FROM\ inbentarioa\ WHERE\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}][\$i]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelectId);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ !=\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$id)\{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$idak[]\ =\ \$id[\textcolor{stringliteral}{"{}idEkipamendu"{}}];\ \textcolor{comment}{//sartzen\ da\ update\ egiteko\ arrayan}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}][\$i]\ .\ \textcolor{stringliteral}{"{}',\ '"{}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \textcolor{stringliteral}{"{}0')"{}};\ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DELETE\ ONDO}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//EKIPAMENDU-\/ko\ stock\ eguneratu\ idak\ array-\/a\ erabiliz}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isset(\$idak))\{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$idak);\ \$i++)\{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ ekipamendua\ SET\ stock\ =\ stock\ -\/\ 1\ WHERE\ id\ =\ "{}}\ .\ \$idak[\$i];}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//UPDATE\ ONDO\ EGIN\ DA}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//UPDATE\ TXARTO\ EGIN\ DA}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DELETE\ TXARTO}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_a3f7fb5fc0dd6e185c1cb49d82d35254d}\label{class_inbentarioa_controller_a3f7fb5fc0dd6e185c1cb49d82d35254d} 
+\index{InbentarioaController@{InbentarioaController}!etiketaSortu@{etiketaSortu}}
+\index{etiketaSortu@{etiketaSortu}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{etiketaSortu()}{etiketaSortu()}}
+{\footnotesize\ttfamily etiketa\+Sortu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Modu aleatorioan etiketak sortzeko erabilgarritasun funtzio bat da. Gainera begiratzen du ea etiketa hori datu-\/basean dagoen edo ez bueltatu baino lehen. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \$abc\ =\ \textcolor{stringliteral}{'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \$luzera\ =\ 10;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \$match\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$etiketa\ =\ \textcolor{stringliteral}{''};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\$i\ =\ 0;\ \$i\ <\ \$luzera;\ \$i++)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$zbk\ =\ mt\_rand(0,\ strlen(\$abc)\ -\/\ 1);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$etiketa\ =\ \$etiketa\ .\ \$abc[\$zbk];}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ inbentarioa\ WHERE\ etiketa\ =\ '\$etiketa'"{}};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$match\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$etiketa;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$match\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{while}(\$match);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_a48046ef76b19704f4acf63962c1e6dd2}\label{class_inbentarioa_controller_a48046ef76b19704f4acf63962c1e6dd2} 
+\index{InbentarioaController@{InbentarioaController}!gaurBainoBeranduago@{gaurBainoBeranduago}}
+\index{gaurBainoBeranduago@{gaurBainoBeranduago}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{gaurBainoBeranduago()}{gaurBainoBeranduago()}}
+{\footnotesize\ttfamily gaur\+Baino\+Beranduago (\begin{DoxyParamCaption}\item[{}]{\$data\+Str }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$data\+Str} & Data bat string formatuan hartzen du. Erabilgarritasun funtzio bat da. Parametro bezala lortutako data gaur baino beranduago den edo ez bueltatuko du. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ DateTime::createFromFormat(\textcolor{stringliteral}{"{}Y-\/m-\/d"{}},\ \$dataStr);\ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \$gaur\ =\ \textcolor{keyword}{new}\ DateTime();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$data\ >\ \$gaur)\{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_inbentarioa_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{InbentarioaController@{InbentarioaController}!getAll@{getAll}}
+\index{getAll@{getAll}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ez du parametrorik hartzen eta inbentarioko erregistro guztiak bueltatzen ditu. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ I.etiketa,\ I.idEkipamendu,\ E.izena\ AS\ izenaEkipamendu,\ I.erosketaData\ FROM\ inbentarioa\ I,\ ekipamendua\ E\ WHERE\ I.idEkipamendu\ =\ E.id"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$inbentarioa)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$inbentarioak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_inbentarioa}{Inbentarioa}}(\$inbentarioa[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}idEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}izenaEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}erosketaData"{}}]);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$inbentarioak;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_inbentarioa_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{InbentarioaController@{InbentarioaController}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})}
+
+Zutabe eta datu baten arabera lortzen dituen erregistro guztiak bueltatuko ditu. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ I.etiketa,\ I.idEkipamendu,\ E.izena\ AS\ izenaEkipamendu,\ I.erosketaData\ FROM\ inbentarioa\ I,\ ekipamendua\ E\ WHERE\ I.idEkipamendu\ =\ E.id\ AND\ I.\$zutabea\ =\ '"{}}\ .\ \$datua\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$inbentarioa)\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$inbentarioak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_inbentarioa}{Inbentarioa}}(\$inbentarioa[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}idEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}izenaEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}erosketaData"{}}]);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$inbentarioak;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_inbentarioa_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{InbentarioaController@{InbentarioaController}!getById@{getById}}
+\index{getById@{getById}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+ID zehatz baten arabera inbentarioko erregistro bat bueltatzen du. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ I.etiketa,\ I.idEkipamendu,\ E.izena\ AS\ izenaEkipamendu,\ I.erosketaData\ FROM\ inbentarioa\ I,\ ekipamendua\ E\ WHERE\ I.idEkipamendu\ =\ E.id\ AND\ I.etiketa\ =\ "{}}\ .\ \$id;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$inbentarioa)\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$inbentarioak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_inbentarioa}{Inbentarioa}}(\$inbentarioa[\textcolor{stringliteral}{"{}etiketa"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}idEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}izenaEkipamendu"{}}],\ \$inbentarioa[\textcolor{stringliteral}{"{}erosketaData"{}}]);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$inbentarioak;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_inbentarioa_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{InbentarioaController@{InbentarioaController}!post@{post}}
+\index{post@{post}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+INSERT egiteko funtzioa. Baliozkotze bat dauka\+: begiratzen du erosketa data gaur baino beranduago den edo ez. Bukle baten barruan egiten dira INSERT-\/ak erregistro bat baino gehiago sortu daitezkelako aldi berean. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotze:\ data\ ezin\ da\ izan\ gaur\ baino\ beranduago}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ \mbox{\hyperlink{class_inbentarioa_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}erosketaData"{}}]))\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$beranduago)\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Zenbat\ sartu\ nahi\ dituzun\ begiratzen\ du}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ \$data[\textcolor{stringliteral}{"{}zenbat"{}}];\ \$i++)\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ inbentarioa\ VALUES\ ('"{}}\ .\ \$this\ -\/>\ \mbox{\hyperlink{class_inbentarioa_controller_a3f7fb5fc0dd6e185c1cb49d82d35254d}{etiketaSortu}}()}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}idEkipamendu"{}}]}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{},\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erosketaData"{}}]\ .\ \textcolor{stringliteral}{"{}')"{}};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Insert\ ONDO\ egin\ da.\ Horregatik\ EKIPAMENDUA\ taulan\ STOCK-\/a\ gehitzen\ du.}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlUpdate\ =\ \textcolor{stringliteral}{"{}UPDATE\ ekipamendua\ SET\ stock\ =\ stock\ +\ 1\ WHERE\ id\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}idEkipamendu"{}}];}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sqlUpdate))\{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//UPDATE\ ONDO}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//UPDATE\ TXARTO}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ false;}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_inbentarioa_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_inbentarioa_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{InbentarioaController@{InbentarioaController}!put@{put}}
+\index{put@{put}!InbentarioaController@{InbentarioaController}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+UPDATE egiteko funtzioa. Baliozkotze bat dauka\+: gaur\+Baino\+Beranduago funtzioa erabiliz begiratzen du eta aukeratutako data gaur edo beranduago den eta horren arabera UPDATE egingo du edo ez. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotze:\ data\ ezin\ da\ izan\ gaur\ baino\ beranduago}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ \mbox{\hyperlink{class_inbentarioa_controller_a48046ef76b19704f4acf63962c1e6dd2}{gaurBainoBeranduago}}(\$data[\textcolor{stringliteral}{"{}erosketaData"{}}]))\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$beranduago\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$beranduago)\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ inbentarioa\ SET\ erosketaData\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}erosketaData"{}}]}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}'\ WHERE\ etiketa\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}etiketa"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ true;}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ false;}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{inbentarioacontroller_8php}{inbentarioacontroller.\+php}}\end{DoxyCompactItemize}

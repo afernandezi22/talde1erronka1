@@ -1,0 +1,244 @@
+\doxysection{Ekipamendua\+Controller Class Reference}
+\hypertarget{class_ekipamendua_controller}{}\label{class_ekipamendua_controller}\index{EkipamenduaController@{EkipamenduaController}}
+Inheritance diagram for Ekipamendua\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ekipamendua_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_a8c0d7a66ee6c6af4eb8fbfa8888728ca}{get\+By\+Marka\+Modelo}} (\$marka, \$modelo)
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_ekipamendua_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Ekipamenduko taula kudeatzeko controller-\/a 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ekipamendua_controller_a9d586641271527823eb70d2d748f1d02}\label{class_ekipamendua_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{EkipamenduaController@{EkipamenduaController}!delete@{delete}}
+\index{delete@{delete}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+DELETE hau multzoka egiteko prestatuta dago eta baliozkotze bat dauka barruan. Lehenengo front-\/ean lortutako id array-\/a iteratzen du eta bakoitzean kontsulta bat egiten du datu-\/basera stock-\/a baudakan edo ez jakiteko. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}DELETE\ FROM\ ekipamendua\ WHERE\ id\ IN("{}};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\$i\ =\ 0;\ \$i\ <\ count(\$data[\textcolor{stringliteral}{"{}id"{}}]);\ \$i++)\{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ ez\ da\ ezabatuko\ stock-\/a\ badago.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sqlSelect\ =\ \textcolor{stringliteral}{"{}SELECT\ stock\ FROM\ ekipamendua\ WHERE\ id\ ="{}}\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}][\$i];}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sqlSelect);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$result\ as\ \$row)\{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$stock\ =\ \$row[\textcolor{stringliteral}{"{}stock"{}}];}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$stock\ <=\ 0)\{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}][\$i]\ .\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ ez\ da\ ezabatuko}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \$sql\ .\ \textcolor{stringliteral}{"{}0)"{}};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_ekipamendua_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{EkipamenduaController@{EkipamenduaController}!getAll@{getAll}}
+\index{getAll@{getAll}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ez du parametrorik hartzen eta zuzenean ekipamenduko taulako SELECT bat bueltatzen du. Ekipamenduen array bat bueltatzen du, gero GET metodoarekin front-\/era JSON formatuan bidaliko dena. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ E.id,\ E.izena,\ E.deskribapena,\ E.marka,\ E.modelo,\ E.stock,\ E.idKategoria,\ K.izena\ AS\ kategoriaIzena\ FROM\ ekipamendua\ E,\ kategoria\ K\ }}
+\DoxyCodeLine{00018\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.id\ =\ E.idKategoria"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$ekipamendua)\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$ekipamenduak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_ekipamendua}{Ekipamendua}}(\$ekipamendua[\textcolor{stringliteral}{"{}id"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}izena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}deskribapena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}marka"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}modelo"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}stock"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}idKategoria"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}kategoriaIzena"{}}]);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$ekipamenduak;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_ekipamendua_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{EkipamenduaController@{EkipamenduaController}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})}
+
+Tauletan nahi diren datuak bilatzeko filtro bat egin da. Metodo honekin taularen zutabea aukeratzen da, datua eta aukeratutako ekipamenduak bueltatzen dira. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ E.id,\ E.izena,\ E.deskribapena,\ E.marka,\ E.modelo,\ E.stock,\ E.idKategoria,\ K.izena\ AS\ kategoriaIzena\ FROM\ ekipamendua\ E,\ kategoria\ K\ }}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.id\ =\ E.idKategoria\ AND\ E."{}}\ .\ \$zutabea.\ \textcolor{stringliteral}{"{}\ =\ '"{}}\ .\ \$datua\ .\ \textcolor{stringliteral}{"{}'"{}};\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$ekipamendua)\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$ekipamenduak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_ekipamendua}{Ekipamendua}}(\$ekipamendua[\textcolor{stringliteral}{"{}id"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}izena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}deskribapena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}marka"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}modelo"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}stock"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}idKategoria"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}kategoriaIzena"{}}]);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$ekipamenduak;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_ekipamendua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{EkipamenduaController@{EkipamenduaController}!getById@{getById}}
+\index{getById@{getById}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+ID-\/aren arabera SELECT-\/a egiten du ekipamenduko taulan. Front-\/ean beharrezkoak diren datu zehatzak lortzeko erabiliko da. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ E.id,\ E.izena,\ E.deskribapena,\ E.marka,\ E.modelo,\ E.stock,\ E.idKategoria,\ K.izena\ AS\ kategoriaIzena\ FROM\ ekipamendua\ E,\ kategoria\ K\ }}
+\DoxyCodeLine{00033\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.id\ =\ E.idKategoria\ AND\ E.id\ =\ "{}}\ .\ \$id;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$ekipamendua)\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$ekipamenduak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_ekipamendua}{Ekipamendua}}(\$ekipamendua[\textcolor{stringliteral}{"{}id"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}izena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}deskribapena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}marka"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}modelo"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}stock"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}idKategoria"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}kategoriaIzena"{}}]);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$ekipamenduak;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_a8c0d7a66ee6c6af4eb8fbfa8888728ca}\label{class_ekipamendua_controller_a8c0d7a66ee6c6af4eb8fbfa8888728ca} 
+\index{EkipamenduaController@{EkipamenduaController}!getByMarkaModelo@{getByMarkaModelo}}
+\index{getByMarkaModelo@{getByMarkaModelo}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{getByMarkaModelo()}{getByMarkaModelo()}}
+{\footnotesize\ttfamily get\+By\+Marka\+Modelo (\begin{DoxyParamCaption}\item[{}]{\$marka,  }\item[{}]{\$modelo }\end{DoxyParamCaption})}
+
+Front-\/ean ekipamendu berri bat sortzerakoan beste bat marka eta modelo berarekin dagoen edo ez begiratu behar du. Horretarako GET metodo hau erabiltzen da. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ E.id,\ E.izena,\ E.deskribapena,\ E.marka,\ E.modelo,\ E.stock,\ E.idKategoria,\ K.izena\ AS\ kategoriaIzena\ FROM\ ekipamendua\ E,\ kategoria\ K\ }}
+\DoxyCodeLine{00049\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ WHERE\ K.id\ =\ E.idKategoria\ AND\ E.marka\ =\ '"{}}\ .\ \$marka\ .\ \textcolor{stringliteral}{"{}'\ AND\ E.modelo\ =\ '"{}}\ .\ \$modelo\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\$emaitza\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}(\$emaitza\ as\ \$ekipamendua)\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$ekipamenduak[]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_ekipamendua}{Ekipamendua}}(\$ekipamendua[\textcolor{stringliteral}{"{}id"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}izena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}deskribapena"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}marka"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}modelo"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}stock"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}idKategoria"{}}],\ \$ekipamendua[\textcolor{stringliteral}{"{}kategoriaIzena"{}}]);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$ekipamenduak;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_ekipamendua_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{EkipamenduaController@{EkipamenduaController}!post@{post}}
+\index{post@{post}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+INSERT egiteko metodoa. Honen barruan baliozkotze bat topatu daiteke. Marka eta modelo berarekin beste ekipamenduren bat badago ez du INSERT-\/a egingo. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Baliozkotzea:\ ezin\ da\ marka\ eta\ modelo\ bera\ duen\ zerbait\ txertatu}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}SELECT\ *\ FROM\ ekipamendua\ WHERE\ marka\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}marka"{}}]\ .\ \textcolor{stringliteral}{"{}'\ AND\ modelo\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}modelo"{}}]\ .\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \$result\ =\ \$this\ -\/>\ db\ -\/>\ select(\$sql);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$result\ ==\ \textcolor{keyword}{null})\{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}INSERT\ INTO\ ekipamendua\ (izena,\ deskribapena,\ marka,\ modelo,\ stock,\ idKategoria)\ VALUES\ ('"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}deskribapena"{}}]}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}marka"{}}]}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}modelo"{}}]}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ 0"{}}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{},\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}idKategoria"{}}]\ .\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ echo\ \textcolor{stringliteral}{"{}ezin\ da"{}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_ekipamendua_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_ekipamendua_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{EkipamenduaController@{EkipamenduaController}!put@{put}}
+\index{put@{put}!EkipamenduaController@{EkipamenduaController}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})}
+
+UPDATE egiteko metodo sinplea. 
+
+Reimplemented from \mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{Controller}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ db\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_b}{DB}}();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \$data\ =\ json\_decode(\$json,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \$sql\ =\ \textcolor{stringliteral}{"{}UPDATE\ ekipamendua\ SET\ izena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}izena"{}}]}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ deskribapena\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}deskribapena"{}}]}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ marka\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}marka"{}}]}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ modelo\ =\ '"{}}\ .\ \$data[\textcolor{stringliteral}{"{}modelo"{}}]}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}',\ idKategoria\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}idKategoria"{}}]}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\ \textcolor{stringliteral}{"{}\ WHERE\ id\ =\ "{}}\ .\ \$data[\textcolor{stringliteral}{"{}id"{}}];}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ db\ -\/>\ \textcolor{keywordflow}{do}(\$sql))\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ondo}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Txarto}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{ekipamenduacontroller_8php}{ekipamenduacontroller.\+php}}\end{DoxyCompactItemize}
