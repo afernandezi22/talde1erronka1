@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2023 a las 09:12:34
+-- Tiempo de generación: 17-11-2023 a las 10:35:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -78,6 +78,7 @@ CREATE TABLE `erabiltzailea` (
 --
 
 INSERT INTO `erabiltzailea` (`nan`, `izena`, `abizena`, `erabiltzailea`, `pasahitza`, `rola`, `irudia`) VALUES
+('12345678Z', 'Asier', 'asd', 'afernandez2', '12345678', '0', NULL),
 ('20977261L', 'Jon', 'Caballero', 'jcaballero', '12345678', '0', '../img/avatar/20977261l.jpg'),
 ('22756064W', 'Natalia', 'Lamego', 'nlamego', '12345678', '1', '../img/avatar/22756064w.jpg'),
 ('45750866W', 'Asier', 'Fernandez', 'afernandez', '12345678', '1', '../img/avatar/45750866w.jpg');
@@ -186,9 +187,8 @@ CREATE TABLE `kokalekua` (
 --
 
 INSERT INTO `kokalekua` (`etiketa`, `idGela`, `hasieraData`, `amaieraData`) VALUES
-('0PI0JCYZPM', 1, '2023-11-10', '2023-11-12'),
+('0PI0JCYZPM', 1, '2023-11-10', '2023-11-17'),
 ('ABC1234', 5, '2023-10-01', NULL),
-('ABC1235', 1, '2023-11-03', '2023-11-10'),
 ('ABC1236', 2, '2023-10-01', '2023-11-03'),
 ('ABC1236', 3, '2023-11-03', NULL),
 ('ABC1237', 3, '2023-09-01', '2023-11-01'),
@@ -203,6 +203,7 @@ INSERT INTO `kokalekua` (`etiketa`, `idGela`, `hasieraData`, `amaieraData`) VALU
 ('ABC1245', 4, '2023-08-09', NULL),
 ('ABC1246', 5, '2023-11-01', '2023-11-03'),
 ('ABC1247', 1, '2023-10-07', '2023-11-15'),
+('ABC1247', 1, '2023-11-01', '2023-11-05'),
 ('ABC1248', 3, '2023-07-13', NULL),
 ('ABC1249', 4, '2023-09-02', NULL),
 ('ABC1250', 5, '2023-10-10', '2023-11-01');
@@ -258,19 +259,19 @@ ALTER TABLE `kokalekua`
 -- AUTO_INCREMENT de la tabla `ekipamendua`
 --
 ALTER TABLE `ekipamendua`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `gela`
 --
 ALTER TABLE `gela`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `kategoria`
 --
 ALTER TABLE `kategoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restricciones para tablas volcadas
