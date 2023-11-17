@@ -1,7 +1,7 @@
 <?php
-    // header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    // header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
     require "controller.php";
     require "../repository/db.php";
@@ -124,14 +124,17 @@
             $data = json_decode($json, true);
             $sql = "DELETE FROM erabiltzailea WHERE nan IN('";
             for($i = 0; $i < count($data["nan"]); $i++){
-                if($i == 0){
-                    $sql = $sql . $data["nan"][$i];
-                }else{
-                    $sql = $sql . "','" . $data["nan"][$i];
+                //Baliozkotzea: ez da ezabatuko admin rola badauka
+                $sqlSelect = "SELECT * FROM erabiltzailea WHERE nan = '" . $data["nan"][$i] ."'";
+                $result = $this -> db -> select($sqlSelect);
+                foreach($result as $erabiltzaile){
+                    if($erabiltzaile["rola"] != 0){
+                        $sql = $sql . $data["nan"][$i] . "', '";
+                    }
                 }
             }
 
-            $sql = $sql . "')";
+            $sql = $sql . "0')";
 
             if($this -> db -> do($sql)){
                 //Ondo
