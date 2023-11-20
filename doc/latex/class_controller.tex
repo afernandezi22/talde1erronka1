@@ -1,0 +1,121 @@
+\doxysection{Controller Class Reference}
+\hypertarget{class_controller}{}\label{class_controller}\index{Controller@{Controller}}
+Inheritance diagram for Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.236203cm]{class_controller}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{get\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{get\+By\+Filter}} (\$zutabea, \$datua)
+\item 
+\mbox{\hyperlink{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{get\+All}} ()
+\item 
+\mbox{\hyperlink{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}{post}} (\$json)
+\item 
+\mbox{\hyperlink{class_controller_a9d586641271527823eb70d2d748f1d02}{delete}} (\$json)
+\item 
+\mbox{\hyperlink{class_controller_ab50f9be74de1c2e2891866134fb5c178}{put}} (\$json)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_controller_a1fa3127fc82f96b1436d871ef02be319}{\$db}}
+\item 
+\mbox{\hyperlink{class_controller_a830cf70d25fefacddcf4c6bc3fd7a0e0}{\$check}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Kontroladorean izango dituzten aldagaiak eta funtzioak definitzen dituen klase abstraktua. Metodoen erabilera controller bakoitzean azalduta daude. 
+\begin{DoxyParams}{Parameters}
+{\em \$db} & Datu-\/baseko objektua gordetzeko. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_controller_a9d586641271527823eb70d2d748f1d02}\label{class_controller_a9d586641271527823eb70d2d748f1d02} 
+\index{Controller@{Controller}!delete@{delete}}
+\index{delete@{delete}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+DELETE egiteko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_a9d586641271527823eb70d2d748f1d02}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_a9d586641271527823eb70d2d748f1d02}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_a9d586641271527823eb70d2d748f1d02}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_a9d586641271527823eb70d2d748f1d02}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_a9d586641271527823eb70d2d748f1d02}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_a9d586641271527823eb70d2d748f1d02}{Kokalekua\+Controller}}.
+
+\Hypertarget{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800}\label{class_controller_aba0d5b303383fb5b1fabb5fd01cd3800} 
+\index{Controller@{Controller}!getAll@{getAll}}
+\index{getAll@{getAll}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+Taula horretako datu guztiak lortzeko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_aba0d5b303383fb5b1fabb5fd01cd3800}{Kokalekua\+Controller}}.
+
+\Hypertarget{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef}\label{class_controller_a3794a39f0fd7530c6ecb2715a438a6ef} 
+\index{Controller@{Controller}!getByFilter@{getByFilter}}
+\index{getByFilter@{getByFilter}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getByFilter()}{getByFilter()}}
+{\footnotesize\ttfamily get\+By\+Filter (\begin{DoxyParamCaption}\item[{}]{\$zutabea,  }\item[{}]{\$datua }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+filtroarekin SELECT egiteko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_a3794a39f0fd7530c6ecb2715a438a6ef}{Kokalekua\+Controller}}.
+
+\Hypertarget{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}\label{class_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7} 
+\index{Controller@{Controller}!getById@{getById}}
+\index{getById@{getById}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getById()}{getById()}}
+{\footnotesize\ttfamily get\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+id-\/aren arabera SELECT egiteko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_a04a2ab5bf1980cc1c81cd541b6bb1ee7}{Kokalekua\+Controller}}.
+
+\Hypertarget{class_controller_a08c569c105bebfde1cbcad2a944ba5ab}\label{class_controller_a08c569c105bebfde1cbcad2a944ba5ab} 
+\index{Controller@{Controller}!post@{post}}
+\index{post@{post}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{post()}{post()}}
+{\footnotesize\ttfamily post (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+INSERT bat egiteko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_a08c569c105bebfde1cbcad2a944ba5ab}{Kokalekua\+Controller}}.
+
+\Hypertarget{class_controller_ab50f9be74de1c2e2891866134fb5c178}\label{class_controller_ab50f9be74de1c2e2891866134fb5c178} 
+\index{Controller@{Controller}!put@{put}}
+\index{put@{put}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily put (\begin{DoxyParamCaption}\item[{}]{\$json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+UPDATE egiteko 
+
+Reimplemented in \mbox{\hyperlink{class_ekipamendua_controller_ab50f9be74de1c2e2891866134fb5c178}{Ekipamendua\+Controller}}, \mbox{\hyperlink{class_erabiltzailea_controller_ab50f9be74de1c2e2891866134fb5c178}{Erabiltzailea\+Controller}}, \mbox{\hyperlink{class_gela_controller_ab50f9be74de1c2e2891866134fb5c178}{Gela\+Controller}}, \mbox{\hyperlink{class_inbentarioa_controller_ab50f9be74de1c2e2891866134fb5c178}{Inbentarioa\+Controller}}, \mbox{\hyperlink{class_kategoria_controller_ab50f9be74de1c2e2891866134fb5c178}{Kategoria\+Controller}}, and \mbox{\hyperlink{class_kokalekua_controller_ab50f9be74de1c2e2891866134fb5c178}{Kokalekua\+Controller}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{class_controller_a830cf70d25fefacddcf4c6bc3fd7a0e0}\label{class_controller_a830cf70d25fefacddcf4c6bc3fd7a0e0} 
+\index{Controller@{Controller}!\$check@{\$check}}
+\index{\$check@{\$check}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\$check}{\$check}}
+{\footnotesize\ttfamily \$check\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_controller_a1fa3127fc82f96b1436d871ef02be319}\label{class_controller_a1fa3127fc82f96b1436d871ef02be319} 
+\index{Controller@{Controller}!\$db@{\$db}}
+\index{\$db@{\$db}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\$db}{\$db}}
+{\footnotesize\ttfamily \$db\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+controller/\mbox{\hyperlink{controller_8php}{controller.\+php}}\end{DoxyCompactItemize}

@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Kokalekua objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Kokalekua{
         public $etiketa;
         public $ekipamenduIzena;

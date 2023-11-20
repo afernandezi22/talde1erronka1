@@ -6,7 +6,13 @@
     require "controller.php";
     require "../repository/db.php";
     require "../model/erabiltzailea.php";
+    /**
+     * Erabiltzaileko taula kudeatzeko controller-a
+     */
     class ErabiltzaileaController extends Controller{
+        /**
+         * Ez du parametrorik hartzen eta erabiltzaileen zerrenda bueltatzen du.
+         */
         public function getAll(){
             $this -> db = new DB();
             $sql = "SELECT * FROM erabiltzailea";
@@ -18,7 +24,9 @@
                 return $erabiltzaileak;
             }
         }
-
+        /**
+         * ID-aren arabera erabiltzaile zehatz bat bueltatzen du.
+         */
         public function getById($id){
             $this -> db = new DB();
             $sql = "SELECT * FROM erabiltzailea WHERE nan = '" . $id . "'";
@@ -31,7 +39,9 @@
                 return $erabiltzaileak;
             }
         }
-
+        /**
+         * Zutabea eta datua aukeratuta erabiltzaile multzo zehatz bat bueltatzen du.
+         */
         public function getByFilter($zutabea, $datua){
             $this -> db = new DB();
             $sql = "SELECT * FROM erabiltzailea WHERE " . $zutabea. " = '" . $datua . "'"; 
@@ -44,7 +54,9 @@
                 return $erabiltzaileak;
             }
         }
-
+        /**
+         * UPDATE egiteko funtzioa. Baliozkotze bat dauka: beste erabiltzaileren bat topatzen badu erabiltzaile-izen berarekin ez du UPDATE-a egingo. Gainera argazkirik ez bada gehitzen "null" jarriko du zutabe horretan.
+         */
         public function put($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -76,11 +88,12 @@
                         //Txarto
                     }
             } else {
-                //Errorea badagoelako erabiltzailea erabiltzaile-izen horrekin
-                // throw new Exception("Badago erabiltzailea izen horrekin!");
+                //Badago beste erabiltzaileren bat erabiltzaile-izen horrekin
             }
         }
-
+        /**
+         * INSERT egiteko funtzioa. Baliozkotzea badauka: ezin da sortu erabiltzaile berri bat beste erabiltzaile baten erabiltzaile-izen berarekin. Irudirik ez bada sartzen NULL izango da zutabe horretan.
+         */
         public function post($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -113,12 +126,13 @@
                     //Txarto
                 }
             } else{
-                //Errorea badagoelako erabiltzailea erabiltzaile-izen horrekin
-                throw new Exception("Badago erabiltzailea izen horrekin!");
+                //Badago beste erabiltzaileren bat erabiltzaile-izen horrekin
             }
             
         }
-
+        /**
+         * DELETE egiteko funtzioa multzoka. ADMIN rola dutenek bakarrik ezabatu ahal izango dute.
+         */
         public function delete($json){
             $this -> db = new DB();
             $data = json_decode($json, true);
@@ -142,7 +156,11 @@
                 //Txarto
             }
         }
-
+        /**
+         * LOGIN-a egiteko funtzioa. POST bidez jasotako JSON-ean erabiltzaile izena eta pasahitza lortzen dira. Horiek datu-basean konparatzen dira eta horren arabera beste JSON bat bueltatzen da front-era informazio zehatzarekin. 
+         * Erabiltzailea eta pasahitza ondo idatzi diren eta ondo egin bada beste informazio gehiago gehituko zaio: erabiltzailearen irudiaren esteka (null bada lehenetsitako izango da), erabiltzaile izena, rola eta izena.
+         * Informazio guzti hori gero front-ean erabiliko da cookia sortzeko.
+         */
         public function login($json){
             $erabil = false;
             $pass = false;
@@ -160,11 +178,6 @@
                     if($lerro["pasahitza"] == $data["pass"]){
                         $pass = true;
                         $irudia = null;
-                        //LOGIN-a ondo egin da. Horregatik sesioko aldagai ezartzen dira
-                        // session_start();
-                        // $_SESSION["username"] = $data["erabil"];
-                        // $_SESSION["rol"] = $lerro["rola"];
-                        // $_SESSION["name"] = $lerro["izena"];
                         if($lerro["irudia"] == null){
                             $irudia = "../img/avatar/default.jpg";
                         }else{

@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Gela objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Gela{
         public $id;
         public $izena;

@@ -1,0 +1,181 @@
+\doxysection{DB Class Reference}
+\hypertarget{class_d_b}{}\label{class_d_b}\index{DB@{DB}}
+Inheritance diagram for DB\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_d_b}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_b_a095c5d389db211932136b53f25f39685}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_d_b_aba804048bed81433b1331001898cd6ff}{select}} (\$sql)
+\item 
+\mbox{\hyperlink{class_d_b_a979a262ee2f358a9e11ecc236816ea5d}{do}} (\$sql)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_b_a78572828d11dcdf2a498497d9001d557}{connect}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_b_ad79b54e31bd1050001133c4d70f850fe}{\$servername}}
+\item 
+\mbox{\hyperlink{class_d_b_a0eb82aa5f81cf845de4b36cd653c42cf}{\$username}}
+\item 
+\mbox{\hyperlink{class_d_b_a607686ef9f99ea7c42f4f3dd3dbb2b0d}{\$password}}
+\item 
+\mbox{\hyperlink{class_d_b_a7691c0162d89de0b6ba47edcd8ba8878}{\$database}}
+\item 
+\mbox{\hyperlink{class_d_b_aa8a5a87b9c1a6a0819b88447cbe41877}{\$conn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Datubaserako konexioak sortzeko klasea 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_d_b_a095c5d389db211932136b53f25f39685}\label{class_d_b_a095c5d389db211932136b53f25f39685} 
+\index{DB@{DB}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Lehenetsitako eraikitzailea 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ servername\ =\ \textcolor{stringliteral}{"{}localhost"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ username\ =\ \textcolor{stringliteral}{"{}root"{}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ password\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ database\ =\ \textcolor{stringliteral}{"{}3wag2e1"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_b_a78572828d11dcdf2a498497d9001d557}\label{class_d_b_a78572828d11dcdf2a498497d9001d557} 
+\index{DB@{DB}!connect@{connect}}
+\index{connect@{connect}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Konexioa sortzeko funtzioa. Konexioa bueltatzen du. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ conn\ =\ \textcolor{keyword}{new}\ mysqli(\$this\ -\/>\ servername,\ \$this\ -\/>\ username,\ \$this\ -\/>\ password,\ \$this\ -\/>\ database);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ begiratu}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\$this\ -\/>\ conn\ -\/>\ connect\_error)\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ die(\textcolor{stringliteral}{"{}Connection\ failed:\ "{}}\ .\ \$this\ -\/>\ conn\ -\/>\ connect\_error);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$this\ -\/>\ conn;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_b_a979a262ee2f358a9e11ecc236816ea5d}\label{class_d_b_a979a262ee2f358a9e11ecc236816ea5d} 
+\index{DB@{DB}!do@{do}}
+\index{do@{do}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{do()}{do()}}
+{\footnotesize\ttfamily do (\begin{DoxyParamCaption}\item[{}]{\$sql }\end{DoxyParamCaption})}
+
+INSERT, UPDATE edo DELETE diren sententziak exekutatzeko erabiltzen den funtzioa. 
+
+Implements \mbox{\hyperlink{interface_default_d_b_a979a262ee2f358a9e11ecc236816ea5d}{Default\+DB}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ sortu}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ \mbox{\hyperlink{class_d_b_a78572828d11dcdf2a498497d9001d557}{connect}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sententzia\ ondo\ exekutatzen\ bada\ emaitza\ bueltatu,\ bestela\ 0\ bueltatu}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$emaitza\ =\ \$this\ -\/>\ conn\ -\/>\ query(\$sql))\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ itxi}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ conn\ -\/>\ close();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$emaitza;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ itxi}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ conn\ -\/>\ close();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_d_b_aba804048bed81433b1331001898cd6ff}\label{class_d_b_aba804048bed81433b1331001898cd6ff} 
+\index{DB@{DB}!select@{select}}
+\index{select@{select}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily select (\begin{DoxyParamCaption}\item[{}]{\$sql }\end{DoxyParamCaption})}
+
+SELECT diren kontsultak egiteko erabiltzen den funtzioa. Kontsulta bueltatzen du. 
+
+Implements \mbox{\hyperlink{interface_default_d_b_aba804048bed81433b1331001898cd6ff}{Default\+DB}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ sortu}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ \mbox{\hyperlink{class_d_b_a78572828d11dcdf2a498497d9001d557}{connect}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Emaitza\ lortu\ kontsulta\ eginez}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//0\ baino\ gehiagoko\ erantzuna\ ematen\ badu\ emaitza\ bueltatu,\ bestela\ 0\ bueltatu}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$emaitza\ =\ \$this\ -\/>\ conn\ -\/>\ query(\$sql);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\$emaitza\ -\/>\ num\_rows\ >\ 0)\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ itxi}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ conn\ -\/>\ close();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \$emaitza;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Konexioa\ itxi}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$this\ -\/>\ conn\ -\/>\ close();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (Exception\ \$e)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//echo\ "{}ERROREA\ "{}\ .\ \$e;}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{class_d_b_aa8a5a87b9c1a6a0819b88447cbe41877}\label{class_d_b_aa8a5a87b9c1a6a0819b88447cbe41877} 
+\index{DB@{DB}!\$conn@{\$conn}}
+\index{\$conn@{\$conn}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\$conn}{\$conn}}
+{\footnotesize\ttfamily \$conn\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_b_a7691c0162d89de0b6ba47edcd8ba8878}\label{class_d_b_a7691c0162d89de0b6ba47edcd8ba8878} 
+\index{DB@{DB}!\$database@{\$database}}
+\index{\$database@{\$database}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\$database}{\$database}}
+{\footnotesize\ttfamily \$database\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_b_a607686ef9f99ea7c42f4f3dd3dbb2b0d}\label{class_d_b_a607686ef9f99ea7c42f4f3dd3dbb2b0d} 
+\index{DB@{DB}!\$password@{\$password}}
+\index{\$password@{\$password}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\$password}{\$password}}
+{\footnotesize\ttfamily \$password\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_b_ad79b54e31bd1050001133c4d70f850fe}\label{class_d_b_ad79b54e31bd1050001133c4d70f850fe} 
+\index{DB@{DB}!\$servername@{\$servername}}
+\index{\$servername@{\$servername}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\$servername}{\$servername}}
+{\footnotesize\ttfamily \$servername\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_d_b_a0eb82aa5f81cf845de4b36cd653c42cf}\label{class_d_b_a0eb82aa5f81cf845de4b36cd653c42cf} 
+\index{DB@{DB}!\$username@{\$username}}
+\index{\$username@{\$username}!DB@{DB}}
+\doxysubsubsection{\texorpdfstring{\$username}{\$username}}
+{\footnotesize\ttfamily \$username\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+repository/\mbox{\hyperlink{db_8php}{db.\+php}}\end{DoxyCompactItemize}

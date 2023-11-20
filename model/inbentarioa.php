@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Inbentarioa objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Inbentarioa{
         public $etiketa;
         public $idEkipamendu;

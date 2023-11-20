@@ -1,6 +1,8 @@
 <?php
     include "defaultdb.php";
-    //Datubaserako konexioak sortzkeo klasea
+    /**
+     * Datubaserako konexioak sortzeko klasea
+     */
     class DB implements DefaultDB{
         private $servername;
         private $username;
@@ -8,7 +10,9 @@
         private $database;
         private $conn;
 
-        //Sortzailea
+        /**
+         * Lehenetsitako eraikitzailea
+         */
         public function __construct(){
             $this -> servername = "192.168.201.101";
             $this -> username = "root";
@@ -16,7 +20,9 @@
             $this -> database = "3wag2e1";
         }
 
-        //Datubasera konektatzeko funtzioa
+        /**
+         * Konexioa sortzeko funtzioa. Konexioa bueltatzen du.
+         */
         private function connect(){
             $this -> conn = new mysqli($this -> servername, $this -> username, $this -> password, $this -> database);
             
@@ -28,7 +34,9 @@
             return $this -> conn;
         }
 
-        //SELECT egiteko erabiltzen den funtzioa
+        /**
+         * SELECT diren kontsultak egiteko erabiltzen den funtzioa. Kontsulta bueltatzen du.
+         */
         public function select($sql){
             //Konexioa sortu
             $this -> connect();
@@ -51,7 +59,9 @@
             }
         }
 
-        //INSERT, UPDATE eta DELETE egiteko erabiltzen den funtzioa
+        /**
+         * INSERT, UPDATE edo DELETE diren sententziak exekutatzeko erabiltzen den funtzioa.
+         */
         public function do($sql){
             //Konexioa sortu
             $this -> connect();

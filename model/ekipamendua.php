@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Ekipamendua objektua definitzen duen klasea, bere eraikitzailearekin eta taulan beharrezkoak izango diren parametroekin.
+     */
     class Ekipamendua{
         public $id;
         public $izena;
