@@ -10,9 +10,9 @@
 
         //Sortzailea
         public function __construct(){
-            $this -> servername = "localhost";
+            $this -> servername = "192.168.201.101";
             $this -> username = "root";
-            $this -> password = "";
+            $this -> password = "root";
             $this -> database = "3wag2e1";
         }
 
