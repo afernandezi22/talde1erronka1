@@ -53,6 +53,7 @@
             AND I.idEkipamendu =  E.id
             AND K.idGela = G.id
             AND " . $zutabea . " = '" . $datua . "'";
+            echo $sql;
             $emaitza = $this -> db -> select($sql);
             if($emaitza != null){
                 foreach($emaitza as $kokalekua){
