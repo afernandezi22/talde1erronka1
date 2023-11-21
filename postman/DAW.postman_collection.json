@@ -59,13 +59,73 @@
 							"response": []
 						},
 						{
+							"name": "GET BY FILTER ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php?zutabea=id&datua=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "id"
+										},
+										{
+											"key": "datua",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY MARKA MODELO ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/ekipamenduacontroller.php?marka=HP&modelo=TG02-0087ns",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									],
+									"query": [
+										{
+											"key": "marka",
+											"value": "HP"
+										},
+										{
+											"key": "modelo",
+											"value": "TG02-0087ns"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "POST ekipamendua",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"stock\": 6,\r\n    \"idKategoria\": 1\r\n}",
+									"raw": "{\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"idKategoria\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -94,7 +154,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": 2,\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"stock\": 6,\r\n    \"idKategoria\": 1\r\n}",
+									"raw": "{\r\n    \"id\": 53,\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"idKategoria\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -123,7 +183,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": [2]\r\n}",
+									"raw": "{\r\n    \"id\": [49,50]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -176,7 +236,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php?id=12345678W",
+									"raw": "http://localhost/erronka1/controller/erabiltzaileacontroller.php?id=12345678Z",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -189,7 +249,7 @@
 									"query": [
 										{
 											"key": "id",
-											"value": "12345678W"
+											"value": "12345678Z"
 										}
 									]
 								}
@@ -287,7 +347,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nan\": \"12345678W\",\r\n    \"izena\": \"Jon\",\r\n    \"abizena\": \"Caballero\",\r\n    \"erabiltzailea\": \"jcaballero\",\r\n    \"pasahitza\": \"12345678\",\r\n    \"rola\": \"0\",\r\n    \"irudia\": \"\"\r\n}",
+									"raw": "{\r\n    \"nan\": \"12345678Z\",\r\n    \"izena\": \"Jon\",\r\n    \"abizena\": \"Caballero\",\r\n    \"erabiltzailea\": \"jcaballero2\",\r\n    \"pasahitza\": \"12345678\",\r\n    \"rola\": \"0\",\r\n    \"irudia\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -383,6 +443,36 @@
 										{
 											"key": "id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER gela",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/gelacontroller.php?zutabea=izena&datua=A208",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "izena"
+										},
+										{
+											"key": "datua",
+											"value": "A208"
 										}
 									]
 								}
@@ -528,13 +618,43 @@
 							"response": []
 						},
 						{
+							"name": "GET BY FILTER inbentarioa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/inbentarioacontroller.php?zutabea=idEkipamendu&datua=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "idEkipamendu"
+										},
+										{
+											"key": "datua",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "POST inbentarioa",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"etiketa\": \"123456\",\r\n    \"idEkipamendu\": \"2\",\r\n    \"erosketaData\": \"2023-10-01\"\r\n}",
+									"raw": "{\r\n    \"zenbat\": 5,\r\n    \"idEkipamendu\": \"1\",\r\n    \"erosketaData\": \"2021-10-01\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -563,7 +683,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"etiketa\": \"123456\",\r\n    \"idEkipamendu\": \"2\",\r\n    \"erosketaData\": \"2023-10-01\"\r\n}",
+									"raw": "{\r\n    \"etiketa\": \"123456\",\r\n    \"erosketaData\": \"2023-10-01\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -592,7 +712,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"etiketa\": [\"123456\"]\r\n}",
+									"raw": "{\r\n    \"etiketa\": [\"WRB11B85TS\", \"YOL2NZ9BW7\", \"U0QSYO2RGV\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -815,12 +935,12 @@
 							"response": []
 						},
 						{
-							"name": "GET BY ID kokalekua",
+							"name": "GET FREE kokalekua",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php?id=1",
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php?free=true",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -832,8 +952,64 @@
 									],
 									"query": [
 										{
-											"key": "id",
-											"value": "1"
+											"key": "free",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ZENBAT PORTATIL kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php?portatil=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									],
+									"query": [
+										{
+											"key": "portatil",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/erronka1/controller/kokalekuacontroller.php?zutabea=idGela&datua=200",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "idGela"
+										},
+										{
+											"key": "datua",
+											"value": "200"
 										}
 									]
 								}
@@ -847,7 +1023,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"stock\": 6,\r\n    \"idKategoria\": 1\r\n}",
+									"raw": "{\r\n    \"etiketa\": \"ASUS TUF Gaming F15\",\r\n    \"idGela\": \"A208\",\r\n    \"hasieraData\": \"2023-11-07\",\r\n    \"amaieraData\": \"null\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -876,7 +1052,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": 1,\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"stock\": 6,\r\n    \"idKategoria\": 1\r\n}",
+									"raw": "{\r\n    \"etiketa\": \"ABC1235\",\r\n    \"hasieraData\": \"2023-11-03\",\r\n    \"amaieraData\": \"2023-11-10\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -905,7 +1081,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": [1,2]\r\n}",
+									"raw": "{\r\n    \"id\": [\"ABCD1234!2012-10-10\",\"ABCD1235!2012-10-10\"]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -917,6 +1093,1224 @@
 									"protocol": "http",
 									"host": [
 										"localhost"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Erronka 1 Server",
+			"item": [
+				{
+					"name": "Ekipamendua",
+					"item": [
+						{
+							"name": "GET ALL ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ID ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php?id=3",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php?zutabea=id&datua=1",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "id"
+										},
+										{
+											"key": "datua",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY MARKA MODELO ekipamendua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php?marka=HP&modelo=TG02-0087ns",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									],
+									"query": [
+										{
+											"key": "marka",
+											"value": "HP"
+										},
+										{
+											"key": "modelo",
+											"value": "TG02-0087ns"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST ekipamendua",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"idKategoria\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT ekipamendua",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 53,\r\n    \"izena\": \"Ekipamendua\",\r\n    \"deskribapena\": \"Froga bat egiteko\",\r\n    \"marka\": \"Ekipamendu\",\r\n    \"modelo\": \"Ekipamendu\",\r\n    \"idKategoria\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE ekipamendua",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": [49,50]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/ekipamenduacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"ekipamenduacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Erabiltzailea",
+					"item": [
+						{
+							"name": "GET ALL erabiltzailea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY NAN erabiltzailea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php?id=12345678Z",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "12345678Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ERABILTZAILEA erabiltzailea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php?erabiltzailea=jcaballero",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									],
+									"query": [
+										{
+											"key": "erabiltzailea",
+											"value": "jcaballero"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LOGIN erabiltzailea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"erabil\": \"jcaballero\",\r\n    \"pass\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST erabiltzailea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nan\": \"12345678W\",\r\n    \"izena\": \"Jon\",\r\n    \"abizena\": \"Caballero\",\r\n    \"erabiltzailea\": \"jcaballero\",\r\n    \"pasahitza\": \"12345678\",\r\n    \"rola\": \"0\",\r\n    \"irudia\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT erabiltzailea",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nan\": \"12345678Z\",\r\n    \"izena\": \"Jon\",\r\n    \"abizena\": \"Caballero\",\r\n    \"erabiltzailea\": \"jcaballero2\",\r\n    \"pasahitza\": \"12345678\",\r\n    \"rola\": \"0\",\r\n    \"irudia\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE erabiltzailea",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nan\": [\"12345678W\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/erabiltzaileacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"erabiltzaileacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gela",
+					"item": [
+						{
+							"name": "GET ALL gela",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ID gela",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php?id=1",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER gela",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php?zutabea=izena&datua=A208",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "izena"
+										},
+										{
+											"key": "datua",
+											"value": "A208"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST gela",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"izena\": \"1\",\r\n    \"taldea\": \"GAW\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT gela",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 3,\r\n    \"izena\": \"113A\",\r\n    \"taldea\": \"WAG\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE gela",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": [1,2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/gelacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"gelacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Inbentarioa",
+					"item": [
+						{
+							"name": "GET ALL inbentarioa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ID inbentarioa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php?id=123456",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER inbentarioa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php?zutabea=idEkipamendu&datua=1",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "idEkipamendu"
+										},
+										{
+											"key": "datua",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST inbentarioa",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"zenbat\": 5,\r\n    \"idEkipamendu\": \"1\",\r\n    \"erosketaData\": \"2021-10-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT inbentarioa",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"etiketa\": \"123456\",\r\n    \"erosketaData\": \"2023-10-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE inbentarioa",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"etiketa\": [\"WRB11B85TS\", \"YOL2NZ9BW7\", \"U0QSYO2RGV\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/inbentarioacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"inbentarioacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Kategoria",
+					"item": [
+						{
+							"name": "GET ALL kategoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER kategoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php?zutabea=id&datua=12",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "id"
+										},
+										{
+											"key": "datua",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY ID kategoria",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php?id=1",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST kategoria",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"izena\": \"Ordenagailu\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT kategoria",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"izena\": \"Ekipamendua\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE kategoria",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": [1,2,3,4,5,6,7]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kategoriacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kategoriacontroller.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Kokalekua",
+					"item": [
+						{
+							"name": "GET ALL kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET FREE kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php?free=true",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									],
+									"query": [
+										{
+											"key": "free",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ZENBAT PORTATIL kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php?portatil=true",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									],
+									"query": [
+										{
+											"key": "portatil",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BY FILTER kokalekua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php?zutabea=idGela&datua=200",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									],
+									"query": [
+										{
+											"key": "zutabea",
+											"value": "idGela"
+										},
+										{
+											"key": "datua",
+											"value": "200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST kokalekua",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"etiketa\": \"ASUS TUF Gaming F15\",\r\n    \"idGela\": \"A208\",\r\n    \"hasieraData\": \"2023-11-07\",\r\n    \"amaieraData\": \"null\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT kokalekua",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"etiketa\": \"ABC1235\",\r\n    \"hasieraData\": \"2023-11-03\",\r\n    \"amaieraData\": \"2023-11-10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
+									],
+									"path": [
+										"erronka1",
+										"controller",
+										"kokalekuacontroller.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE kokalekua",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": [\"ABCD1234!2012-10-10\",\"ABCD1235!2012-10-10\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://192.168.201.101/erronka1/controller/kokalekuacontroller.php",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"201",
+										"101"
 									],
 									"path": [
 										"erronka1",
